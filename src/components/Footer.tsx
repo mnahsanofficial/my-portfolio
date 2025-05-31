@@ -1,28 +1,122 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { FiGithub, FiLinkedin, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const footerLinks = [
+    {
+      title: 'Quick Links',
+      links: [
+        { name: 'Home', href: '#home' },
+        { name: 'About', href: '#about' },
+        { name: 'Skills', href: '#skills' },
+        { name: 'Projects', href: '#projects' },
+        { name: 'Contact', href: '#contact' },
+      ],
+    },
+    {
+      title: 'Contact',
+      links: [
+        { name: 'nmahsanofficial@gmail.com', href: 'mailto:nmahsanofficial@gmail.com', icon: <FiMail /> },
+        { name: '(+88) 01815532283', href: 'tel:+8801815532283', icon: <FiPhone /> },
+        { name: 'Dhaka, Bangladesh', href: '#', icon: <FiMapPin /> },
+      ],
+    },
+  ];
+
+  const socialLinks = [
+    { icon: <FiGithub />, href: 'https://github.com/mnahsanofficial', label: 'GitHub' },
+    { icon: <FiLinkedin />, href: 'https://www.linkedin.com/in/mn-ahsan/', label: 'LinkedIn' },
+  ];
+
   return (
-    <footer className="bg-dark text-white py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
-            <p>&copy; {new Date().getFullYear()} Nazmul Ahsan. All rights reserved.</p>
-          </div>
-          <div className="flex space-x-6">
-            <Link href="https://github.com/mnahsanofficial" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition">
-              <span className="sr-only">GitHub</span>
-              <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-              </svg>
-            </Link>
-            <Link href="https://www.linkedin.com/in/mn-ahsan/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition">
-              <span className="sr-only">LinkedIn</span>
-              <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-              </svg>
-            </Link>
-          </div>
+    <footer className="bg-gradient-to-b from-gray-900 to-gray-800 text-gray-300 pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          {/* About Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl font-bold text-white mb-4">Nazmul Ahsan</h3>
+            <p className="mb-4">
+              Full Stack Developer specializing in modern web technologies and creating exceptional digital experiences.
+            </p>
+            <div className="flex space-x-4">
+              {socialLinks.map((link, index) => (
+                <motion.a
+                  key={index}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -3 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="bg-gray-700 hover:bg-gray-600 p-3 rounded-full text-white transition-colors"
+                  aria-label={link.label}
+                >
+                  {link.icon}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Footer Links */}
+          {footerLinks.map((section, index) => (
+            <motion.div
+              key={section.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <h4 className="text-xl font-semibold text-white mb-4">{section.title}</h4>
+              <ul className="space-y-3">
+                {section.links.map((link, linkIndex) => (
+                  <li key={linkIndex}>
+                    <Link
+                      href={link.href}
+                      className="flex items-center hover:text-white transition-colors"
+                    >
+                      {link.icon && <span className="mr-2">{link.icon}</span>}
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Divider */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="border-t border-gray-700 my-8"
+        />
+
+        {/* Copyright */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row justify-between items-center text-center"
+        >
+          <p className="mb-4 md:mb-0">
+            &copy; {currentYear} Nazmul Ahsan. All rights reserved.
+          </p>
+          <p className="text-sm">
+            Crafted with <span className="text-red-400">♥</span> using Next.js & Tailwind CSS
+          </p>
+        </motion.div>
       </div>
     </footer>
   );
