@@ -23,14 +23,36 @@ const Projects = () => {
     {
       title: 'EINO - Knowledge Management Platform',
       description: 'Enterprise knowledge management system designed to make organizational knowledge secure and easily retrievable. Features include AI-powered search, video content processing, and collaborative tools.',
-      tags: ['Angular', 'Python-Django', 'PostgreSQL', 'AWS', 'CI/CD'],
+      tags: ['Angular', 'Python-Django', 'PostgreSQL'],
       images: [
-        '/assets/images/projectss/eino-1.jpg',
-        '/assets/images/projectss/eino-2.jpg',
-        '/assets/images/projectss/eino-3.jpg'
+        '/assets/images/EINO/eino-1.png',
+        '/assets/images/EINO/eino-2.png',
+        '/assets/images/EINO/eino-3.png',
+        '/assets/images/EINO/eino-4.png',
+        '/assets/images/EINO/eino-5.png',
+        '/assets/images/EINO/eino-6.png',
+        '/assets/images/EINO/eino-7.png',
+        '/assets/images/EINO/eino-8.png',
+        '/assets/images/EINO/eino-9.png',
       ],
       links: {
-        live: 'https://eino-app.com'
+        live: 'https://app.eino.world'
+      }
+    },
+    {
+      title: 'AI Chat App with Next.js & NestJS ',
+      description: 'I built an AI-powered chat application using Next.js for the frontend and NestJS for the backend. The app integrates OpenAI’s GPT-4 to generate responses while implementing rate limiting (5 requests/day per user) to prevent abuse.',
+      tags: ['Next.js', 'NestJS', 'TypeScript', 'PostgreSQL'],
+      images: [
+        '/assets/images/Chatbot/chatbot-1.png',
+        '/assets/images/Chatbot/chatbot-2.png',
+        '/assets/images/Chatbot/chatbot-3.png',
+        '/assets/images/Chatbot/chatbot-4.png',
+        '/assets/images/Chatbot/chatbot-5.png',
+      ],
+      links: {
+        github: 'https://github.com/mnahsanofficial/NEXTjs-JWT-Authentication',
+        live: 'https://www.youtube.com/watch?v=zWjNSByDoRA'
       }
     },
     {
@@ -47,15 +69,7 @@ const Projects = () => {
         live: 'https://redjuly.live'
       }
     },
-    {
-      title: 'Athlete Database System',
-      description: 'Centralized database for Commonwealth Games Association to manage athlete profiles, performance metrics, and event participation.',
-      tags: ['Next.js', 'NestJS', 'TypeScript', 'PostgreSQL'],
-      images: [
-        '/assets/images/projectss/athlete-1.jpg',
-        '/assets/images/projectss/athlete-2.jpg'
-      ]
-    },
+    
     {
       title: 'Esports Tournament Platform',
       description: 'Platform for organizing and streaming esports tournaments with real-time leaderboards and payment integration.',
