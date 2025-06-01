@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { JSX } from 'react';
 import { FiCode, FiDatabase, FiTool, FiUsers } from 'react-icons/fi';
 
 interface SkillCategory {
@@ -10,7 +11,7 @@ interface SkillCategory {
     level: number; // 1-5 (for visualization)
     icon?: JSX.Element;
   }[];
-  icon: JSX.Element;
+  icon?: JSX.Element;
 }
 
 const Skills = () => {
