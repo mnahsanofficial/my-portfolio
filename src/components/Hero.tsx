@@ -102,7 +102,7 @@ const Hero = () => {
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-30"></div>
                 <Image
-                  src="/public/assets/images/ahsan.jpg"
+                  src="/assets/images/ahsan.jpg"
                   alt="Nazmul Ahsan"
                   fill
                   className="object-cover object-center"

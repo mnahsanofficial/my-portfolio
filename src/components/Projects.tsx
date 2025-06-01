@@ -19,21 +19,22 @@ interface Project {
 const Projects = () => {
   const [visibleProjects, setVisibleProjects] = useState(2);
   
+  
   const projects: Project[] = [
     {
       title: 'EINO - Knowledge Management Platform',
       description: 'Enterprise knowledge management system designed to make organizational knowledge secure and easily retrievable. Features include AI-powered search, video content processing, and collaborative tools.',
       tags: ['Angular', 'Python-Django', 'PostgreSQL'],
       images: [
-        '/public/assets/images/EINO/eino-1.png',
-        '/public/assets/images/EINO/eino-2.png',
-        '/public/assets/images/EINO/eino-3.png',
-        '/public/assets/images/EINO/eino-4.png',
-        '/public/assets/images/EINO/eino-5.png',
-        '/public/assets/images/EINO/eino-6.png',
-        '/public/assets/images/EINO/eino-7.png',
-        '/public/assets/images/EINO/eino-8.png',
-        '/public/assets/images/EINO/eino-9.png',
+        '/assets/images/EINO/eino-1.png',
+        '/assets/images/EINO/eino-2.png',
+        '/assets/images/EINO/eino-3.png',
+        '/assets/images/EINO/eino-4.png',
+        '/assets/images/EINO/eino-5.png',
+        '/assets/images/EINO/eino-6.png',
+        '/assets/images/EINO/eino-7.png',
+        '/assets/images/EINO/eino-8.png',
+        '/assets/images/EINO/eino-9.png',
       ],
       links: {
         live: 'https://app.eino.world'
@@ -44,12 +45,11 @@ const Projects = () => {
       description: 'I built an AI-powered chat application using Next.js for the frontend and NestJS for the backend. The app integrates OpenAI’s GPT-4 to generate responses while implementing rate limiting (5 requests/day per user) to prevent abuse.',
       tags: ['Next.js', 'NestJS', 'TypeScript', 'PostgreSQL'],
       images: [
-        '/public/vercel.svg',
-        '/public/assets/images/Chatbot/chatbot-1.png',
-        '/public/assets/images/Chatbot/chatbot-2.png',
-        '/public/assets/images/Chatbot/chatbot-3.png',
-        '/public/assets/images/Chatbot/chatbot-4.png',
-        '/public/assets/images/Chatbot/chatbot-5.png',
+        '/assets/images/Chatbot/chatbot-1.png',
+        '/assets/images/Chatbot/chatbot-2.png',
+        '/assets/images/Chatbot/chatbot-3.png',
+        '/assets/images/Chatbot/chatbot-4.png',
+        '/assets/images/Chatbot/chatbot-5.png',
       ],
       links: {
         github: 'https://github.com/mnahsanofficial/NEXTjs-JWT-Authentication',
