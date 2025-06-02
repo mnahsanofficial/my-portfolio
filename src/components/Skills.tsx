@@ -85,7 +85,7 @@ const Skills = () => {
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Technologies and competencies I've mastered throughout my career
+            Technologies and competencies I&apos;ve mastered throughout my career
           </p>
         </motion.div>
 

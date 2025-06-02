@@ -57,7 +57,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link, index) => (
+            {navLinks.map((link) => (
               <motion.div
                 key={link.name}
                 whileHover={{ y: -2 }}

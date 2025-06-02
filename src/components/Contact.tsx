@@ -41,7 +41,7 @@ const Contact = () => {
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Have a project in mind or want to connect? I'd love to hear from you!
+            Have a project in mind or want to connect? I&apos;d love to hear from you!
           </p>
         </motion.div>
 
@@ -122,7 +122,7 @@ const Contact = () => {
             {/* Availability */}
             <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
               <h4 className="font-bold text-blue-800 mb-2">Current Availability</h4>
-              <p className="text-blue-700 mb-3">I'm currently available for:</p>
+              <p className="text-blue-700 mb-3">I&apos;m currently available for:</p>
               <ul className="space-y-2">
                 <li className="flex items-center">
                   <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>

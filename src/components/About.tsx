@@ -37,7 +37,7 @@ const About = () => {
             
             <div className="space-y-4 text-gray-600 text-lg">
               <p>
-                I'm <span className="font-medium text-blue-600">Nazmul Ahsan</span>, a passionate Full Stack Developer with expertise in both frontend and backend technologies. My journey in tech has been driven by a relentless curiosity and commitment to building solutions that make an impact.
+                I&apos;m <span className="font-medium text-blue-600">Nazmul Ahsan</span>, a passionate Full Stack Developer with expertise in both frontend and backend technologies. My journey in tech has been driven by a relentless curiosity and commitment to building solutions that make an impact.
               </p>
               
               <p>
