@@ -22,7 +22,7 @@ A modern, responsive portfolio website built with Next.js, TypeScript, and Tailw
 
 ## Live Demo
 
-Check out the live deployment: [portfolio-mnahsan.vercel.app](https://portfolio-mnahsan.vercel.app)
+Check out the live deployment: [mnahsanofficial.github.io/portfolio/](https://mnahsanofficial.github.io/portfolio/)
 
 ## Getting Started
 

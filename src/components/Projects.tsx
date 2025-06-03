@@ -61,31 +61,30 @@ const Projects = () => {
       description: 'Interactive web platform honoring activists of Bangladesh\'s Quota Reform Movement. Features include timeline visualization, multimedia content, and user contributions system.',
       tags: ['Next.js', 'React', 'TypeScript', 'Node.js', 'MongoDB'],
       images: [
-        '/assets/images/projectss/redjuly-1.jpg',
-        '/assets/images/projectss/redjuly-2.jpg',
-        '/assets/images/projectss/redjuly-3.jpg'
+        '/assets/images/projects/redjuly-1.jpg',
+        '/assets/images/projects/redjuly-2.jpg',
+        '/assets/images/projects/redjuly-3.jpg'
       ],
       links: {
-        github: 'https://github.com/username/redjuly',
         live: 'https://redjuly.live'
       }
     },
     
     {
       title: 'Esports Tournament Platform',
-      description: 'Platform for organizing and streaming esports tournaments with real-time leaderboards and payment integration.',
+      description: 'Engineered a comprehensive platform for organizing and streaming esports tournaments. Key contributions included developing real-time leaderboards using WebSockets, integrating secure payment gateways (e.g., Stripe API), and designing a scalable architecture to handle concurrent users and live data updates.',
       tags: ['React', 'Firebase', 'Stripe API', 'WebSockets'],
       images: [
-        '/assets/images/projectss/esports-1.jpg',
-        '/assets/images/projectss/esports-2.jpg'
+        '/assets/images/projects/esports-1.jpg',
+        '/assets/images/projects/esports-2.jpg'
       ]
     },
     {
       title: 'BongoDev CMS',
-      description: 'Custom content management system for managing multiple client websites from a single dashboard.',
+      description: 'Developed a bespoke multi-tenant Content Management System (CMS) enabling efficient management of multiple client websites from a unified dashboard. Focused on creating a modular architecture, user-friendly content editing tools, and robust permission systems. Leveraged Docker for consistent deployment environments.',
       tags: ['Vue.js', 'Laravel', 'MySQL', 'Docker'],
       images: [
-        '/assets/images/projectss/cms-1.jpg'
+        '/assets/images/projects/cms-1.jpg'
       ]
     }
   ];
@@ -162,6 +161,7 @@ const Projects = () => {
                     <button
                       onClick={() => prevImage(index)}
                       className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition z-10"
+                      aria-label="Previous image"
                     >
                       <svg className="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -170,6 +170,7 @@ const Projects = () => {
                     <button
                       onClick={() => nextImage(index)}
                       className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition z-10"
+                      aria-label="Next image"
                     >
                       <svg className="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -188,6 +189,8 @@ const Projects = () => {
                           ...prev,
                           [index]: imgIndex
                         }))}
+                        aria-label={`Go to image ${imgIndex + 1} for ${project.title}`}
+                        aria-current={imgIndex === activeImageIndices[index] ? "true" : undefined}
                         className={`w-2 h-2 rounded-full transition-all ${
                           imgIndex === activeImageIndices[index] 
                             ? 'bg-white w-4' 
