@@ -29,8 +29,8 @@ const Navbar = () => {
   ];
 
   const socialLinks = [
-    { icon: <FiGithub />, href: 'https://github.com/yourusername' },
-    { icon: <FiLinkedin />, href: 'https://linkedin.com/in/yourprofile' }
+    { icon: <FiGithub />, href: 'https://github.com/mnahsanofficial' },
+    { icon: <FiLinkedin />, href: 'https://www.linkedin.com/in/mn-ahsan/' }
   ];
 
   return (
@@ -84,6 +84,7 @@ const Navbar = () => {
                   whileHover={{ y: -3 }}
                   whileTap={{ scale: 0.9 }}
                   className="text-gray-600 hover:text-blue-600 transition-colors"
+                  aria-label={index === 0 ? "GitHub" : "LinkedIn"}
                 >
                   {link.icon}
                 </motion.a>
@@ -95,8 +96,10 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-blue-600 focus:outline-none"
+              className="text-gray-700 hover:text-blue-600"
               aria-label="Toggle menu"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu-content"
             >
               {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
@@ -113,6 +116,7 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
             className="md:hidden bg-white overflow-hidden"
+            id="mobile-menu-content"
           >
             <div className="px-6 pt-2 pb-6 space-y-4">
               {navLinks.map((link) => (
@@ -144,6 +148,7 @@ const Navbar = () => {
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                     className="text-gray-600 hover:text-blue-600 transition-colors p-2"
                     onClick={() => setIsOpen(false)}
+                    aria-label={index === 0 ? "GitHub (mobile)" : "LinkedIn (mobile)"}
                   >
                     {link.icon}
                   </motion.a>

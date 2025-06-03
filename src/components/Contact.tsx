@@ -100,19 +100,21 @@ const Contact = () => {
               <div className="flex space-x-4">
                 <motion.a
                   whileHover={{ y: -3 }}
-                  href="https://linkedin.com/in/yourprofile"
+                  href="https://www.linkedin.com/in/mn-ahsan/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-blue-100 p-4 rounded-full text-blue-600 hover:bg-blue-200 transition"
+                  aria-label="LinkedIn"
                 >
                   <FiLinkedin className="text-xl" />
                 </motion.a>
                 <motion.a
                   whileHover={{ y: -3 }}
-                  href="https://github.com/yourusername"
+                  href="https://github.com/mnahsanofficial"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gray-100 p-4 rounded-full text-gray-600 hover:bg-gray-200 transition"
+                  aria-label="GitHub"
                 >
                   <FiGithub className="text-xl" />
                 </motion.a>
