@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { FiMail, FiPhone, FiMapPin, FiSend, FiLinkedin, FiGithub } from 'react-icons/fi';
-import { fadeIn, staggerContainer, staggerItem, defaultViewport } from '../../lib/animations'; // Added staggerItem
+import { fadeIn, staggerContainer, defaultViewport } from '../lib/animations'; // Added staggerItem
 
 interface FormData {
   name: string;

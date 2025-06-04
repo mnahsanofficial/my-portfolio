@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
-import { fadeIn, scaleUp, staggerContainer, defaultViewport } from '../../lib/animations';
+import { fadeIn, scaleUp, staggerContainer, defaultViewport } from '../lib/animations';
 
 interface Project {
   title: string;
@@ -62,9 +62,12 @@ const Projects = () => {
       description: 'Interactive web platform honoring activists of Bangladesh\'s Quota Reform Movement. Features include timeline visualization, multimedia content, and user contributions system.',
       tags: ['Next.js', 'React', 'TypeScript', 'Node.js', 'MongoDB'],
       images: [
-        '/assets/images/projects/redjuly-1.jpg',
-        '/assets/images/projects/redjuly-2.jpg',
-        '/assets/images/projects/redjuly-3.jpg'
+        '/assets/images/Red July/red-july-1.png',
+        '/assets/images/Red July/red-july-2.png',
+        '/assets/images/Red July/red-july-.3.png',
+        '/assets/images/Red July/red-july-4.png',
+        '/assets/images/Red July/red-july-5.png',
+        '/assets/images/Red July/red-july-6.png',
       ],
       links: {
         live: 'https://redjuly.live'
@@ -291,7 +294,7 @@ const Projects = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-          </div>
+          </motion.div>
         )}
       </div>
     </section>

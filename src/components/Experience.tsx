@@ -2,7 +2,7 @@
 
 import { motion, Variants } from 'framer-motion'; // Added Variants for explicit typing if needed
 import { FaBuilding, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
-import { fadeIn, staggerContainer, staggerItem, defaultViewport } from '../../lib/animations';
+import { fadeIn, staggerContainer, staggerItem, defaultViewport } from '../lib/animations';
 
 interface ExperienceItemDef { // Renamed to avoid conflict if ExperienceItem is globally defined
   role: string;
@@ -197,11 +197,12 @@ const Experience = () => {
                     })}
                   </motion.div> {/* End of skills flex-wrap div */}
                 </div> {/* End of technologies block */}
-              </motion.div> {/* End of p-8 staggerContainer */}
-            </motion.div> {/* End of individual experience card */}
+              </motion.div> 
+            </motion.div> 
           ))}
-        </motion.div> {/* End of space-y-12 staggerContainer */}
-      </div> {/* End of max-w-6xl div */}
+          </motion.div>
+          </div>
+         {/* End of space-y-12 staggerContainer */}
     </section>
   );
 };
