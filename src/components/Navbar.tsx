@@ -3,11 +3,11 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX, FiGithub, FiLinkedin, FiSun, FiMoon } from 'react-icons/fi';
+import { FiMenu, FiX, FiGithub, FiLinkedin } from 'react-icons/fi';
 import { useTheme } from '../context/ThemeContext'; // Adjust path if necessary
 
+
 const Navbar = () => {
-  const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -41,8 +41,8 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed w-full z-50 ${
-        scrolled ? 'bg-white/90 dark:bg-slate-800/80 backdrop-blur-md shadow-sm dark:shadow-md border-b border-transparent dark:border-slate-700/50' : 'bg-white dark:bg-slate-800'
-      } transition-colors duration-300`}
+        scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-white'
+      } transition-all duration-300`}
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center h-16">
@@ -67,7 +67,7 @@ const Navbar = () => {
               >
                 <Link
                   href={link.href}
-                  className="text-gray-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium relative group"
+                  className="text-gray-700 hover:text-blue-600 transition-colors font-medium relative group"
                 >
                   {link.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
@@ -85,23 +85,12 @@ const Navbar = () => {
                   rel="noopener noreferrer"
                   whileHover={{ y: -3 }}
                   whileTap={{ scale: 0.9 }}
-                  className="text-gray-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  className="text-gray-600 hover:text-blue-600 transition-colors"
                   aria-label={index === 0 ? "GitHub" : "LinkedIn"}
                 >
                   {link.icon}
                 </motion.a>
               ))}
-              <button
-                onClick={toggleTheme}
-                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-                className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ml-2"
-              >
-                {theme === 'light' ? (
-                  <FiMoon className="text-gray-700 dark:text-gray-300 text-xl" />
-                ) : (
-                  <FiSun className="text-yellow-500 dark:text-yellow-400 text-xl" />
-                )}
-              </button>
             </div>
           </div>
 
@@ -109,7 +98,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400"
+              className="text-gray-700 hover:text-blue-600"
               aria-label="Toggle menu"
               aria-expanded={isOpen}
               aria-controls="mobile-menu-content"
@@ -128,7 +117,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white dark:bg-slate-800 overflow-hidden"
+            className="md:hidden bg-white overflow-hidden"
             id="mobile-menu-content"
           >
             <div className="px-6 pt-2 pb-6 space-y-4">
@@ -141,7 +130,7 @@ const Navbar = () => {
                 >
                   <Link
                     href={link.href}
-                    className="block py-2 text-gray-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                    className="block py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}
@@ -159,31 +148,13 @@ const Navbar = () => {
                     initial={{ x: 20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="text-gray-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors p-2"
+                    className="text-gray-600 hover:text-blue-600 transition-colors p-2"
                     onClick={() => setIsOpen(false)}
                     aria-label={index === 0 ? "GitHub (mobile)" : "LinkedIn (mobile)"}
                   >
                     {link.icon}
                   </motion.a>
                 ))}
-                {/* Theme toggle button for mobile - styling assumed to be mostly handled by icon color and hover:bg by parent, specific text colors for icons are already set */}
-                <motion.button
-                  onClick={() => {
-                    toggleTheme();
-                    setIsOpen(false);
-                  }}
-                  aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-                  initial={{ x: 20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.4 }}
-                  className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                >
-                  {theme === 'light' ? (
-                    <FiMoon className="text-gray-700 dark:text-gray-300 text-xl" />
-                  ) : (
-                    <FiSun className="text-yellow-500 dark:text-yellow-400 text-xl" />
-                  )}
-                </motion.button>
               </div>
             </div>
           </motion.div>
