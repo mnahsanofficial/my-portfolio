@@ -61,9 +61,12 @@ const Projects = () => {
       description: 'Interactive web platform honoring activists of Bangladesh\'s Quota Reform Movement. Features include timeline visualization, multimedia content, and user contributions system.',
       tags: ['Next.js', 'React', 'TypeScript', 'Node.js', 'MongoDB'],
       images: [
-        '/assets/images/projects/redjuly-1.jpg',
-        '/assets/images/projects/redjuly-2.jpg',
-        '/assets/images/projects/redjuly-3.jpg'
+        '/assets/images/Red July/red-july-1.png',
+        '/assets/images/Red July/red-july-2.png',
+        '/assets/images/Red July/red-july-.3.png',
+        '/assets/images/Red July/red-july-4.png',
+        '/assets/images/Red July/red-july-5.png',
+        '/assets/images/Red July/red-july-6.png',
       ],
       links: {
         live: 'https://redjuly.live'

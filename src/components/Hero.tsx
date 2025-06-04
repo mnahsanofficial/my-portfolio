@@ -1,17 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import {
   fadeIn,
   scaleUp,
   staggerContainer,
-  staggerItem,
   sentenceVariant,
   letterVariant,
   defaultViewport
-} from '../../lib/animations'; // Assuming Hero.tsx is in src/components/
+} from '../lib/animations'; 
 
 const Hero = () => {
   return (
@@ -62,7 +61,7 @@ const Hero = () => {
             className="lg:w-1/2 text-center lg:text-left"
           >
             <motion.h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              <motion.span variants={fadeIn('none', 0, 0.5)} className="inline-block text-white">Hi, I&apos;m </motion.span>
+              <motion.span variants={fadeIn('none', 0, 0.5)} className="inline-block text-white">Hi, I&apos;m&nbsp;</motion.span>
               <motion.span
                 className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500 inline-block"
                 variants={sentenceVariant}

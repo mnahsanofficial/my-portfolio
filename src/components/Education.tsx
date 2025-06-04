@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FaGraduationCap, FaSearch, FaBookOpen } from 'react-icons/fa';
-import { fadeIn, staggerContainer, defaultViewport } from '../../lib/animations';
+import { fadeIn, staggerContainer, defaultViewport } from '../lib/animations';
 
 const Education = () => {
   const educationData = [

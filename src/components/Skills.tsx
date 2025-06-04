@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { JSX } from 'react';
 import { FiCode, FiDatabase, FiTool, FiUsers } from 'react-icons/fi';
-import { fadeIn, scaleUp, staggerContainer, defaultViewport } from '../../lib/animations'; // Assuming path
+import { fadeIn, scaleUp, staggerContainer, defaultViewport } from '../lib/animations'; // Assuming path
 
 interface SkillCategory {
   title: string;

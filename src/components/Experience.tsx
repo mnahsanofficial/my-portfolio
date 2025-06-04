@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FaBuilding, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
-import { fadeIn, staggerContainer, staggerItem, defaultViewport } from '../../lib/animations';
+import { fadeIn, staggerContainer, staggerItem, defaultViewport } from '../lib/animations';
 
 interface ExperienceItem {
   role: string;
@@ -204,8 +204,9 @@ const Experience = () => {
               </motion.div>
             </motion.div>
           ))}
+          </motion.div>
         </div>
-      </div>
+    
     </section>
   );
 };

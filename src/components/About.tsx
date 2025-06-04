@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FaCode, FaServer, FaBrain, FaLightbulb } from 'react-icons/fa';
-import { fadeIn, staggerContainer, defaultViewport } from '../../lib/animations'; // Adjust path if needed
+import { fadeIn, staggerContainer, defaultViewport } from '../lib/animations'; // Adjust path if needed
 
 const About = () => {
   return (
