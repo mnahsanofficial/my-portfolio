@@ -1,8 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
+import {
+  fadeIn,
+  scaleUp,
+  staggerContainer,
+  staggerItem,
+  sentenceVariant,
+  letterVariant,
+  defaultViewport
+} from '../../lib/animations'; // Assuming Hero.tsx is in src/components/
 
 const Hero = () => {
   return (
@@ -46,28 +55,39 @@ const Hero = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Text content */}
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            variants={staggerContainer(0.3, 0.1)}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={defaultViewport}
             className="lg:w-1/2 text-center lg:text-left"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-white">Hi, I&apos;m </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                Nazmul Ahsan
-              </span>
-            </h1>
+            <motion.h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
+              <motion.span variants={fadeIn('none', 0, 0.5)} className="inline-block text-white">Hi, I&apos;m </motion.span>
+              <motion.span
+                className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500 inline-block"
+                variants={sentenceVariant}
+                initial="initial"
+                whileInView="whileInView"
+                viewport={defaultViewport}
+              >
+                { "Nazmul Ahsan".split("").map((char, index) => (
+                  <motion.span key={char + "-" + index} variants={letterVariant} className="inline-block">
+                    {char === " " ? "\u00A0" : char} {/* Preserve spaces */}
+                  </motion.span>
+                ))}
+              </motion.span>
+            </motion.h1>
             
-            <h2 className="text-2xl md:text-3xl mb-8 text-blue-100 font-medium">
+            <motion.h2 variants={fadeIn('up', 0.3, 0.6)} className="text-2xl md:text-3xl mb-8 text-blue-100 font-medium">
               Full Stack Developer & Tech Enthusiast
-            </h2>
+            </motion.h2>
             
-            <p className="text-lg md:text-xl mb-10 text-blue-100 max-w-lg mx-auto lg:mx-0">
+            <motion.p variants={fadeIn('up', 0.4, 0.6)} className="text-lg md:text-xl mb-10 text-blue-100 max-w-lg mx-auto lg:mx-0">
               Crafting pixel-perfect, high-performance web applications with modern technologies.
-            </p>
+            </motion.p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div variants={staggerContainer(0.2, 0.5)} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <motion.div variants={scaleUp(0, 0.5)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   href="#contact"
                   className="inline-block bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
@@ -76,7 +96,7 @@ const Hero = () => {
                 </Link>
               </motion.div>
               
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div variants={scaleUp(0, 0.5)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   href="#projects"
                   className="inline-block border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300"
@@ -84,17 +104,24 @@ const Hero = () => {
                   View My Work
                 </Link>
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Profile image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            variants={scaleUp(0.2, 0.8)}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={defaultViewport}
             className="relative lg:w-1/2 flex justify-center"
           >
-            <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
+            <motion.div
+              className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96"
+              variants={staggerContainer(0.2, 0.5)}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={defaultViewport}
+            >
               {/* Glow effect */}
               <div className="absolute inset-0 bg-blue-400 rounded-full blur-2xl opacity-20 animate-pulse"></div>
               
@@ -112,6 +139,7 @@ const Hero = () => {
               
               {/* Tech stack floating badges */}
               <motion.div 
+                variants={scaleUp(0, 0.5)}
                 className="absolute -bottom-4 -left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity }}
@@ -120,6 +148,7 @@ const Hero = () => {
               </motion.div>
               
               <motion.div 
+                variants={scaleUp(0, 0.5)}
                 className="absolute -top-4 -right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md"
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 5, repeat: Infinity, delay: 1 }}
@@ -128,6 +157,7 @@ const Hero = () => {
               </motion.div>
               
               <motion.div 
+                variants={scaleUp(0, 0.5)}
                 className="absolute top-1/3 -right-8 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md"
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 6, repeat: Infinity, delay: 0.5 }}
@@ -135,6 +165,7 @@ const Hero = () => {
                 <span className="font-medium text-blue-800">Next.js</span>
               </motion.div>
               <motion.div 
+                variants={scaleUp(0, 0.5)}
                 className="absolute bottom-8 -right-6 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md"
                 animate={{ y: [0, -12, 0] }}
                 transition={{ duration: 5.5, repeat: Infinity, delay: 0.3 }}
@@ -142,13 +173,14 @@ const Hero = () => {
                 <span className="font-medium text-green-800">Python-Django</span>
               </motion.div>
               <motion.div 
+                variants={scaleUp(0, 0.5)}
                 className="absolute top-1/4 -left-6 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md"
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, delay: 0.7 }}
               >
                 <span className="font-medium text-purple-800">NestJS</span>
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

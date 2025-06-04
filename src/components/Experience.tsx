@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FaBuilding, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import { fadeIn, staggerContainer, staggerItem, defaultViewport } from '../../lib/animations';
 
 interface ExperienceItem {
   role: string;
@@ -71,10 +72,10 @@ const Experience = () => {
     <section id="experience" className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          variants={fadeIn('up', 0, 0.5)}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={defaultViewport}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -86,18 +87,27 @@ const Experience = () => {
           </p>
         </motion.div>
 
-        <div className="space-y-12">
+        <motion.div
+          variants={staggerContainer(0.25, 0.2)}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={defaultViewport}
+          className="space-y-12"
+        >
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              variants={fadeIn('up', 0, 0.6)}
               className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow"
             >
-              <div className="p-8">
-                <div className="flex flex-col md:flex-row md:items-center gap-6">
+              <motion.div
+                variants={staggerContainer(0.1, 0.3)}
+                initial="initial"
+                whileInView="whileInView"
+                viewport={{ once: true, amount: 0.1 }}
+                className="p-8"
+              >
+                <motion.div variants={fadeIn('down', 0, 0.5)} className="flex flex-col md:flex-row md:items-center gap-6">
                   <div className="flex-shrink-0">
                     <div className="w-16 h-16 rounded-lg bg-gradient-to-r from-blue-100 to-indigo-100 flex items-center justify-center text-blue-600">
                       <FaBuilding className="text-2xl" />
@@ -127,25 +137,25 @@ const Experience = () => {
                     </div>
                     
                     {exp.description && (
-                      <p className="mt-4 text-gray-600">{exp.description}</p>
+                      <motion.p variants={fadeIn('up', 0, 0.5)} className="mt-4 text-gray-600">{exp.description}</motion.p>
                     )}
                   </div>
-                </div>
+                </motion.div>
                 
                 <div className="mt-8">
-                  <h4 className="text-lg font-semibold text-gray-800 mb-4">Key Responsibilities & Achievements:</h4>
-                  <ul className="space-y-3">
+                  <motion.h4 variants={fadeIn('up', 0, 0.5)} className="text-lg font-semibold text-gray-800 mb-4">Key Responsibilities & Achievements:</motion.h4>
+                  <motion.ul variants={staggerContainer(0.1)} className="space-y-3">
                     {exp.responsibilities.map((item, i) => (
-                      <li key={i} className="flex">
+                      <motion.li variants={staggerItem} key={i} className="flex">
                         <span className="flex-shrink-0 w-5 h-5 text-blue-500 mr-3 mt-0.5">•</span>
                         <span className="text-gray-700">{item}</span>
-                      </li>
+                      </motion.li>
                     ))}
-                  </ul>
+                  </motion.ul>
                 </div>
                 <div className="mt-8">
-                <h4 className="text-lg font-semibold text-gray-800 mb-3">Technologies Used:</h4>
-                <div className="flex flex-wrap gap-3">
+                <motion.h4 variants={fadeIn('up', 0, 0.5)} className="text-lg font-semibold text-gray-800 mb-3">Technologies Used:</motion.h4>
+                <motion.div variants={staggerContainer(0.05)} className="flex flex-wrap gap-3">
                       {exp.skills.map((skill, i) => {
       // Assign different color classes based on skill type or index
                       const colorClasses = [
@@ -175,6 +185,7 @@ const Experience = () => {
               return (
                   <motion.span
                   key={i}
+                  variants={staggerItem} // Or fadeIn('up', 0, 0.3)
                   whileHover={{ scale: 1.05 }}
                   className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium ${colorClass} ${highlightClass} ${keyTechRing} transition-all`}
                   >
@@ -187,10 +198,10 @@ const Experience = () => {
                 </motion.span>
                );
             })}
-          </div>
+          </motion.div>
         </div>
                 
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
