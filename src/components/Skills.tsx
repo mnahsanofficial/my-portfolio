@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { JSX } from 'react';
 import { FiCode, FiDatabase, FiTool, FiUsers } from 'react-icons/fi';
+import { fadeIn, scaleUp, staggerContainer, defaultViewport } from '../../lib/animations'; // Assuming path
 
 interface SkillCategory {
   title: string;
@@ -74,10 +75,10 @@ const Skills = () => {
     <section id="skills" className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          variants={fadeIn('up', 0, 0.5)}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={defaultViewport}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -89,14 +90,17 @@ const Skills = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {skillCategories.map((category, catIndex) => (
+        <motion.div
+          variants={staggerContainer(0.15, 0.2)}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={defaultViewport}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
+          {skillCategories.map((category) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: catIndex * 0.1 }}
-              viewport={{ once: true }}
+              variants={scaleUp(0, 0.5)}
               className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300"
             >
               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 flex items-center">
@@ -107,9 +111,15 @@ const Skills = () => {
               </div>
               
               <div className="p-6">
-                <ul className="space-y-5">
-                  {category.skills.map((skill, skillIndex) => (
-                    <li key={skill.name}>
+                <motion.ul
+                  variants={staggerContainer(0.1, 0.1)}
+                  initial="initial"
+                  whileInView="whileInView"
+                  viewport={defaultViewport} // Or { once: true, amount: 0.1 }
+                  className="space-y-5"
+                >
+                  {category.skills.map((skill) => (
+                    <motion.li variants={fadeIn('up', 0, 0.4)} key={skill.name}>
                       <div className="flex justify-between mb-1">
                         <span className="font-medium text-gray-700">{skill.name}</span>
                         <span className="text-xs text-gray-500" title={levelDescriptions[skill.level - 1]}>
@@ -120,28 +130,28 @@ const Skills = () => {
                         <motion.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level * 20}%` }}
-                          transition={{ duration: 1, delay: 0.3 + catIndex * 0.1 + skillIndex * 0.05 }}
-                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, ease: 'easeOut' }}
+                          viewport={{ once: true, amount: 0.8 }}
                           className={`h-2 rounded-full ${
                             skill.level >= 4 ? 'bg-blue-600' : 
                             skill.level >= 3 ? 'bg-indigo-500' : 'bg-blue-400'
                           }`}
                         />
                       </div>
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Skill level legend */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          viewport={{ once: true }}
+          variants={fadeIn('none', 0.5, 0.7)}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={defaultViewport}
           className="mt-12 bg-white p-6 rounded-xl shadow-sm border border-gray-200 max-w-2xl mx-auto"
         >
           <h4 className="font-semibold text-gray-700 mb-3">Skill Level Guide</h4>
