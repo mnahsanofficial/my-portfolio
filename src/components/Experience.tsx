@@ -197,12 +197,12 @@ const Experience = () => {
                     })}
                   </motion.div> {/* End of skills flex-wrap div */}
                 </div> {/* End of technologies block */}
-              </motion.div> {/* End of p-8 staggerContainer */}
-            </motion.div> {/* End of individual experience card */}
+              </motion.div> 
+            </motion.div> 
           ))}
           </motion.div>
-        </motion.div> {/* End of space-y-12 staggerContainer */}
-     {/* End of max-w-6xl div */}
+          </div>
+         {/* End of space-y-12 staggerContainer */}
     </section>
   );
 };

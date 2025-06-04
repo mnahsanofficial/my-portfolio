@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX, FiGithub, FiLinkedin, FiSun, FiMoon } from 'react-icons/fi';
-import { useTheme } from '../../context/ThemeContext'; // Adjust path if necessary
+import { useTheme } from '../context/ThemeContext'; // Adjust path if necessary
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();

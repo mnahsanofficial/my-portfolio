@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
-import { fadeIn, scaleUp, staggerContainer, defaultViewport } from '../../lib/animations';
+import { fadeIn, scaleUp, staggerContainer, defaultViewport } from '../lib/animations';
 
 interface Project {
   title: string;
@@ -294,7 +294,7 @@ const Projects = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-          </div>
+          </motion.div>
         )}
       </div>
     </section>
