@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
+import { useEffect, useState } from 'react'; // Added useEffect, useState
 import {
   fadeIn,
   scaleUp,
@@ -15,7 +16,36 @@ import {
 import { SiAngular, SiNextdotjs, SiPython, SiNestjs, SiDjango } from 'react-icons/si';
 import { FaReact } from 'react-icons/fa'; // Using FaReact for broader recognition
 
+interface BubbleStyle {
+  id: number;
+  initialX: number;
+  animateY: number[];
+  animateX: (string | number)[];
+  transitionDuration: number;
+  width: string;
+  height: string;
+  left: string;
+  top: string;
+}
+
 const Hero = () => {
+  const [bubbleParams, setBubbleParams] = useState<BubbleStyle[]>([]);
+
+  useEffect(() => {
+    const newBubbleParams = [...Array(10)].map((_, i) => ({
+      id: i,
+      initialX: Math.random() * 100,
+      animateY: [0, -100, -200, -300],
+      animateX: [0, Math.random() * 100 - 50, Math.random() * 100 - 50, Math.random() * 100 - 50],
+      transitionDuration: 15 + Math.random() * 10,
+      width: `${5 + Math.random() * 10}px`,
+      height: `${5 + Math.random() * 10}px`,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+    }));
+    setBubbleParams(newBubbleParams);
+  }, []); // Empty dependency array ensures this runs once on client mount
+
   return (
     <section 
       id="home" 
@@ -28,26 +58,26 @@ const Hero = () => {
 
       {/* Floating bubbles animation */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(10)].map((_, i) => (
+        {bubbleParams.map((params) => (
           <motion.div
-            key={i}
-            initial={{ y: 0, x: Math.random() * 100 }}
+            key={params.id}
+            initial={{ y: 0, x: params.initialX }}
             animate={{
-              y: [0, -100, -200, -300],
-              x: [0, Math.random() * 100 - 50, Math.random() * 100 - 50, Math.random() * 100 - 50],
-              opacity: [1, 0.8, 0.5, 0]
+              y: params.animateY,
+              x: params.animateX,
+              opacity: [1, 0.8, 0.5, 0] // opacity can remain static
             }}
             transition={{
-              duration: 15 + Math.random() * 10,
+              duration: params.transitionDuration,
               repeat: Infinity,
               ease: "linear"
             }}
             className="absolute rounded-full bg-white/10 backdrop-blur-sm"
             style={{
-              width: `${5 + Math.random() * 10}px`,
-              height: `${5 + Math.random() * 10}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`
+              width: params.width,
+              height: params.height,
+              left: params.left,
+              top: params.top
             }}
           />
         ))}
