@@ -20,7 +20,7 @@ const Education = () => {
       institution: "Jahangirnagar University",
       year: "2018 - 2021",
       icon: <FaGraduationCap className="text-indigo-500" />,
-      description: "Completed with comprehensive knowledge in algorithms, data structures, web development, and software engineering principles."
+      description: "Completed with a CGPA of 2.82/4.00. Gained comprehensive knowledge in algorithms, data structures, web development, and software engineering principles."
     },
     {
       degree: "Higher Secondary Certificate (HSC)",
