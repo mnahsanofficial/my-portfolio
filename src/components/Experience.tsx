@@ -1,10 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion'; // Added Variants for explicit typing if needed
 import { FaBuilding, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 import { fadeIn, staggerContainer, staggerItem, defaultViewport } from '../../lib/animations';
 
-interface ExperienceItem {
+interface ExperienceItemDef { // Renamed to avoid conflict if ExperienceItem is globally defined
   role: string;
   company: string;
   duration: string;
@@ -17,7 +17,7 @@ interface ExperienceItem {
 }
 
 const Experience = () => {
-  const experiences: ExperienceItem[] = [
+  const experiences: ExperienceItemDef[] = [
     {
       role: 'Software Developer (Full Stack)',
       company: 'Barytech Technologies',
@@ -98,11 +98,12 @@ const Experience = () => {
             <motion.div
               key={index}
               variants={fadeIn('up', 0, 0.6)}
+              // Removed initial, whileInView, viewport from here as they are inherited from parent staggerContainer
               className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow"
             >
               <motion.div
                 variants={staggerContainer(0.1, 0.3)}
-                initial="initial"
+                initial="initial" // Child stagger containers need their own initial/whileInView
                 whileInView="whileInView"
                 viewport={{ once: true, amount: 0.1 }}
                 className="p-8"
@@ -140,11 +141,11 @@ const Experience = () => {
                       <motion.p variants={fadeIn('up', 0, 0.5)} className="mt-4 text-gray-600">{exp.description}</motion.p>
                     )}
                   </div>
-                </motion.div>
+                </motion.div> {/* End of header block */}
                 
-                <div className="mt-8">
+                <div className="mt-8"> {/* This div is a direct child of p-8 staggerContainer */}
                   <motion.h4 variants={fadeIn('up', 0, 0.5)} className="text-lg font-semibold text-gray-800 mb-4">Key Responsibilities & Achievements:</motion.h4>
-                  <motion.ul variants={staggerContainer(0.1)} className="space-y-3">
+                  <motion.ul variants={staggerContainer(0.1)} initial="initial" whileInView="whileInView" viewport={defaultViewport} className="space-y-3"> {/* Added initial/whileInView/viewport to this child staggerContainer */}
                     {exp.responsibilities.map((item, i) => (
                       <motion.li variants={staggerItem} key={i} className="flex">
                         <span className="flex-shrink-0 w-5 h-5 text-blue-500 mr-3 mt-0.5">•</span>
@@ -152,12 +153,12 @@ const Experience = () => {
                       </motion.li>
                     ))}
                   </motion.ul>
-                </div>
-                <div className="mt-8">
-                <motion.h4 variants={fadeIn('up', 0, 0.5)} className="text-lg font-semibold text-gray-800 mb-3">Technologies Used:</motion.h4>
-                <motion.div variants={staggerContainer(0.05)} className="flex flex-wrap gap-3">
-                      {exp.skills.map((skill, i) => {
-      // Assign different color classes based on skill type or index
+                </div> {/* End of responsibilities block */}
+
+                <div className="mt-8"> {/* This div is also a direct child of p-8 staggerContainer */}
+                  <motion.h4 variants={fadeIn('up', 0, 0.5)} className="text-lg font-semibold text-gray-800 mb-3">Technologies Used:</motion.h4>
+                  <motion.div variants={staggerContainer(0.05)} initial="initial" whileInView="whileInView" viewport={defaultViewport} className="flex flex-wrap gap-3">  {/* Added initial/whileInView/viewport to this child staggerContainer */}
+                    {exp.skills.map((skill, i) => {
                       const colorClasses = [
                                 'bg-blue-100 text-blue-800 border border-blue-200',
                                 'bg-indigo-100 text-indigo-800 border border-indigo-200',
@@ -168,44 +169,39 @@ const Experience = () => {
                                 'bg-sky-100 text-sky-800 border border-sky-200',
                                 'bg-fuchsia-100 text-fuchsia-800 border border-fuchsia-200',
                       ];
+                      const colorClass = colorClasses[i % colorClasses.length];
+                      const isKeyTech = ['Angular', 'Python-Django', 'Next.js', 'TypeScript', 'React','NestJS'].includes(skill);
+                      const highlightClass = isKeyTech ? 'ring-2 ring-offset-2 ring-opacity-50' : '';
+                      const keyTechRing = isKeyTech ?
+                        (skill === 'Angular' ? 'ring-red-300' :
+                        skill === 'Python-Django' ? 'ring-emerald-300' :
+                        skill === 'Next.js' ? 'ring-blue-300' :
+                        skill === 'NestJS' ? 'ring-green-300' :
+                      'ring-indigo-300') : '';
       
-                // Select color based on index with modulo to cycle through colors
-                const colorClass = colorClasses[i % colorClasses.length];
-      
-              // Special highlighting for key technologies
-              const isKeyTech = ['Angular', 'Python-Django', 'Next.js', 'TypeScript', 'React','NestJS'].includes(skill);
-              const highlightClass = isKeyTech ? 'ring-2 ring-offset-2 ring-opacity-50' : '';
-              const keyTechRing = isKeyTech ? 
-                (skill === 'Angular' ? 'ring-red-300' :
-                skill === 'Python-Django' ? 'ring-emerald-300' :
-                skill === 'Next.js' ? 'ring-blue-300' :
-                skill === 'NestJS' ? 'ring-green-300' :
-              'ring-indigo-300') : '';
-      
-              return (
-                  <motion.span
-                  key={i}
-                  variants={staggerItem} // Or fadeIn('up', 0, 0.3)
-                  whileHover={{ scale: 1.05 }}
-                  className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium ${colorClass} ${highlightClass} ${keyTechRing} transition-all`}
-                  >
-                  {skill}
-                  {isKeyTech && (
-                  <svg className="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  )}
-                </motion.span>
-               );
-            })}
-          </motion.div>
-        </div>
-                
-              </motion.div>
-            </motion.div>
+                      return (
+                          <motion.span
+                            key={i}
+                            variants={staggerItem}
+                            whileHover={{ scale: 1.05 }}
+                            className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium ${colorClass} ${highlightClass} ${keyTechRing} transition-all`}
+                          >
+                            {skill}
+                            {isKeyTech && (
+                            <svg className="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                            </svg>
+                            )}
+                          </motion.span>
+                       );
+                    })}
+                  </motion.div> {/* End of skills flex-wrap div */}
+                </div> {/* End of technologies block */}
+              </motion.div> {/* End of p-8 staggerContainer */}
+            </motion.div> {/* End of individual experience card */}
           ))}
-        </div>
-      </div>
+        </motion.div> {/* End of space-y-12 staggerContainer */}
+      </div> {/* End of max-w-6xl div */}
     </section>
   );
 };

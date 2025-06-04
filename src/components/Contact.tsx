@@ -3,6 +3,7 @@
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { FiMail, FiPhone, FiMapPin, FiSend, FiLinkedin, FiGithub } from 'react-icons/fi';
+import { fadeIn, staggerContainer, staggerItem, defaultViewport } from '../../lib/animations'; // Added staggerItem
 
 interface FormData {
   name: string;
@@ -30,10 +31,10 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          variants={fadeIn('up', 0, 0.5)}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={defaultViewport}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -48,17 +49,17 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
+            variants={staggerContainer(0.15, 0.2)}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={defaultViewport}
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Contact Information</h3>
+              <motion.h3 variants={fadeIn('left', 0, 0.5)} className="text-2xl font-bold text-gray-800 mb-6">Contact Information</motion.h3>
               
               <div className="space-y-6">
-                <div className="flex items-start">
+                <motion.div variants={fadeIn('left', 0, 0.5)} className="flex items-start">
                   <div className="bg-blue-100 p-3 rounded-full mr-4 text-blue-600">
                     <FiMail className="text-xl" />
                   </div>
@@ -68,9 +69,9 @@ const Contact = () => {
                       nmahsanofficial@gmail.com
                     </a>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div className="flex items-start">
+                <motion.div variants={fadeIn('left', 0, 0.5)} className="flex items-start">
                   <div className="bg-indigo-100 p-3 rounded-full mr-4 text-indigo-600">
                     <FiPhone className="text-xl" />
                   </div>
@@ -80,9 +81,9 @@ const Contact = () => {
                       (+88) 01815532283
                     </a>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div className="flex items-start">
+                <motion.div variants={fadeIn('left', 0, 0.5)} className="flex items-start">
                   <div className="bg-purple-100 p-3 rounded-full mr-4 text-purple-600">
                     <FiMapPin className="text-xl" />
                   </div>
@@ -90,15 +91,16 @@ const Contact = () => {
                     <h4 className="font-medium text-gray-500">Location</h4>
                     <p className="text-gray-800">Dhaka, Bangladesh</p>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
 
             {/* Social Links */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Connect With Me</h3>
-              <div className="flex space-x-4">
+              <motion.h3 variants={fadeIn('left', 0, 0.5)} className="text-2xl font-bold text-gray-800 mb-6">Connect With Me</motion.h3>
+              <motion.div variants={staggerContainer(0.1)} className="flex space-x-4">
                 <motion.a
+                  variants={fadeIn('up', 0, 0.4)}
                   whileHover={{ y: -3 }}
                   href="https://www.linkedin.com/in/mn-ahsan/"
                   target="_blank"
@@ -109,6 +111,7 @@ const Contact = () => {
                   <FiLinkedin className="text-xl" />
                 </motion.a>
                 <motion.a
+                  variants={fadeIn('up', 0, 0.4)}
                   whileHover={{ y: -3 }}
                   href="https://github.com/mnahsanofficial"
                   target="_blank"
@@ -118,43 +121,69 @@ const Contact = () => {
                 >
                   <FiGithub className="text-xl" />
                 </motion.a>
-              </div>
+              </motion.div>
             </div>
 
             {/* Availability */}
-            <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
-              <h4 className="font-bold text-blue-800 mb-2">Current Availability</h4>
-              <p className="text-blue-700 mb-3">I&apos;m currently available for:</p>
-              <ul className="space-y-2">
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                  Full-time opportunities
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                  Freelance projects
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                  Technical consultations
-                </li>
-              </ul>
-            </div>
+            <motion.div
+              variants={fadeIn('left', 0, 0.5)}
+              className="bg-blue-50 p-6 rounded-xl border border-blue-100"
+              initial="initial"
+              whileInView="whileInView"
+              viewport={defaultViewport} // Added initial/whileInView/viewport for the box itself
+            >
+              <motion.div
+                variants={staggerContainer(0.1, 0.2)}
+                initial="initial"
+                whileInView="whileInView"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                <motion.h4 variants={fadeIn('down', 0, 0.4)} className="font-bold text-blue-800 mb-2">Current Availability</motion.h4>
+                <motion.p variants={fadeIn('down', 0, 0.4)} className="text-blue-700 mb-3">I&apos;m currently available for:</motion.p>
+                <motion.ul
+                  variants={staggerContainer(0.1)}
+                  initial="initial"
+                  whileInView="whileInView"
+                  viewport={{ once: true, amount: 0.2 }}
+                  className="space-y-2"
+                >
+                  <motion.li variants={fadeIn('up', 0, 0.3)} className="flex items-center">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                    Full-time opportunities
+                  </motion.li>
+                  <motion.li variants={fadeIn('up', 0, 0.3)} className="flex items-center">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                    Freelance projects
+                  </motion.li>
+                  <motion.li variants={fadeIn('up', 0, 0.3)} className="flex items-center">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                    Technical consultations
+                  </motion.li>
+                </motion.ul>
+              </motion.div>
+            </motion.div>
           </motion.div>
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
+            variants={fadeIn('right', 0.4, 0.6)}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={defaultViewport}
             className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200"
           >
             <div className="p-8">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Send Me a Message</h3>
+              <motion.h3 variants={fadeIn('down', 0, 0.5)} className="text-2xl font-bold text-gray-800 mb-6">Send Me a Message</motion.h3>
               
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <div>
+              <motion.form
+                variants={staggerContainer(0.15, 0.2)}
+                initial="initial"
+                whileInView="whileInView"
+                viewport={{once: true, amount: 0.1}}
+                onSubmit={handleSubmit(onSubmit)}
+                className="space-y-6"
+              >
+                <motion.div variants={fadeIn('up', 0, 0.4)}>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
                   <div className="relative">
                     <input
@@ -170,9 +199,9 @@ const Contact = () => {
                       <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
                     )}
                   </div>
-                </div>
+                </motion.div>
                 
-                <div>
+                <motion.div variants={fadeIn('up', 0, 0.4)}>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                   <div className="relative">
                     <input
@@ -194,9 +223,9 @@ const Contact = () => {
                       <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
                     )}
                   </div>
-                </div>
+                </motion.div>
                 
-                <div>
+                <motion.div variants={fadeIn('up', 0, 0.4)}>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
                   <div className="relative">
                     <textarea
@@ -212,9 +241,10 @@ const Contact = () => {
                       <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
                     )}
                   </div>
-                </div>
+                </motion.div>
                 
                 <motion.button
+                  variants={fadeIn('up', 0.2, 0.5)}
                   type="submit"
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
@@ -232,7 +262,7 @@ const Contact = () => {
                     </>
                   )}
                 </motion.button>
-              </form>
+              </motion.form>
             </div>
           </motion.div>
         </div>

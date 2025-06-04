@@ -12,6 +12,8 @@ import {
   letterVariant,
   defaultViewport
 } from '../../lib/animations'; // Assuming Hero.tsx is in src/components/
+import { SiAngular, SiNextdotjs, SiPython, SiNestjs, SiDjango } from 'react-icons/si';
+import { FaReact } from 'react-icons/fa'; // Using FaReact for broader recognition
 
 const Hero = () => {
   return (
@@ -144,7 +146,7 @@ const Hero = () => {
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity }}
               >
-                <span className="font-medium text-blue-800">Angular</span>
+                <SiAngular className="text-xl text-blue-800" />
               </motion.div>
               
               <motion.div 
@@ -153,7 +155,7 @@ const Hero = () => {
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 5, repeat: Infinity, delay: 1 }}
               >
-                <span className="font-medium text-blue-800">React</span>
+                <FaReact className="text-xl text-blue-800" />
               </motion.div>
               
               <motion.div 
@@ -162,7 +164,7 @@ const Hero = () => {
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 6, repeat: Infinity, delay: 0.5 }}
               >
-                <span className="font-medium text-blue-800">Next.js</span>
+                <SiNextdotjs className="text-xl text-blue-800" />
               </motion.div>
               <motion.div 
                 variants={scaleUp(0, 0.5)}
@@ -170,7 +172,7 @@ const Hero = () => {
                 animate={{ y: [0, -12, 0] }}
                 transition={{ duration: 5.5, repeat: Infinity, delay: 0.3 }}
               >
-                <span className="font-medium text-green-800">Python-Django</span>
+                <SiPython className="text-xl text-green-800" />
               </motion.div>
               <motion.div 
                 variants={scaleUp(0, 0.5)}
@@ -178,7 +180,7 @@ const Hero = () => {
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, delay: 0.7 }}
               >
-                <span className="font-medium text-purple-800">NestJS</span>
+                <SiNestjs className="text-xl text-purple-800" />
               </motion.div>
             </motion.div>
           </motion.div>
