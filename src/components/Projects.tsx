@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { fadeIn, scaleUp, staggerContainer, defaultViewport } from '../../lib/animations';
 
 interface Project {
   title: string;
@@ -115,10 +116,10 @@ const Projects = () => {
     <section id="projects" className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
+          variants={fadeIn('up', 0, 0.5)}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={defaultViewport}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -130,18 +131,27 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <motion.div
+          variants={staggerContainer(0.2, 0.2)}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={defaultViewport}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
+        >
           {projects.slice(0, visibleProjects).map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              variants={scaleUp(0, 0.5)}
               className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow"
             >
               {/* Image Carousel */}
-              <div className="relative h-64 bg-gray-100 overflow-hidden">
+              <motion.div
+                variants={fadeIn('none', 0.1, 0.6)}
+                initial="initial"
+                whileInView="whileInView"
+                viewport={{ once: true, amount: 0.2 }}
+                className="relative h-64 bg-gray-100 overflow-hidden"
+              >
                 {project.images.map((img, imgIndex) => (
                   <div
                     key={imgIndex}
@@ -203,13 +213,19 @@ const Projects = () => {
                     ))}
                   </div>
                 )}
-              </div>
+              </motion.div>
               
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">{project.title}</h3>
-                <p className="text-gray-600 mb-4">{project.description}</p>
+              <motion.div
+                variants={staggerContainer(0.1, 0.1)}
+                initial="initial"
+                whileInView="whileInView"
+                viewport={{ once: true, amount: 0.1 }}
+                className="p-6"
+              >
+                <motion.h3 variants={fadeIn('down', 0, 0.4)} className="text-2xl font-bold text-gray-800 mb-2">{project.title}</motion.h3>
+                <motion.p variants={fadeIn('up', 0.1, 0.4)} className="text-gray-600 mb-4">{project.description}</motion.p>
                 
-                <div className="flex flex-wrap gap-2 mb-6">
+                <motion.div variants={staggerContainer(0.05, 0.15)} className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag, i) => {
                     const colors = [
                       'bg-blue-100 text-blue-800',
@@ -221,17 +237,18 @@ const Projects = () => {
                     const color = colors[i % colors.length];
                     
                     return (
-                      <span 
+                      <motion.span
                         key={i}
+                        variants={fadeIn('up', 0, 0.3)}
                         className={`px-3 py-1 rounded-full text-sm font-medium ${color}`}
                       >
                         {tag}
-                      </span>
+                      </motion.span>
                     );
                   })}
-                </div>
+                </motion.div>
                 
-                <div className="flex gap-4">
+                <motion.div variants={fadeIn('up', 0.2, 0.4)} className="flex gap-4">
                   {project.links?.github && (
                     <a
                       href={project.links.github}
@@ -254,15 +271,21 @@ const Projects = () => {
                       <span>Live Demo</span>
                     </a>
                   )}
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {visibleProjects < projects.length && (
-          <div className="text-center">
-            <button
+          <motion.div
+            variants={fadeIn('up', 0, 0.5)}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={defaultViewport}
+            className="text-center"
+          >
+            <button // Assuming this button is not a motion.button for now, if it is, it would have its own variants
               onClick={() => setVisibleProjects(projects.length)}
               className="inline-flex items-center px-6 py-3 border border-gray-300 rounded-full text-gray-700 font-medium hover:bg-gray-50 hover:border-gray-400 transition"
             >
