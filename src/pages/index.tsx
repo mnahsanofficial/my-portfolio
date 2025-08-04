@@ -23,14 +23,14 @@ export default function Home() {
         <meta property="og:description" content="Portfolio of Nazmul Ahsan, a skilled Full Stack Developer specializing in Next.js, Angular, Python-Django, and more. Explore projects and experience." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://mnahsanofficial.github.io/portfolio/" />
-        <meta property="og:image" content="https://mnahsanofficial.github.io/portfolio/assets/images/portfolio-screenshot.png" />
-        <meta property="og:image:alt" content="Nazmul Ahsan Portfolio Screenshot" />
+        <meta property="og:image" content="https://mnahsanofficial.github.io/portfolio/assets/images/ahsan.jpg" />
+        <meta property="og:image:alt" content="Nazmul Ahsan Portfolio" />
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Nazmul Ahsan - Full Stack Developer Portfolio" />
         <meta name="twitter:description" content="Portfolio of Nazmul Ahsan, a skilled Full Stack Developer specializing in Next.js, Angular, Python-Django, and more. Explore projects and experience." />
-        <meta name="twitter:image" content="https://mnahsanofficial.github.io/portfolio/assets/images/portfolio-screenshot.png" />
+        <meta name="twitter:image" content="https://mnahsanofficial.github.io/portfolio/assets/images/ahsan.jpg" />
       </Head>
       <main className="min-h-screen">
         <Navbar/>

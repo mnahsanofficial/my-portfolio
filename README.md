@@ -1,7 +1,5 @@
 # Nazmul Ahsan - Portfolio Website
 
-![Portfolio Screenshot](/public/assets/images/portfolio-screenshot.png)
-
 A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS, showcasing my skills, projects, and professional experience.
 
 ## Features

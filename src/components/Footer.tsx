@@ -3,11 +3,23 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FiGithub, FiLinkedin, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
+import { ReactElement } from 'react';
+
+interface FooterLink {
+  name: string;
+  href: string;
+  icon?: ReactElement;
+}
+
+interface FooterSection {
+  title: string;
+  links: FooterLink[];
+}
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const footerLinks = [
+  const footerLinks: FooterSection[] = [
     {
       title: 'Quick Links',
       links: [

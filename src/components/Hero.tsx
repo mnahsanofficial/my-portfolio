@@ -12,7 +12,7 @@ import {
   letterVariant,
   defaultViewport
 } from '../lib/animations'; 
-import { SiAngular, SiNextdotjs, SiPython, SiNestjs, SiDjango } from 'react-icons/si';
+import { SiAngular, SiNextdotjs, SiPython, SiNestjs } from 'react-icons/si';
 import { FaReact } from 'react-icons/fa'; // Using FaReact for broader recognition
 
 interface BubbleStyle {

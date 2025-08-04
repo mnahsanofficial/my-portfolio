@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, Variants } from 'framer-motion'; // Added Variants for explicit typing if needed
+import { motion } from 'framer-motion';
 import { FaBuilding, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 import { fadeIn, staggerContainer, staggerItem, defaultViewport } from '../lib/animations';
 

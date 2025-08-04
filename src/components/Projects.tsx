@@ -93,8 +93,8 @@ const Projects = () => {
     }
   ];
 
-  const [activeImageIndices, setActiveImageIndices] = useState(
-    projects.reduce((acc, _, index) => ({ ...acc, [index]: 0 }), {})
+  const [activeImageIndices, setActiveImageIndices] = useState<Record<number, number>>(
+    projects.reduce((acc, _, index) => ({ ...acc, [index]: 0 }), {} as Record<number, number>)
   );
 
   const nextImage = (projectIndex: number) => {
