@@ -32,19 +32,13 @@ const Blog = () => {
     },
     // Add more blog posts here when needed
     {
-      title: 'Mastering React Hooks',
-      url: '#',
-      excerpt: 'Comprehensive guide to React Hooks and modern React development patterns.',
-      date: 'Apr 2023',
-      readTime: '6 min read'
+      title: 'Building an AI-Powered Chat Application with Next.js and NestJS',
+      url: 'https://medium.com/@mnahsanofficial/building-an-ai-powered-chat-application-with-next-js-and-nestjs-c658c85df78d',
+      excerpt: 'I’ll explain how I built an AI-powered chat application using Next.js for the front end and NestJS for the back end.',
+      date: 'June 2025',
+      readTime: '3 min read'
     },
-    {
-      title: 'TypeScript Best Practices',
-      url: '#',
-      excerpt: 'Learn how to use TypeScript effectively in large-scale applications.',
-      date: 'Mar 2023',
-      readTime: '7 min read'
-    }
+   
   ];
 
   const visiblePosts = showAll ? blogPosts : blogPosts.slice(0, 2);

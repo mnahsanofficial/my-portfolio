@@ -146,31 +146,7 @@ const Skills = () => {
           ))}
         </motion.div>
 
-        {/* Skill level legend */}
-        <motion.div
-          variants={fadeIn('none', 0.5, 0.7)}
-          initial="initial"
-          whileInView="whileInView"
-          viewport={defaultViewport}
-          className="mt-12 bg-white p-6 rounded-xl shadow-sm border border-gray-200 max-w-2xl mx-auto"
-        >
-          <h4 className="font-semibold text-gray-700 mb-3">Skill Level Guide</h4>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {levelDescriptions.map((desc, index) => (
-              <div key={index} className="flex items-center">
-                <div 
-                  className={`w-3 h-3 rounded-full mr-2 ${
-                    index === 4 ? 'bg-blue-600' :
-                    index === 3 ? 'bg-indigo-500' :
-                    index === 2 ? 'bg-blue-400' :
-                    index === 1 ? 'bg-blue-300' : 'bg-blue-200'
-                  }`}
-                />
-                <span className="text-xs text-gray-600">{desc}</span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+        
       </div>
     </section>
   );

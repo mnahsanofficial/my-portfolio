@@ -19,50 +19,51 @@ interface ExperienceItemDef { // Renamed to avoid conflict if ExperienceItem is 
 const Experience = () => {
   const experiences: ExperienceItemDef[] = [
     {
-      role: 'Software Developer (Full Stack)',
+      role: 'Software Developer (Full Stack) | Angular, Python-Django, REST API, PostgreSQL',
       company: 'Barytech Technologies',
       duration: 'June 2023 – Present',
       location: 'Remote',
       employmentType: 'Full-time',
       description: 'Developing innovative web solutions for enterprise clients',
       responsibilities: [
-        'Led development of web applications using Angular (frontend) and Python-Django (backend)',
-        'Designed and implemented RESTful APIs, improving system performance by 30%',
-        'Built core features including Screen Recording, Video Trimming, and Real-time Chat functionality',
-        'Collaborated with cross-functional teams to deliver 5+ major product features on schedule',
-        'Optimized database queries reducing API response times by 40%'
+        'Spearheaded the development of scalable web applications using Angular for the frontend and Python-Django for the backend.',
+        'Streamlined video processing features, such as screen recording and video trimming, increase productivity by 30%',
+        'Refactored 15,000+ lines of code, resolved 200+ critical bugs, and improved code maintainability by 40%',
+        'Collaborated cross-functionally to integrate chat functionality, enhancing user engagement by 40%',
+        'Collaborated with cross-functional teams to implement my team, calendar, maintenance, translation, and screen recording modules.',
+        'Developed and integrated RESTful APIs with secure data handling using PostgreSQL and pgAdmin.'
       ],
       skills: ['Angular', 'Python-Django', 'PostgreSQL', 'REST APIs', 'CI/CD', 'AWS']
     },
     {
-      role: 'eqUIP Intern',
+      role: 'eqUIP Intern – Media & IT | Digital Transformation & Sports Innovation',
       company: 'Commonwealth Games Federation (CGA)',
       duration: 'April 2024 – March 2025',
       location: 'Dhaka, Bangladesh',
       employmentType: 'Internship',
       description: 'Digital transformation initiative for sports organizations',
       responsibilities: [
-        'Spearheaded development of new website for CGA-Bangladesh, enhancing digital presence by 200%',
-        'Developed prototype athlete database system used by 50+ national sports federations',
-        'Initiated esports development projects, securing meetings with Sports Minister and Global Esports Federation',
-        'Coordinated between IT and Media teams to streamline content delivery processes',
-        'Implemented analytics dashboard tracking 10K+ monthly visitors'
+        'Built and launched a centralized athlete database platform to improve national sports data governance.Developed the new CGA-Bangladesh website, increasing its digital visibility by 70%.',
+        'Initiated and coordinated esports development by engaging stakeholders including the Sports Minister and Global Esports Federation.',
+        'Managed outreach and IT operations for multi-sport coordination projects within the National Olympic Committee.'
+
       ],
       skills: ['Next.js', 'React', 'MongoDB', 'Project Management', 'Stakeholder Engagement']
     },
     {
-      role: 'Junior Software Engineer',
+      role: 'Jr. Software Engineer | NestJS, React, TypeScript',
       company: 'bongoDev',
       duration: 'June 2021 – May 2023',
       location: 'Remote',
       employmentType: 'Full-time',
       description: 'Building scalable web applications for international clients',
       responsibilities: [
-        'Developed 10+ web applications using NestJS, Next.js, and TypeScript',
-        'Reduced bug reports by 60% through rigorous code reviews and testing protocols',
-        'Created comprehensive technical documentation adopted company-wide',
-        'Mentored 3 junior developers in React and TypeScript best practices',
-        'Implemented automated testing pipeline reducing QA time by 35%'
+        'Built full-stack web applications with React, Next.js, NestJS, and TypeScript.',
+        'Refactored legacy codebases, resolving 60+ bugs and improving system maintainability by 20%.',
+        'Authored internal documentation and project wikis, reducing onboarding time for new devs by 50%.',
+        'Assisted in the development of backend services and admin panels using Node.js and MySQL.',
+        'Participated in daily stand-ups and Agile sprint planning, contributing to improved sprint delivery rates.',
+        'Supported integration of analytics tracking for usage metrics across 3 major client projects'
       ],
       skills: ['NestJS', 'Next.js', 'TypeScript', 'React', 'PostgreSQL', 'Jest', 'Agile']
     }
@@ -121,7 +122,7 @@ const Experience = () => {
                         <h3 className="text-2xl font-bold text-gray-800">{exp.role}</h3>
                         <p className="text-lg text-gray-700 font-medium">{exp.company}</p>
                       </div>
-                      <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm font-medium">
+                      <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-blue-50 text-blue-700 text-sm font-medium border border-blue-200 shadow-sm">
                         {exp.employmentType}
                       </div>
                     </div>

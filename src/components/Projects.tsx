@@ -18,7 +18,7 @@ interface Project {
 }
 
 const Projects = () => {
-  const [visibleProjects, setVisibleProjects] = useState(2);
+  // Show all projects by default - no need for "show more" button
   
   
   const projects: Project[] = [
@@ -75,23 +75,31 @@ const Projects = () => {
     },
     
     {
-      title: 'Esports Tournament Platform',
-      description: 'Engineered a comprehensive platform for organizing and streaming esports tournaments. Key contributions included developing real-time leaderboards using WebSockets, integrating secure payment gateways (e.g., Stripe API), and designing a scalable architecture to handle concurrent users and live data updates.',
-      tags: ['React', 'Firebase', 'Stripe API', 'WebSockets'],
+      title: 'Flat FindBD',
+      description: 'Flat FindBD is a real estate platform designed to facilitate direct communication between property owners and potential renters or buyers, eliminating the need for intermediaries. Users can list properties, search for available properties, and interact through a built-in messaging system.',
+      tags: ['Next.js', 'React', 'Django', 'PostgreSQL'],
       images: [
-        '/assets/images/projects/esports-1.jpg',
-        '/assets/images/projects/esports-2.jpg'
+        '/assets/images/Flat FindBD/flat-findBD-1.png',
       ]
     },
     {
-      title: 'BongoDev CMS',
-      description: 'Developed a bespoke multi-tenant Content Management System (CMS) enabling efficient management of multiple client websites from a unified dashboard. Focused on creating a modular architecture, user-friendly content editing tools, and robust permission systems. Leveraged Docker for consistent deployment environments.',
-      tags: ['Vue.js', 'Laravel', 'MySQL', 'Docker'],
+      title: 'X- Clone',
+      description: 'A web application which is able to show murmur(=tweet) by user. (this application is similar to Twitter)',
+      tags: ['NestJS', 'React', 'MySQL', 'Typescript'],
       images: [
-        '/assets/images/projects/cms-1.jpg'
+        '/assets/images/X Clone/loginpage.png',
+        '/assets/images/X Clone/timeline.png',
+        '/assets/images/X Clone/ownprofile.png',
+        '/assets/images/X Clone/createmurmur.png',
+        '/assets/images/X Clone/userprofile.png',
+        '/assets/images/X Clone/murmurdetails.png',
+        '/assets/images/X Clone/deletemurmur.png',
       ]
     }
   ];
+
+  // Debug logging
+  console.log('Projects length:', projects.length);
 
   const [activeImageIndices, setActiveImageIndices] = useState<Record<number, number>>(
     projects.reduce((acc, _, index) => ({ ...acc, [index]: 0 }), {} as Record<number, number>)
@@ -131,19 +139,21 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        <motion.div
-          variants={staggerContainer(0.2, 0.2)}
-          initial="initial"
-          whileInView="whileInView"
-          viewport={defaultViewport}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
-        >
-          {projects.slice(0, visibleProjects).map((project, index) => (
-            <motion.div
-              key={index}
-              variants={scaleUp(0, 0.5)}
-              className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow"
-            >
+                 <motion.div
+           variants={staggerContainer(0.2, 0.2)}
+           initial="initial"
+           whileInView="whileInView"
+           viewport={defaultViewport}
+           className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 min-h-0"
+         >
+                     {projects.map((project, index) => {
+             console.log(`Rendering project ${index}: ${project.title}`);
+             return (
+                         <motion.div
+               key={index}
+               variants={scaleUp(0, 0.5)}
+               className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow"
+             >
               {/* Image Carousel */}
               <motion.div
                 variants={fadeIn('none', 0.1, 0.6)}
@@ -155,9 +165,9 @@ const Projects = () => {
                 {project.images.map((img, imgIndex) => (
                   <div
                     key={imgIndex}
-                    className={`absolute inset-0 transition-opacity duration-500 ${
-                      imgIndex === activeImageIndices[index] ? 'opacity-100' : 'opacity-0'
-                    }`}
+                                         className={`absolute inset-0 transition-opacity duration-500 ${
+                       imgIndex === activeImageIndices[index] ? 'opacity-100' : 'opacity-0'
+                     }`}
                   >
                     <Image
                       src={img}
@@ -273,29 +283,12 @@ const Projects = () => {
                   )}
                 </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
+                         </motion.div>
+           );
+         })}
         </motion.div>
 
-        {visibleProjects < projects.length && (
-          <motion.div
-            variants={fadeIn('up', 0, 0.5)}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={defaultViewport}
-            className="text-center"
-          >
-            <button // Assuming this button is not a motion.button for now, if it is, it would have its own variants
-              onClick={() => setVisibleProjects(projects.length)}
-              className="inline-flex items-center px-6 py-3 border border-gray-300 rounded-full text-gray-700 font-medium hover:bg-gray-50 hover:border-gray-400 transition"
-            >
-              View All Projects ({projects.length - visibleProjects} more)
-              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-          </motion.div>
-        )}
+        
       </div>
     </section>
   );
