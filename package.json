@@ -14,7 +14,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.4",
-    "react-icons": "^5.5.0"
+    "react-icons": "^5.5.0",
+    "website-visitor-counter": "^2.1.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FiGithub, FiLinkedin, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 import { ReactElement } from 'react';
+import SimpleVisitorCounter from './SimpleVisitorCounter';
 
 interface FooterLink {
   name: string;
@@ -122,9 +123,16 @@ const Footer = () => {
           viewport={{ once: true }}
           className="flex flex-col md:flex-row justify-between items-center text-center"
         >
-          <p className="mb-4 md:mb-0">
-            &copy; {currentYear} Nazmul Ahsan. All rights reserved.
-          </p>
+          <div className="flex flex-col items-center space-y-2 mb-4 md:mb-0">
+            <p>
+              &copy; {currentYear} Nazmul Ahsan. All rights reserved.
+            </p>
+            <SimpleVisitorCounter 
+              projectName="nazmul-portfolio"
+              variant="badge"
+              className="mt-2"
+            />
+          </div>
           <p className="text-sm">
             Crafted with <span className="text-red-400">♥</span> using Next.js & Tailwind CSS
           </p>
