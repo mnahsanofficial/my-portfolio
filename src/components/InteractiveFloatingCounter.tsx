@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { getSimpleVisitorBadge, getVisitorCount, getBackendHealth, getBackendStats } from 'website-visitor-counter';
+import { getVisitorCounterBadge, getVisitorCount, getBackendHealth, getBackendStats } from 'website-visitor-counter';
 import { FaEye, FaTimes, FaExpand, FaCopy, FaCheck, FaChartBar } from 'react-icons/fa';
 
 interface InteractiveFloatingCounterProps {
@@ -19,6 +19,7 @@ export default function InteractiveFloatingCounter({
   const [copied, setCopied] = useState(false);
   const [backendHealth, setBackendHealth] = useState<{ status: string; timestamp: string } | null>(null);
   const [backendStats, setBackendStats] = useState<{ totalProjects: number; projects: Record<string, unknown> } | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<'railway' | 'vercel' | 'netlify' | 'cloudflare'>('railway');
 
 
   useEffect(() => {
@@ -26,21 +27,30 @@ export default function InteractiveFloatingCounter({
       try {
         setIsLoading(true);
         
-        // Get the simple badge URL with real visitor counting
-        const badge = await getSimpleVisitorBadge(projectName);
+        // Get the visitor counter badge URL with real visitor counting
+        const badge = await getVisitorCounterBadge(projectName, {
+          label: 'visitors',
+          color: '00d4aa',
+          style: 'for-the-badge'
+        });
+        console.log('Generated badge URL:', badge);
         setBadgeUrl(badge);
         
         // Get the real visitor count using the package's dedicated function
         const realCount = await getVisitorCount(projectName);
         setVisitorCount(realCount);
         
-        // Get backend health and stats (new in v2.2.0)
+        // Get backend health and stats (new in v3.1.0)
         try {
           const health = await getBackendHealth();
-          setBackendHealth(health);
+          if (typeof health === 'object' && health !== null) {
+            setBackendHealth(health);
+          }
           
           const stats = await getBackendStats();
-          setBackendStats(stats);
+          if (typeof stats === 'object' && stats !== null) {
+            setBackendStats(stats);
+          }
         } catch {
           console.log('Backend health check failed, but visitor counting still works');
         }
@@ -117,33 +127,49 @@ export default function InteractiveFloatingCounter({
               )}
               <p className="text-sm text-gray-500 mt-1">Total Visitors</p>
               
-              {/* Refresh Button */}
-              {/* <button
-                onClick={refreshVisitorCount}
-                disabled={isRefreshing}
-                className="mt-3 px-4 py-2 bg-blue-500 text-white text-sm rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isRefreshing ? (
-                  <div className="flex items-center space-x-2">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                    <span>Refreshing...</span>
-                  </div>
-                ) : (
-                  '🔄 Refresh Count'
-                )}
-              </button> */}
+              {/* Platform Selector - New in v3.1.0 */}
+              <div className="mt-4">
+                <p className="text-xs text-gray-600 mb-2">Backend Platform:</p>
+                <div className="flex space-x-2">
+                  {(['railway', 'vercel', 'netlify', 'cloudflare'] as const).map((platform) => (
+                    <button
+                      key={platform}
+                      onClick={() => setSelectedPlatform(platform)}
+                      className={`px-3 py-1 text-xs rounded-full transition-colors ${
+                        selectedPlatform === platform
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      }`}
+                    >
+                      {platform.charAt(0).toUpperCase() + platform.slice(1)}
+                    </button>
+                  ))}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Multi-platform support - No vendor lock-in! 🚀
+                </p>
+              </div>
             </div>
             
             {/* Badge Display */}
-            {badgeUrl && (
-              <div className="space-y-4">
-                <div className="text-center">
+            <div className="space-y-4">
+              <div className="text-center">
+                {badgeUrl ? (
                   <img 
                     src={badgeUrl} 
                     alt="visitor count badge" 
                     className="mx-auto"
+                    onError={(e) => {
+                      console.error('Badge image failed to load:', badgeUrl);
+                      e.currentTarget.style.display = 'none';
+                    }}
                   />
-                </div>
+                ) : (
+                  <div className="bg-gray-100 rounded-lg p-4 text-gray-500">
+                    <p className="text-sm">Badge loading...</p>
+                  </div>
+                )}
+              </div>
                 
                 {/* Copy Options */}
                 <div className="space-y-3">
@@ -151,12 +177,13 @@ export default function InteractiveFloatingCounter({
                     <p className="text-sm font-medium text-gray-700 mb-2">Badge URL:</p>
                     <div className="flex items-center space-x-2">
                       <code className="flex-1 text-xs bg-gray-100 px-3 py-2 rounded break-all font-mono">
-                        {badgeUrl}
+                        {badgeUrl || 'Loading...'}
                       </code>
                       <button
-                        onClick={() => copyToClipboard(badgeUrl)}
+                        onClick={() => copyToClipboard(badgeUrl || '')}
                         className="text-blue-600 hover:text-blue-800 p-2 transition-colors"
                         title="Copy URL"
+                        disabled={!badgeUrl}
                       >
                         {copied ? <FaCheck className="text-green-600" /> : <FaCopy />}
                       </button>
@@ -167,12 +194,13 @@ export default function InteractiveFloatingCounter({
                     <p className="text-sm font-medium text-gray-700 mb-2">Markdown:</p>
                     <div className="flex items-center space-x-2">
                       <code className="flex-1 text-xs bg-gray-100 px-3 py-2 rounded break-all font-mono">
-                        ![visitors count for {projectName}]({badgeUrl})
+                        {badgeUrl ? `![visitors count for ${projectName}](${badgeUrl})` : 'Loading...'}
                       </code>
                       <button
                         onClick={() => copyToClipboard(`![visitors count for ${projectName}](${badgeUrl})`)}
                         className="text-blue-600 hover:text-blue-800 p-2 transition-colors"
                         title="Copy Markdown"
+                        disabled={!badgeUrl}
                       >
                         {copied ? <FaCheck className="text-green-600" /> : <FaCopy />}
                       </button>
@@ -180,7 +208,6 @@ export default function InteractiveFloatingCounter({
                   </div>
                 </div>
               </div>
-            )}
             
             {/* Backend Health & Stats */}
             {backendHealth && backendStats && (
@@ -200,10 +227,10 @@ export default function InteractiveFloatingCounter({
                 <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
                   <div className="flex items-center space-x-2 mb-2">
                     <FaChartBar className="text-blue-600" />
-                    <span className="text-sm font-medium text-blue-800">Railway Backend</span>
+                    <span className="text-sm font-medium text-blue-800">{selectedPlatform.charAt(0).toUpperCase() + selectedPlatform.slice(1)} Backend</span>
                   </div>
                   <p className="text-xs text-blue-700">
-                    Powered by Railway with 99.9% uptime and cross-device accuracy
+                    Powered by {selectedPlatform.charAt(0).toUpperCase() + selectedPlatform.slice(1)} with multi-platform support
                   </p>
                 </div>
               </div>
@@ -212,7 +239,7 @@ export default function InteractiveFloatingCounter({
             {/* Info */}
             <div className="mt-4 p-3 bg-blue-50 rounded-lg">
               <p className="text-xs text-blue-700 text-center">
-                Real visitor counting with privacy-focused IP hashing
+                v3.1.0: Multi-platform support with enhanced security & no vendor lock-in! 🚀
               </p>
             </div>
           </motion.div>

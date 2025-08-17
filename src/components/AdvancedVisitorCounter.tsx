@@ -40,8 +40,7 @@ export default function AdvancedVisitorCounter({
         setIsLoading(true);
         
         // Get the badge URL with real visitor counting
-        const badge = await getVisitorCounterBadge({
-          project: projectName,
+        const badge = await getVisitorCounterBadge(projectName, {
           label: 'visitors',
           color: '00d4aa',
           style: 'for-the-badge',
@@ -76,8 +75,7 @@ export default function AdvancedVisitorCounter({
       setIsLoading(true);
       
       // Get updated badge with real visitor counting
-      const badge = await getVisitorCounterBadge({
-        project: projectName,
+      const badge = await getVisitorCounterBadge(projectName, {
         label: 'visitors',
         color: '00d4aa',
         style: 'for-the-badge',

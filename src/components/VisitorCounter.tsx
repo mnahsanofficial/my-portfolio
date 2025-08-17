@@ -25,8 +25,7 @@ export default function VisitorCounter({
         setIsLoading(true);
         
         // Get the badge URL for the visitor counter
-        const badge = await getVisitorCounterBadge({
-          project: projectName,
+        const badge = await getVisitorCounterBadge(projectName, {
           label: 'visitors',
           color: '00d4aa',
           style: 'for-the-badge'

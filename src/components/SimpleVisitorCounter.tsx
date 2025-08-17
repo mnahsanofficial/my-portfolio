@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { getSimpleVisitorBadge } from 'website-visitor-counter';
+import { getVisitorCounterBadge, getVisitorCount } from 'website-visitor-counter';
 
 interface SimpleVisitorCounterProps {
   projectName?: string;
@@ -24,14 +24,17 @@ export default function SimpleVisitorCounter({
       try {
         setIsLoading(true);
         
-        // Get the simple badge URL with real visitor counting
-        const badge = await getSimpleVisitorBadge(projectName);
+        // Get the visitor counter badge URL with real visitor counting
+        const badge = await getVisitorCounterBadge(projectName, {
+          label: 'visitors',
+          color: '00d4aa',
+          style: 'for-the-badge'
+        });
         setBadgeUrl(badge);
         
-        // Extract visitor count from badge URL
-        // The service now provides real visitor counting
-        const count = Math.floor(Math.random() * 1000) + 100; // Placeholder for demo
-        setVisitorCount(count);
+        // Get the real visitor count using the package's dedicated function
+        const realCount = await getVisitorCount(projectName);
+        setVisitorCount(realCount);
         
       } catch (err) {
         console.error('Error initializing visitor counter:', err);
@@ -44,14 +47,24 @@ export default function SimpleVisitorCounter({
     initializeCounter();
   }, [projectName]);
 
-  if (variant === 'badge' && badgeUrl) {
+  if (variant === 'badge') {
     return (
       <div className={className}>
-        <img 
-          src={badgeUrl} 
-          alt="visitor count badge" 
-          className="inline-block"
-        />
+        {badgeUrl ? (
+          <img 
+            src={badgeUrl} 
+            alt="visitor count badge" 
+            className="inline-block"
+            onError={(e) => {
+              console.error('Footer badge failed to load:', badgeUrl);
+              e.currentTarget.style.display = 'none';
+            }}
+          />
+        ) : (
+          <div className="inline-block bg-gray-200 rounded px-3 py-1 text-xs text-gray-500">
+            Loading badge...
+          </div>
+        )}
       </div>
     );
   }

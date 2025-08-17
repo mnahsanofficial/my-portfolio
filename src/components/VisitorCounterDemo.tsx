@@ -14,7 +14,7 @@ interface BadgeConfig {
   project: string;
   label: string;
   color: string;
-  style: 'flat' | 'for-the-badge' | 'plastic' | 'flat-square' | 'pixel';
+  style: 'flat' | 'for-the-badge' | 'plastic' | 'flat-square';
   logo: string;
   base?: number;
 }
@@ -48,8 +48,7 @@ export default function VisitorCounterDemo() {
     { name: 'Flat', value: 'flat' },
     { name: 'Plastic', value: 'plastic' },
     { name: 'For The Badge', value: 'for-the-badge' },
-    { name: 'Flat Square', value: 'flat-square' },
-    { name: 'Pixel (Invisible)', value: 'pixel' }
+    { name: 'Flat Square', value: 'flat-square' }
   ];
 
   const logoOptions = ['👁️', '👥', '📊', '🚀', '💻', '🌟', '🔥', '✨'];
@@ -57,19 +56,39 @@ export default function VisitorCounterDemo() {
   const generateAllFormats = useCallback(async () => {
     try {
       // Generate badge URL
-      const badge = await getVisitorCounterBadge(badgeConfig);
+      const badge = await getVisitorCounterBadge(badgeConfig.project, {
+        label: badgeConfig.label,
+        color: badgeConfig.color,
+        style: badgeConfig.style,
+        base: badgeConfig.base
+      });
       setGeneratedBadge(badge);
 
       // Generate HTML
-      const html = await getVisitorCounterHTML(badgeConfig);
+      const html = await getVisitorCounterHTML(badgeConfig.project, {
+        label: badgeConfig.label,
+        color: badgeConfig.color,
+        style: badgeConfig.style,
+        base: badgeConfig.base
+      });
       setGeneratedHTML(html);
 
       // Generate Markdown
-      const markdown = await getVisitorCounterMarkdown(badgeConfig);
+      const markdown = await getVisitorCounterMarkdown(badgeConfig.project, {
+        label: badgeConfig.label,
+        color: badgeConfig.color,
+        style: badgeConfig.style,
+        base: badgeConfig.base
+      });
       setGeneratedMarkdown(markdown);
 
       // Generate React component
-      const react = await getVisitorCounterReact(badgeConfig);
+      const react = await getVisitorCounterReact(badgeConfig.project, {
+        label: badgeConfig.label,
+        color: badgeConfig.color,
+        style: badgeConfig.style,
+        base: badgeConfig.base
+      });
       setGeneratedReact(react);
     } catch (err) {
       console.error('Error generating formats:', err);
@@ -182,7 +201,7 @@ export default function VisitorCounterDemo() {
               </label>
               <select
                 value={badgeConfig.style}
-                onChange={(e) => setBadgeConfig(prev => ({ ...prev, style: e.target.value as 'flat' | 'for-the-badge' | 'plastic' | 'flat-square' | 'pixel' }))}
+                onChange={(e) => setBadgeConfig(prev => ({ ...prev, style: e.target.value as 'flat' | 'for-the-badge' | 'plastic' | 'flat-square' }))}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 {styleOptions.map((style) => (
