@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { getSimpleVisitorBadge, getVisitorCount } from 'website-visitor-counter';
-import { FaEye, FaTimes, FaExpand, FaCopy, FaCheck } from 'react-icons/fa';
+import { getSimpleVisitorBadge, getVisitorCount, getBackendHealth, getBackendStats } from 'website-visitor-counter';
+import { FaEye, FaTimes, FaExpand, FaCopy, FaCheck, FaChartBar } from 'react-icons/fa';
 
 interface InteractiveFloatingCounterProps {
   projectName?: string;
@@ -17,6 +17,8 @@ export default function InteractiveFloatingCounter({
   const [badgeUrl, setBadgeUrl] = useState<string>('');
   const [isLoading, setIsLoading] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [backendHealth, setBackendHealth] = useState<{ status: string; timestamp: string } | null>(null);
+  const [backendStats, setBackendStats] = useState<{ totalProjects: number; projects: Record<string, unknown> } | null>(null);
 
 
   useEffect(() => {
@@ -31,6 +33,17 @@ export default function InteractiveFloatingCounter({
         // Get the real visitor count using the package's dedicated function
         const realCount = await getVisitorCount(projectName);
         setVisitorCount(realCount);
+        
+        // Get backend health and stats (new in v2.2.0)
+        try {
+          const health = await getBackendHealth();
+          setBackendHealth(health);
+          
+          const stats = await getBackendStats();
+          setBackendStats(stats);
+        } catch {
+          console.log('Backend health check failed, but visitor counting still works');
+        }
         
       } catch (err) {
         console.error('Error initializing visitor counter:', err);
@@ -169,6 +182,33 @@ export default function InteractiveFloatingCounter({
               </div>
             )}
             
+            {/* Backend Health & Stats */}
+            {backendHealth && backendStats && (
+              <div className="mt-4 space-y-3">
+                {/* <div className="p-3 bg-green-50 rounded-lg border border-green-200">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <FaServer className="text-green-600" />
+                    <span className="text-sm font-medium text-green-800">Backend Status</span>
+                  </div>
+                  <div className="text-xs text-green-700 space-y-1">
+                    <p>Status: <span className="font-medium">{backendHealth.status}</span></p>
+                    <p>Last Check: {new Date(backendHealth.timestamp).toLocaleTimeString()}</p>
+                    <p>Total Projects: <span className="font-medium">{backendStats.totalProjects}</span></p>
+                  </div>
+                </div> */}
+                
+                <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <FaChartBar className="text-blue-600" />
+                    <span className="text-sm font-medium text-blue-800">Railway Backend</span>
+                  </div>
+                  <p className="text-xs text-blue-700">
+                    Powered by Railway with 99.9% uptime and cross-device accuracy
+                  </p>
+                </div>
+              </div>
+            )}
+            
             {/* Info */}
             <div className="mt-4 p-3 bg-blue-50 rounded-lg">
               <p className="text-xs text-blue-700 text-center">
@@ -192,6 +232,7 @@ export default function InteractiveFloatingCounter({
                   {isLoading ? '...' : visitorCount?.toLocaleString() || '0'}
                 </div>
                 <div className="text-xs opacity-80">visitors</div>
+                
               </div>
             </div>
           </motion.button>
