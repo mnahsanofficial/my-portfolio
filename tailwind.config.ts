@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  darkMode: 'media', // Change this line
+  darkMode: false, // Disable automatic dark mode
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],

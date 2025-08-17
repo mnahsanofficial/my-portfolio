@@ -37,8 +37,8 @@ const Contact = () => {
           viewport={defaultViewport}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Touch</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+            Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" style={{color: '#2563eb'}}>Touch</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -138,8 +138,8 @@ const Contact = () => {
                 whileInView="whileInView"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <motion.h4 variants={fadeIn('down', 0, 0.4)} className="font-bold text-blue-800 mb-2">Current Availability</motion.h4>
-                <motion.p variants={fadeIn('down', 0, 0.4)} className="text-blue-700 mb-3">I&apos;m currently available for:</motion.p>
+                <motion.h4 variants={fadeIn('down', 0, 0.4)} className="font-bold text-gray-900 mb-2">Current Availability</motion.h4>
+                <motion.p variants={fadeIn('down', 0, 0.4)} className="text-gray-700 mb-3">I&apos;m currently available for:</motion.p>
                 <motion.ul
                   variants={staggerContainer(0.1)}
                   initial="initial"
@@ -147,15 +147,15 @@ const Contact = () => {
                   viewport={{ once: true, amount: 0.2 }}
                   className="space-y-2"
                 >
-                  <motion.li variants={fadeIn('up', 0, 0.3)} className="flex items-center">
+                  <motion.li variants={fadeIn('up', 0, 0.3)} className="flex items-center text-gray-800">
                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
                     Full-time opportunities
                   </motion.li>
-                  <motion.li variants={fadeIn('up', 0, 0.3)} className="flex items-center">
+                  <motion.li variants={fadeIn('up', 0, 0.3)} className="flex items-center text-gray-800">
                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
                     Freelance projects
                   </motion.li>
-                  <motion.li variants={fadeIn('up', 0, 0.3)} className="flex items-center">
+                  <motion.li variants={fadeIn('up', 0, 0.3)} className="flex items-center text-gray-800">
                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
                     Technical consultations
                   </motion.li>
