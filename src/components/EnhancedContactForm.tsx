@@ -7,65 +7,60 @@ const EnhancedContactForm = () => {
   const [isFormReady, setIsFormReady] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const [formContainer, setFormContainer] = useState<HTMLDivElement | null>(null);
-  const formInstanceRef = useRef<{ destroy: () => void } | null>(null);
+  const isolatedContainerRef = useRef<HTMLDivElement | null>(null);
 
-  // Create a separate container for the external form
   useEffect(() => {
     if (!containerRef.current) return;
-
-    // Create a completely isolated container
-    const isolatedContainer = document.createElement('div');
-    isolatedContainer.id = 'contact-form-isolated';
-    isolatedContainer.style.width = '100%';
-    isolatedContainer.style.minHeight = '400px';
-    
-    // Insert the isolated container into our React container
-    containerRef.current.appendChild(isolatedContainer);
-    setFormContainer(isolatedContainer);
-
-    return () => {
-      // Clean up the isolated container
-      if (isolatedContainer && isolatedContainer.parentNode) {
-        isolatedContainer.parentNode.removeChild(isolatedContainer);
-      }
-    };
-  }, []);
-
-  // Initialize the external form in the isolated container
-  useEffect(() => {
-    if (!formContainer) return;
 
     let mounted = true;
     let retryCount = 0;
     const maxRetries = 3;
 
     const initializeForm = async () => {
-      if (!formContainer || formInstanceRef.current) return;
+      if (!containerRef.current || !mounted) return;
 
       try {
         setIsLoading(true);
-        
-        // Wait a bit more to ensure DOM is fully ready
+
+        // Create a completely isolated container outside React's control
+        const isolatedContainer = document.createElement('div');
+        isolatedContainer.id = 'contact-form-isolated';
+        isolatedContainer.style.width = '100%';
+        isolatedContainer.style.minHeight = '400px';
+        isolatedContainer.style.position = 'relative';
+        isolatedContainer.style.zIndex = '1';
+
+        // Store reference to the isolated container
+        isolatedContainerRef.current = isolatedContainer;
+
+        // Wait for DOM to be fully ready
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        if (!mounted || !containerRef.current) return;
+
+        // Append the isolated container to our React container
+        containerRef.current.appendChild(isolatedContainer);
+
+        // Wait a bit more to ensure the isolated container is properly mounted
         await new Promise(resolve => setTimeout(resolve, 200));
-        
-        if (!mounted || !formContainer) return;
+
+        if (!mounted || !isolatedContainer.parentNode) return;
 
         // Dynamically import the contact form
         const { createContactForm } = await import('website-contact-form');
-        
-        // Try to import CSS, but don't fail if it's not available
+
+        // Try to import CSS
         try {
           await import('website-contact-form/dist/style.css');
         } catch (cssError) {
           console.warn('CSS import failed, using default styles:', cssError);
         }
 
-        if (!mounted || !formContainer) return;
+        if (!mounted || !isolatedContainer.parentNode) return;
 
         // Create the form in the isolated container
-        const form = await createContactForm({
-          target: formContainer,
+        await createContactForm({
+          target: isolatedContainer,
           theme: 'light',
           labels: {
             title: 'Get In Touch',
@@ -94,21 +89,20 @@ const EnhancedContactForm = () => {
         });
 
         if (mounted) {
-          formInstanceRef.current = form;
           setIsFormReady(true);
           setIsLoading(false);
         }
       } catch (error) {
         console.error('Failed to initialize contact form:', error);
-        
+
         // Retry logic for initialization failures
         if (mounted && retryCount < maxRetries) {
           retryCount++;
           console.log(`Retrying form initialization (attempt ${retryCount}/${maxRetries})...`);
-          setTimeout(initializeForm, 500 * retryCount);
+          setTimeout(initializeForm, 1000 * retryCount);
           return;
         }
-        
+
         if (mounted) {
           setMessage('Form failed to load after multiple attempts. Please try refreshing the page.');
           setIsLoading(false);
@@ -116,24 +110,24 @@ const EnhancedContactForm = () => {
       }
     };
 
-    // Start initialization with a delay
-    const timer = setTimeout(initializeForm, 100);
+    // Start initialization with a delay to ensure DOM is ready
+    const timer = setTimeout(initializeForm, 200);
 
     return () => {
       mounted = false;
       clearTimeout(timer);
-      
-      // Clean up the form instance
-      if (formInstanceRef.current) {
+
+      // Clean up the isolated container
+      if (isolatedContainerRef.current && isolatedContainerRef.current.parentNode) {
         try {
-          formInstanceRef.current.destroy();
+          isolatedContainerRef.current.parentNode.removeChild(isolatedContainerRef.current);
         } catch (error) {
-          console.warn('Error destroying form:', error);
+          console.warn('Error removing isolated container:', error);
         }
-        formInstanceRef.current = null;
+        isolatedContainerRef.current = null;
       }
     };
-  }, [formContainer]);
+  }, []);
 
   return (
     <div className="w-full">
