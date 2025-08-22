@@ -34,7 +34,7 @@ const Footer = () => {
     {
       title: 'Contact',
       links: [
-        { name: 'nmahsanofficial@gmail.com', href: 'mailto:nmahsanofficial@gmail.com', icon: <FiMail /> },
+        { name: 'mnahsanofficial@gmail.com', href: 'mailto:mnahsanofficial@gmail.com', icon: <FiMail /> },
         { name: '(+88) 01815532283', href: 'tel:+8801815532283', icon: <FiPhone /> },
         { name: 'Dhaka, Bangladesh', href: '#', icon: <FiMapPin /> },
       ],

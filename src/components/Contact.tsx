@@ -1,32 +1,11 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import { FiMail, FiPhone, FiMapPin, FiSend, FiLinkedin, FiGithub } from 'react-icons/fi';
-import { fadeIn, staggerContainer, defaultViewport } from '../lib/animations'; // Added staggerItem
-
-interface FormData {
-  name: string;
-  email: string;
-  message: string;
-}
+import { FiMail, FiPhone, FiMapPin, FiLinkedin, FiGithub } from 'react-icons/fi';
+import { fadeIn, staggerContainer, defaultViewport } from '../lib/animations';
+import EnhancedContactForm from './EnhancedContactForm';
 
 const Contact = () => {
-  const { 
-    register, 
-    handleSubmit, 
-    formState: { errors, isSubmitting }, 
-    reset 
-  } = useForm<FormData>();
-
-  const onSubmit = async (data: FormData) => {
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log(data);
-    alert('Message sent successfully!');
-    reset();
-  };
-
   return (
     <section id="contact" className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-6xl mx-auto px-6">
@@ -65,8 +44,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-500">Email</h4>
-                    <a href="mailto:nmahsanofficial@gmail.com" className="text-gray-800 hover:text-blue-600 transition">
-                      nmahsanofficial@gmail.com
+                    <a href="mailto:mnahsanofficial@gmail.com" className="text-gray-800 hover:text-blue-600 transition">
+                      mnahsanofficial@gmail.com
                     </a>
                   </div>
                 </motion.div>
@@ -130,7 +109,7 @@ const Contact = () => {
               className="bg-blue-50 p-6 rounded-xl border border-blue-100"
               initial="initial"
               whileInView="whileInView"
-              viewport={defaultViewport} // Added initial/whileInView/viewport for the box itself
+              viewport={{ once: true, amount: 0.2 }}
             >
               <motion.div
                 variants={staggerContainer(0.1, 0.2)}
@@ -164,106 +143,14 @@ const Contact = () => {
             </motion.div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Contact Form - Single Card */}
           <motion.div
             variants={fadeIn('right', 0.4, 0.6)}
             initial="initial"
             whileInView="whileInView"
             viewport={defaultViewport}
-            className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200"
           >
-            <div className="p-8">
-              <motion.h3 variants={fadeIn('down', 0, 0.5)} className="text-2xl font-bold text-gray-800 mb-6">Send Me a Message</motion.h3>
-              
-              <motion.form
-                variants={staggerContainer(0.15, 0.2)}
-                initial="initial"
-                whileInView="whileInView"
-                viewport={{once: true, amount: 0.1}}
-                onSubmit={handleSubmit(onSubmit)}
-                className="space-y-6"
-              >
-                <motion.div variants={fadeIn('up', 0, 0.4)}>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
-                  <div className="relative">
-                    <input
-                      id="name"
-                      type="text"
-                      {...register('name', { required: 'Please enter your name' })}
-                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 ${
-                        errors.name ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 focus:ring-blue-200'
-                      }`}
-                      placeholder="John Doe"
-                    />
-                    {errors.name && (
-                      <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
-                    )}
-                  </div>
-                </motion.div>
-                
-                <motion.div variants={fadeIn('up', 0, 0.4)}>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                  <div className="relative">
-                    <input
-                      id="email"
-                      type="email"
-                      {...register('email', { 
-                        required: 'Please enter your email',
-                        pattern: {
-                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                          message: 'Please enter a valid email address'
-                        }
-                      })}
-                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 ${
-                        errors.email ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 focus:ring-blue-200'
-                      }`}
-                      placeholder="you@example.com"
-                    />
-                    {errors.email && (
-                      <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
-                    )}
-                  </div>
-                </motion.div>
-                
-                <motion.div variants={fadeIn('up', 0, 0.4)}>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
-                  <div className="relative">
-                    <textarea
-                      id="message"
-                      rows={5}
-                      {...register('message', { required: 'Please enter your message' })}
-                      className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 ${
-                        errors.message ? 'border-red-300 focus:ring-red-200' : 'border-gray-300 focus:ring-blue-200'
-                      }`}
-                      placeholder="Hello, I'd like to talk about..."
-                    ></textarea>
-                    {errors.message && (
-                      <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
-                    )}
-                  </div>
-                </motion.div>
-                
-                <motion.button
-                  variants={fadeIn('up', 0.2, 0.5)}
-                  type="submit"
-                  disabled={isSubmitting}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`w-full flex items-center justify-center px-6 py-3 rounded-lg font-medium text-white ${
-                    isSubmitting ? 'bg-blue-400' : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700'
-                  } transition-all`}
-                >
-                  {isSubmitting ? (
-                    'Sending...'
-                  ) : (
-                    <>
-                      <FiSend className="mr-2" />
-                      Send Message
-                    </>
-                  )}
-                </motion.button>
-              </motion.form>
-            </div>
+            <EnhancedContactForm />
           </motion.div>
         </div>
       </div>

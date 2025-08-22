@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^41.4.2",
+    "emailjs-com": "^3.2.0",
     "framer-motion": "^12.15.0",
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.56.4",
     "react-icons": "^5.5.0",
+    "website-contact-form": "^1.1.1",
     "website-visitor-counter": "^3.1.0"
   },
   "devDependencies": {
