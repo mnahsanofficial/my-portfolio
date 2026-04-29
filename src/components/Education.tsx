@@ -95,14 +95,6 @@ const Education = () => {
                       {edu.institution}
                     </motion.h4>
                     
-                    {edu.status && (
-                      <motion.div variants={fadeIn('up', 0.2, 0.4)} className="mb-3">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
-                          {edu.status}
-                        </span>
-                      </motion.div>
-                    )}
-                    
                     <motion.p variants={fadeIn('up', 0.3, 0.4)} className="text-gray-600">
                       {edu.description}
                     </motion.p>
