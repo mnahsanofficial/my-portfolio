@@ -1,74 +1,84 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { JSX } from 'react';
-import { FiCode, FiDatabase, FiTool, FiUsers } from 'react-icons/fi';
-import { fadeIn, scaleUp, staggerContainer, defaultViewport } from '../lib/animations'; // Assuming path
+import { IconType } from 'react-icons';
+import {
+  SiAngular,
+  SiReact,
+  SiVuedotjs,
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiHtml5,
+  SiCss3,
+  SiTailwindcss,
+  SiPython,
+  SiDjango,
+  SiNodedotjs,
+  SiNestjs,
+  SiPostgresql,
+  SiMysql,
+  SiGit,
+  SiDocker,
+  SiJira,
+  SiPostman
+} from 'react-icons/si';
+import { FiDatabase, FiCloud, FiTool, FiCheckCircle } from 'react-icons/fi';
+import { fadeIn, staggerContainer, defaultViewport } from '../lib/animations';
 
 interface SkillCategory {
   title: string;
-  skills: {
-    name: string;
-    level: number; // 1-5 (for visualization)
-    icon?: JSX.Element;
-  }[];
-  icon?: JSX.Element;
+  skills: { name: string; icon: IconType }[];
 }
 
 const Skills = () => {
   const skillCategories: SkillCategory[] = [
     {
-      title: 'Frontend Mastery',
-      icon: <FiCode className="text-2xl" />,
+      title: 'Frontend',
       skills: [
-        { name: 'Angular', level: 5 },
-        { name: 'React', level: 4 },
-        { name: 'Next.js', level: 4 },
-        { name: 'Vue.js', level: 3 },
-        { name: 'TypeScript', level: 5 },
-        { name: 'JavaScript', level: 5 },
+        { name: 'Angular', icon: SiAngular },
+        { name: 'React', icon: SiReact },
+        { name: 'Vue.js', icon: SiVuedotjs },
+        { name: 'Next.js', icon: SiNextdotjs },
+        { name: 'TypeScript', icon: SiTypescript },
+        { name: 'JavaScript', icon: SiJavascript },
+        { name: 'HTML5', icon: SiHtml5 },
+        { name: 'CSS3', icon: SiCss3 },
+        { name: 'Tailwind', icon: SiTailwindcss },
       ],
     },
     {
-      title: 'Backend Expertise',
-      icon: <FiDatabase className="text-2xl" />,
+      title: 'Backend',
       skills: [
-        { name: 'Python-Django', level: 5 },
-        { name: 'NestJS', level: 4 },
-        { name: 'PostgreSQL', level: 4 },
-        { name: 'MongoDB', level: 3 },
+        { name: 'Python', icon: SiPython },
+        { name: 'Django', icon: SiDjango },
+        { name: 'Node.js', icon: SiNodedotjs },
+        { name: 'NestJS', icon: SiNestjs },
+        { name: 'REST APIs', icon: FiDatabase },
       ],
     },
     {
-      title: 'Dev Tools',
-      icon: <FiTool className="text-2xl" />,
+      title: 'Database & DevOps',
       skills: [
-        { name: 'Postman', level: 5 },
-        { name: 'pgAdmin', level: 4 },
-        { name: 'Machine Learning', level: 3 },
-        { name: 'CI/CD', level: 4 },
-        { name: 'Agile Methodologies', level: 4 },
+        { name: 'PostgreSQL', icon: SiPostgresql },
+        { name: 'MySQL', icon: SiMysql },
+        { name: 'Git', icon: SiGit },
+        { name: 'Docker', icon: SiDocker },
+        { name: 'CI/CD', icon: FiTool },
+        { name: 'Azure', icon: FiCloud },
+        { name: 'JIRA', icon: SiJira },
       ],
     },
     {
-      title: 'Professional Skills',
-      icon: <FiUsers className="text-2xl" />,
+      title: 'Testing & QA',
       skills: [
-        { name: 'Project Management', level: 4 },
-        { name: 'Communication', level: 5 },
-        { name: 'Leadership', level: 4 },
-        { name: 'Event Management', level: 4 },
+        { name: 'Postman', icon: SiPostman },
+        { name: 'Manual Testing', icon: FiCheckCircle },
+        { name: 'E2E Testing', icon: FiCheckCircle },
+        { name: 'Automation', icon: FiCheckCircle },
+        { name: 'Debugging', icon: FiTool },
       ],
     },
-  ];
-
-  // Skill level descriptions
-  const levelDescriptions = [
-    'Basic Awareness',
-    'Working Knowledge',
-    'Practical Experience',
-    'Advanced Skills',
-    'Expert Level'
   ];
 
   return (
@@ -95,49 +105,24 @@ const Skills = () => {
           initial="initial"
           whileInView="whileInView"
           viewport={defaultViewport}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           {skillCategories.map((category) => (
             <motion.div
               key={category.title}
-              variants={scaleUp(0, 0.5)}
-              className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+              variants={fadeIn('up', 0, 0.4)}
+              className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100"
             >
               <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 flex items-center">
-                <div className="bg-white p-3 rounded-lg shadow-sm mr-4 text-blue-600">
-                  {category.icon}
-                </div>
                 <h3 className="text-xl font-bold text-gray-800">{category.title}</h3>
               </div>
               
               <div className="p-6">
-                <motion.ul
-                  variants={staggerContainer(0.1, 0.1)}
-                  initial="initial"
-                  whileInView="whileInView"
-                  viewport={defaultViewport} // Or { once: true, amount: 0.1 }
-                  className="space-y-5"
-                >
+                <motion.ul variants={staggerContainer(0.08, 0.1)} initial="initial" whileInView="whileInView" viewport={defaultViewport} className="flex flex-wrap gap-3">
                   {category.skills.map((skill) => (
-                    <motion.li variants={fadeIn('up', 0, 0.4)} key={skill.name}>
-                      <div className="flex justify-between mb-1">
-                        <span className="font-medium text-gray-700">{skill.name}</span>
-                        <span className="text-xs text-gray-500" title={levelDescriptions[skill.level - 1]}>
-                          {levelDescriptions[skill.level - 1].split(' ')[0]}
-                        </span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level * 20}%` }}
-                          transition={{ duration: 0.8, ease: 'easeOut' }}
-                          viewport={{ once: true, amount: 0.8 }}
-                          className={`h-2 rounded-full ${
-                            skill.level >= 4 ? 'bg-blue-600' : 
-                            skill.level >= 3 ? 'bg-indigo-500' : 'bg-blue-400'
-                          }`}
-                        />
-                      </div>
+                    <motion.li variants={fadeIn('up', 0, 0.3)} key={skill.name} className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700">
+                      <skill.icon className="text-base text-blue-600" />
+                      {skill.name}
                     </motion.li>
                   ))}
                 </motion.ul>

@@ -15,13 +15,13 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Nazmul Ahsan - Full Stack Developer Portfolio</title>
-        <meta name="description" content="Portfolio of Nazmul Ahsan, a skilled Full Stack Developer specializing in Next.js, Angular, Python-Django, and more. Explore projects and experience." />
+        <title>Nazmul Ahsan | Full Stack Engineer - Angular, React, Python-Django</title>
+        <meta name="description" content="Full Stack Software Engineer with 5+ years experience in Angular, React, Next.js, and Python-Django. Open to remote roles in Software Engineering, Frontend, and QA." />
         <meta name="keywords" content="Nazmul Ahsan, Full Stack Developer, Portfolio, Next.js, Angular, Python, Django, Web Developer, Software Engineer" />
 
         {/* Open Graph Tags */}
-        <meta property="og:title" content="Nazmul Ahsan - Full Stack Developer Portfolio" />
-        <meta property="og:description" content="Portfolio of Nazmul Ahsan, a skilled Full Stack Developer specializing in Next.js, Angular, Python-Django, and more. Explore projects and experience." />
+        <meta property="og:title" content="Nazmul Ahsan | Full Stack Engineer - Angular, React, Python-Django" />
+        <meta property="og:description" content="Full Stack Software Engineer with 5+ years experience in Angular, React, Next.js, and Python-Django. Open to remote roles in Software Engineering, Frontend, and QA." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://mnahsanofficial.github.io/portfolio/" />
         <meta property="og:image" content="https://mnahsanofficial.github.io/portfolio/assets/images/ahsan.jpg" />
@@ -29,8 +29,8 @@ export default function Home() {
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Nazmul Ahsan - Full Stack Developer Portfolio" />
-        <meta name="twitter:description" content="Portfolio of Nazmul Ahsan, a skilled Full Stack Developer specializing in Next.js, Angular, Python-Django, and more. Explore projects and experience." />
+        <meta name="twitter:title" content="Nazmul Ahsan | Full Stack Engineer - Angular, React, Python-Django" />
+        <meta name="twitter:description" content="Full Stack Software Engineer with 5+ years experience in Angular, React, Next.js, and Python-Django. Open to remote roles in Software Engineering, Frontend, and QA." />
         <meta name="twitter:image" content="https://mnahsanofficial.github.io/portfolio/assets/images/ahsan.jpg" />
       </Head>
       <main className="min-h-screen">

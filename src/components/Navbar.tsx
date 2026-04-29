@@ -24,8 +24,8 @@ const Navbar = () => {
     { name: 'Skills', href: '#skills' },
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Education', href: '#education' },
-     { name: 'Blog', href: '#blog' },
+    { name: 'Education & Certs', href: '#education' },
+    { name: 'Writing', href: '#writing' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -57,7 +57,7 @@ const Navbar = () => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => (
               <motion.div
                 key={link.name}
@@ -75,7 +75,7 @@ const Navbar = () => {
             ))}
 
             {/* Social Icons */}
-            <div className="flex items-center space-x-4 ml-6">
+            <div className="flex items-center space-x-4 ml-2">
               {socialLinks.map((link, index) => (
                 <motion.a
                   key={index}
@@ -91,6 +91,14 @@ const Navbar = () => {
                 </motion.a>
               ))}
             </div>
+            <a
+              href="/assets/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-blue-600 px-4 py-2 text-sm font-semibold text-blue-600 transition hover:bg-blue-600 hover:text-white"
+            >
+              Resume / CV
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -155,6 +163,15 @@ const Navbar = () => {
                   </motion.a>
                 ))}
               </div>
+              <a
+                href="/assets/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex rounded-full border border-blue-600 px-4 py-2 text-sm font-semibold text-blue-600 transition hover:bg-blue-600 hover:text-white"
+                onClick={() => setIsOpen(false)}
+              >
+                Resume / CV
+              </a>
             </div>
           </motion.div>
         )}

@@ -8,8 +8,6 @@ import {
   fadeIn,
   scaleUp,
   staggerContainer,
-  sentenceVariant,
-  letterVariant,
   defaultViewport
 } from '../lib/animations'; 
 import { SiAngular, SiNextdotjs, SiPython, SiNestjs } from 'react-icons/si';
@@ -92,39 +90,31 @@ const Hero = () => {
             viewport={defaultViewport}
             className="lg:w-1/2 text-center lg:text-left"
           >
-            <motion.h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              <motion.span variants={fadeIn('none', 0, 0.5)} className="inline-block text-white">Hi, I&apos;m&nbsp;</motion.span>
-              <motion.span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500 inline-block"
-                variants={sentenceVariant}
-                initial="initial"
-                whileInView="whileInView"
-                viewport={defaultViewport}
-              >
-                { "Nazmul Ahsan".split("").map((char, index) => (
-                  <motion.span key={char + "-" + index} variants={letterVariant} className="inline-block">
-                    {char === " " ? "\u00A0" : char} {/* Preserve spaces */}
-                  </motion.span>
-                ))}
+            <motion.h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
+              <motion.span variants={fadeIn('none', 0, 0.5)} className="inline-block text-white">Hi, I&apos;m </motion.span>
+              <motion.span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500 inline-block">
+                Nazmul Ahsan
               </motion.span>
             </motion.h1>
             
             <motion.h2 variants={fadeIn('up', 0.3, 0.6)} className="text-2xl md:text-3xl mb-8 text-blue-100 font-medium">
-              Full Stack Developer & Tech Enthusiast
+              Full Stack Engineer · Angular & React Specialist · QA-Driven
             </motion.h2>
             
             <motion.p variants={fadeIn('up', 0.4, 0.6)} className="text-lg md:text-xl mb-10 text-blue-100 max-w-lg mx-auto lg:mx-0">
-              Crafting pixel-perfect, high-performance web applications with modern technologies.
+              5+ years shipping scalable products - from API architecture to pixel-perfect UIs.
             </motion.p>
             
             <motion.div variants={staggerContainer(0.2, 0.5)} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <motion.div variants={scaleUp(0, 0.5)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link
-                  href="#contact"
+                <a
+                  href="/assets/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-block bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  Get In Touch
-                </Link>
+                  Download Resume
+                </a>
               </motion.div>
               
               <motion.div variants={scaleUp(0, 0.5)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

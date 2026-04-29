@@ -19,18 +19,33 @@ interface ExperienceItemDef { // Renamed to avoid conflict if ExperienceItem is 
 const Experience = () => {
   const experiences: ExperienceItemDef[] = [
     {
+      role: 'Software Engineer & Technical Recruiter',
+      company: 'Talvette',
+      duration: 'August 2025 - Present',
+      location: 'Remote',
+      employmentType: 'Full-time',
+      description: 'Product engineering and technical hiring operations',
+      responsibilities: [
+        'Delivered core platform features: Article module, Job Board, Contact System, and Preview modules.',
+        'Implemented automated E2E testing pipelines running daily system health checks.',
+        'Sourced 500+ candidates, completed 200+ phone screenings, and successfully placed 30+ hires.',
+        'Designed structured technical screening frameworks to improve candidate evaluation efficiency.'
+      ],
+      skills: ['Vue.js', 'NestJS', 'PostgreSQL', 'CI/CD', 'Manatal']
+    },
+    {
       role: 'Software Developer (Full Stack) | Angular, Python-Django, REST API, PostgreSQL',
       company: 'Barytech Technologies',
-      duration: 'June 2023 – Present',
+      duration: 'June 2023 - April 2026',
       location: 'Remote',
       employmentType: 'Full-time',
       description: 'Developing innovative web solutions for enterprise clients',
       responsibilities: [
         'Spearheaded the development of scalable web applications using Angular for the frontend and Python-Django for the backend.',
-        'Streamlined video processing features, such as screen recording and video trimming, increase productivity by 30%',
+        'Streamlined video processing features, such as screen recording and video trimming, increased productivity by 30%.',
         'Refactored 15,000+ lines of code, resolved 200+ critical bugs, and improved code maintainability by 40%',
         'Collaborated cross-functionally to integrate chat functionality, enhancing user engagement by 40%',
-        'Collaborated with cross-functional teams to implement my team, calendar, maintenance, translation, and screen recording modules.',
+        'Built and maintained modules including team management, calendar, maintenance, translation, and media systems.',
         'Developed and integrated RESTful APIs with secure data handling using PostgreSQL and pgAdmin.'
       ],
       skills: ['Angular', 'Python-Django', 'PostgreSQL', 'REST APIs', 'CI/CD', 'AWS']

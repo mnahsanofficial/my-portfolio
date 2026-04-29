@@ -1,9 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FiMail, FiPhone, FiMapPin, FiLinkedin, FiGithub } from 'react-icons/fi';
+import { FiMail, FiMapPin, FiLinkedin, FiGithub } from 'react-icons/fi';
 import { fadeIn, staggerContainer, defaultViewport } from '../lib/animations';
-import EnhancedContactForm from './EnhancedContactForm';
 
 const Contact = () => {
   return (
@@ -46,18 +45,6 @@ const Contact = () => {
                     <h4 className="font-medium text-gray-500">Email</h4>
                     <a href="mailto:mnahsanofficial@gmail.com" className="text-gray-800 hover:text-blue-600 transition">
                       mnahsanofficial@gmail.com
-                    </a>
-                  </div>
-                </motion.div>
-                
-                <motion.div variants={fadeIn('left', 0, 0.5)} className="flex items-start">
-                  <div className="bg-indigo-100 p-3 rounded-full mr-4 text-indigo-600">
-                    <FiPhone className="text-xl" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-500">Phone</h4>
-                    <a href="tel:+8801815532283" className="text-gray-800 hover:text-blue-600 transition">
-                      (+88) 01815532283
                     </a>
                   </div>
                 </motion.div>
@@ -141,6 +128,15 @@ const Contact = () => {
                 </motion.ul>
               </motion.div>
             </motion.div>
+            <motion.a
+              variants={fadeIn('left', 0, 0.5)}
+              href="/assets/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-fit items-center rounded-full bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
+            >
+              Download Resume
+            </motion.a>
           </motion.div>
 
           {/* Contact Form - Single Card */}
@@ -150,7 +146,23 @@ const Contact = () => {
             whileInView="whileInView"
             viewport={defaultViewport}
           >
-            <EnhancedContactForm />
+            <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-md">
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">Send a Message</h3>
+              <p className="text-gray-600 mb-6">Use the form below or email me directly. I usually reply within 24 hours.</p>
+              <form
+                // TODO: Replace YOUR_FORM_ID with your actual Formspree form ID.
+                action="https://formspree.io/f/YOUR_FORM_ID"
+                method="POST"
+                className="space-y-4"
+              >
+                <input type="text" name="name" required placeholder="Your name" className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-800 focus:border-blue-500 focus:outline-none" />
+                <input type="email" name="email" required placeholder="Your email" className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-800 focus:border-blue-500 focus:outline-none" />
+                <textarea name="message" required rows={6} placeholder="Tell me about your project or role..." className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-800 focus:border-blue-500 focus:outline-none" />
+                <button type="submit" className="inline-flex items-center rounded-full bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700">
+                  Send Message
+                </button>
+              </form>
+            </div>
           </motion.div>
         </div>
       </div>

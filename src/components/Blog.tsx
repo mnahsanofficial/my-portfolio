@@ -44,7 +44,7 @@ const Blog = () => {
   const visiblePosts = showAll ? blogPosts : blogPosts.slice(0, 2);
 
   return (
-    <section id="blog" className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section id="writing" className="py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -54,11 +54,11 @@ const Blog = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" style={{color: '#2563eb'}}>Blog</span>
+            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" style={{color: '#2563eb'}}>Writing</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Thoughts, tutorials, and insights about web development
+            Thoughts, tutorials, and practical insights from real projects
           </p>
         </motion.div>
 
@@ -117,6 +117,16 @@ const Blog = () => {
             </motion.button>
           </div>
         )}
+        <div className="text-center mt-8">
+          <a
+            href="https://medium.com/@mnahsanofficial"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center rounded-full border border-gray-300 px-6 py-3 font-medium text-gray-700 transition hover:bg-gray-100"
+          >
+            Read more on Medium -
+          </a>
+        </div>
       </div>
     </section>
   );

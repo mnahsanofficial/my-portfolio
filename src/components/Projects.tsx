@@ -8,6 +8,7 @@ import { fadeIn, staggerContainer, defaultViewport } from '../lib/animations';
 
 interface Project {
   title: string;
+  problem: string;
   description: string;
   tags: string[];
   images: string[];
@@ -24,6 +25,7 @@ const Projects = () => {
   const projects: Project[] = [
     {
       title: 'EINO - Knowledge Management Platform',
+      problem: 'Problem: Organizations losing institutional knowledge at scale.',
       description: 'Enterprise knowledge management system designed to make organizational knowledge secure and easily retrievable. Features include AI-powered search, video content processing, and collaborative tools.',
       tags: ['Angular', 'Python-Django', 'PostgreSQL'],
       images: [
@@ -38,44 +40,43 @@ const Projects = () => {
         '/assets/images/EINO/eino-9.png',
       ],
       links: {
+        github: 'https://github.com/mnahsanofficial',
         live: 'https://app.eino.world'
       }
     },
     {
-      title: 'AI Chat App with Next.js & NestJS ',
-      description: 'I built an AI-powered chat application using Next.js for the frontend and NestJS for the backend. The app integrates OpenAI\'s GPT-4 to generate responses while implementing rate limiting (5 requests/day per user) to prevent abuse.',
-      tags: ['Next.js', 'NestJS', 'TypeScript', 'PostgreSQL'],
+      title: 'Recruitr.AI',
+      problem: 'Problem: Manual hiring is slow, biased, and expensive.',
+      description: 'An AI-powered virtual HR assistant that automates the full hiring lifecycle - from generating bias-free job descriptions to shortlisting candidates, running AI interviews, and scoring cultural fit. Built to make enterprise-grade recruitment intelligence accessible to any organization.',
+      tags: ['LLM Integration', 'AI Interviews', 'Bias Detection', 'Full Stack'],
       images: [
-        '/assets/images/Chatbot/chatbot-1.png',
-        '/assets/images/Chatbot/chatbot-2.png',
-        '/assets/images/Chatbot/chatbot-3.png',
-        '/assets/images/Chatbot/chatbot-4.png',
-        '/assets/images/Chatbot/chatbot-5.png',
+        '/assets/images/EINO/eino-1.png'
       ],
       links: {
-        github: 'https://github.com/mnahsanofficial/NEXTjs-JWT-Authentication',
-        live: 'https://www.youtube.com/watch?v=zWjNSByDoRA'
+        // TODO: Replace with Recruitr.AI repository URL.
+        github: 'https://github.com/mnahsanofficial',
+        live: 'https://next-hire-frontend-eight.vercel.app/'
       }
     },
     {
-      title: 'Red July Live - Memorial Platform',
-      description: 'Interactive web platform honoring activists of Bangladesh\'s Quota Reform Movement. Features include timeline visualization, multimedia content, and user contributions system.',
-      tags: ['Next.js', 'React', 'TypeScript', 'Node.js', 'MongoDB'],
+      title: 'Website Visitor Counter (npm)',
+      problem: 'Problem: Adding visitor tracking requires a backend - until now.',
+      description: 'Published open-source npm package for real-time website visitor tracking with zero backend dependencies. A lightweight, privacy-conscious drop-in solution for any frontend project.',
+      tags: ['JavaScript', 'npm', 'Open Source'],
       images: [
-        '/assets/images/Red July/red-july-1.png',
-        '/assets/images/Red July/red-july-2.png',
-        '/assets/images/Red July/red-july-.3.png',
-        '/assets/images/Red July/red-july-4.png',
-        '/assets/images/Red July/red-july-5.png',
-        '/assets/images/Red July/red-july-6.png',
+        '/assets/images/EINO/eino-2.png'
       ],
       links: {
-        live: 'https://redjuly.live'
+        // TODO: Replace with the npm package URL.
+        live: 'https://www.npmjs.com/',
+        // TODO: Replace with the visitor counter GitHub repository URL.
+        github: 'https://github.com/mnahsanofficial'
       }
     },
     
     {
       title: 'Flat FindBD',
+      problem: 'Problem: Property discovery was fragmented and broker-dependent.',
       description: 'Flat FindBD is a real estate platform designed to facilitate direct communication between property owners and potential renters or buyers, eliminating the need for intermediaries. Users can list properties, search for available properties, and interact through a built-in messaging system.',
       tags: ['Next.js', 'React', 'Django', 'PostgreSQL'],
       images: [
@@ -84,6 +85,7 @@ const Projects = () => {
     },
     {
       title: 'X- Clone',
+      problem: 'Problem: Needed a practical social platform architecture exercise.',
       description: 'A web application which is able to show murmur(=tweet) by user. (this application is similar to Twitter)',
       tags: ['NestJS', 'React', 'MySQL', 'Typescript'],
       images: [
@@ -259,6 +261,7 @@ const Projects = () => {
               className="p-8"
             >
               <motion.h3 variants={fadeIn('down', 0, 0.4)} className="text-3xl font-bold text-gray-800 mb-4">{currentProject.title}</motion.h3>
+              <motion.p variants={fadeIn('up', 0.1, 0.4)} className="text-sm font-semibold uppercase tracking-wide text-blue-600 mb-2">{currentProject.problem}</motion.p>
               <motion.p variants={fadeIn('up', 0.1, 0.4)} className="text-gray-600 mb-6 text-lg leading-relaxed">{currentProject.description}</motion.p>
               
               <motion.div variants={staggerContainer(0.05, 0.15)} className="flex flex-wrap gap-3 mb-8">
@@ -284,16 +287,16 @@ const Projects = () => {
                 })}
               </motion.div>
               
-              <motion.div variants={fadeIn('up', 0.2, 0.4)} className="flex gap-6">
+              <motion.div variants={fadeIn('up', 0.2, 0.4)} className="flex gap-4">
                 {currentProject.links?.github && (
                   <a
                     href={currentProject.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition px-4 py-2 rounded-lg hover:bg-gray-50"
+                    className="inline-flex items-center gap-2 border border-gray-300 text-gray-700 hover:text-blue-600 transition px-4 py-2 rounded-lg hover:bg-gray-50"
                   >
                     <FiGithub className="text-xl" />
-                    <span className="font-medium">View Code</span>
+                    <span className="font-medium">GitHub</span>
                   </a>
                 )}
                 {currentProject.links?.live && (
@@ -301,7 +304,7 @@ const Projects = () => {
                     href={currentProject.links.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition px-4 py-2 rounded-lg hover:bg-gray-50"
+                    className="inline-flex items-center gap-2 border border-gray-300 text-gray-700 hover:text-blue-600 transition px-4 py-2 rounded-lg hover:bg-gray-50"
                   >
                     <FiExternalLink className="text-xl" />
                     <span className="font-medium">Live Demo</span>

@@ -1,26 +1,18 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaSearch, FaBookOpen } from 'react-icons/fa';
+import { FaGraduationCap, FaBookOpen } from 'react-icons/fa';
 import { fadeIn, staggerContainer, defaultViewport } from '../lib/animations';
 
 const Education = () => {
   const educationData = [
-    {
-      degree: "Master of Science (MSc)",
-      status: "Looking for opportunities",
-      institution: "Seeking Admission",
-      year: "Future",
-      icon: <FaSearch className="text-blue-500" />,
-      description: "Actively exploring graduate programs in Computer Science to further specialize in software engineering and emerging technologies."
-    },
     {
       degree: "Bachelor of Science (BSc)",
       field: "Computer Science & Engineering",
       institution: "Jahangirnagar University",
       year: "2018 - 2021",
       icon: <FaGraduationCap className="text-indigo-500" />,
-      description: "Completed with a CGPA of 2.82/4.00. Gained comprehensive knowledge in algorithms, data structures, web development, and software engineering principles."
+      description: "Focused on algorithms, data structures, web development, and software engineering principles."
     },
     {
       degree: "Higher Secondary Certificate (HSC)",
@@ -49,7 +41,7 @@ const Education = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-            Academic <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" style={{color: '#2563eb'}}>Journey</span>
+            Education <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" style={{color: '#2563eb'}}>and Certifications</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -120,6 +112,21 @@ const Education = () => {
             ))}
           </motion.div>
         </div>
+        <motion.div
+          variants={fadeIn('up', 0.2, 0.5)}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={defaultViewport}
+          className="mt-16 rounded-2xl border border-amber-200 bg-amber-50 p-8 shadow-sm"
+        >
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">Certifications</h3>
+          <p className="text-lg font-semibold text-amber-700 mb-2">
+            Fundamental Information Technology Engineer Examination (FE) by ITEE
+          </p>
+          <p className="text-gray-700">
+            Result: <span className="font-semibold">Full Passer</span> | Rank: <span className="font-semibold">13th Nationally</span> | April 2022
+          </p>
+        </motion.div>
       </div>
     </section>
   );

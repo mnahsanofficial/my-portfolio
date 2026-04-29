@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { FiGithub, FiLinkedin, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiMapPin } from 'react-icons/fi';
 import { ReactElement } from 'react';
 import SimpleVisitorCounter from './SimpleVisitorCounter';
 
@@ -18,7 +18,7 @@ interface FooterSection {
 }
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear = 2026;
 
   const footerLinks: FooterSection[] = [
     {
@@ -35,7 +35,6 @@ const Footer = () => {
       title: 'Contact',
       links: [
         { name: 'mnahsanofficial@gmail.com', href: 'mailto:mnahsanofficial@gmail.com', icon: <FiMail /> },
-        { name: '(+88) 01815532283', href: 'tel:+8801815532283', icon: <FiPhone /> },
         { name: 'Dhaka, Bangladesh', href: '#', icon: <FiMapPin /> },
       ],
     },
