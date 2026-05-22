@@ -3,15 +3,15 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useEffect, useState } from 'react'; // Added useEffect, useState
+import { useEffect, useState } from 'react';
 import {
   fadeIn,
   scaleUp,
   staggerContainer,
   defaultViewport
-} from '../lib/animations'; 
+} from '../lib/animations';
 import { SiAngular, SiNextdotjs, SiPython, SiNestjs } from 'react-icons/si';
-import { FaReact } from 'react-icons/fa'; // Using FaReact for broader recognition
+import { FaReact } from 'react-icons/fa';
 
 interface BubbleStyle {
   id: number;
@@ -29,32 +29,34 @@ const Hero = () => {
   const [bubbleParams, setBubbleParams] = useState<BubbleStyle[]>([]);
 
   useEffect(() => {
-    const newBubbleParams = [...Array(10)].map((_, i) => ({
+    const newBubbleParams = [...Array(8)].map((_, i) => ({
       id: i,
       initialX: Math.random() * 100,
-      animateY: [0, -100, -200, -300],
-      animateX: [0, Math.random() * 100 - 50, Math.random() * 100 - 50, Math.random() * 100 - 50],
-      transitionDuration: 15 + Math.random() * 10,
-      width: `${5 + Math.random() * 10}px`,
-      height: `${5 + Math.random() * 10}px`,
+      animateY: [0, -120, -240, -360],
+      animateX: [0, Math.random() * 60 - 30, Math.random() * 60 - 30, Math.random() * 60 - 30],
+      transitionDuration: 18 + Math.random() * 10,
+      width: `${3 + Math.random() * 4}px`,
+      height: `${3 + Math.random() * 4}px`,
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
     }));
     setBubbleParams(newBubbleParams);
-  }, []); // Empty dependency array ensures this runs once on client mount
+  }, []);
 
   return (
-    <section 
-      id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy-900"
     >
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 z-0">
-        <div className="absolute inset-0 bg-[url('/assets/images/grid-pattern.svg')] opacity-10"></div>
-      </div>
+      {/* Editorial grid texture */}
+      <div className="absolute inset-0 editorial-grid opacity-60 z-0"></div>
 
-      {/* Floating bubbles animation */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Gold radial ambient light */}
+      <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-gold-500/10 blur-[120px] z-0"></div>
+      <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-gold-500/5 blur-[100px] z-0"></div>
+
+      {/* Floating particles */}
+      <div className="absolute inset-0 overflow-hidden z-0">
         {bubbleParams.map((params) => (
           <motion.div
             key={params.id}
@@ -62,14 +64,14 @@ const Hero = () => {
             animate={{
               y: params.animateY,
               x: params.animateX,
-              opacity: [1, 0.8, 0.5, 0] // opacity can remain static
+              opacity: [0.4, 0.3, 0.15, 0]
             }}
             transition={{
               duration: params.transitionDuration,
               repeat: Infinity,
               ease: "linear"
             }}
-            className="absolute rounded-full bg-white/10 backdrop-blur-sm"
+            className="absolute rounded-full bg-gold-400/40"
             style={{
               width: params.width,
               height: params.height,
@@ -80,133 +82,130 @@ const Hero = () => {
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-24 pb-12 z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Text content */}
-          <motion.div 
-            variants={staggerContainer(0.3, 0.1)}
+          <motion.div
+            variants={staggerContainer(0.2, 0.1)}
             initial="initial"
             whileInView="whileInView"
             viewport={defaultViewport}
-            className="lg:w-1/2 text-center lg:text-left"
+            className="lg:col-span-7 text-left"
           >
-            <motion.h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-              <motion.span variants={fadeIn('none', 0, 0.5)} className="inline-block text-white">Hi, I&apos;m </motion.span>
-              <motion.span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500 inline-block">
-                Nazmul Ahsan
+            <motion.div variants={fadeIn('up', 0, 0.5)} className="editorial-eyebrow mb-8">
+              Portfolio · 2026
+            </motion.div>
+
+            <motion.h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.02] mb-6 text-cream-50">
+              <motion.span variants={fadeIn('up', 0.1, 0.6)} className="block">
+                Engineering
+              </motion.span>
+              <motion.span variants={fadeIn('up', 0.2, 0.6)} className="block">
+                products with
+              </motion.span>
+              <motion.span variants={fadeIn('up', 0.3, 0.6)} className="block italic text-gold-400">
+                quiet&nbsp;precision.
               </motion.span>
             </motion.h1>
-            
-            <motion.h2 variants={fadeIn('up', 0.3, 0.6)} className="text-2xl md:text-3xl mb-8 text-blue-100 font-medium">
-              Full Stack Engineer · Angular & React Specialist · QA-Driven
-            </motion.h2>
-            
-            <motion.p variants={fadeIn('up', 0.4, 0.6)} className="text-lg md:text-xl mb-10 text-blue-100 max-w-lg mx-auto lg:mx-0">
-              5+ years shipping scalable products - from API architecture to pixel-perfect UIs.
+
+            <motion.div variants={fadeIn('up', 0.4, 0.6)} className="mt-10 flex items-center gap-4">
+              <span className="gold-rule"></span>
+              <p className="text-sm tracking-wider uppercase text-cream-50/70 font-medium">
+                Nazmul Ahsan — Full Stack Engineer
+              </p>
+            </motion.div>
+
+            <motion.p variants={fadeIn('up', 0.5, 0.6)} className="mt-8 text-lg md:text-xl text-cream-50/75 max-w-xl leading-relaxed">
+              Five years building production-grade web applications across Angular, React, Next.js, Python-Django, and NestJS — from API architecture to pixel-perfect interfaces.
             </motion.p>
-            
-            <motion.div variants={staggerContainer(0.2, 0.5)} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <motion.div variants={scaleUp(0, 0.5)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <a
-                  href="/assets/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-gradient-to-r from-amber-400 to-amber-500 text-gray-900 px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  Download Resume
-                </a>
-              </motion.div>
-              
-              <motion.div variants={scaleUp(0, 0.5)} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link
-                  href="#projects"
-                  className="inline-block border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300"
-                >
-                  View My Work
+
+            <motion.div variants={staggerContainer(0.15, 0.6)} className="mt-12 flex flex-col sm:flex-row gap-4">
+              <motion.a
+                variants={scaleUp(0, 0.5)}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                href="/assets/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gold"
+              >
+                <span className="text-[11px] tracking-editorial uppercase">Download Resume</span>
+              </motion.a>
+
+              <motion.div variants={scaleUp(0, 0.5)} whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
+                <Link href="#projects" className="btn-outline-light">
+                  <span className="text-[11px] tracking-editorial uppercase">View Selected Work</span>
                 </Link>
               </motion.div>
             </motion.div>
           </motion.div>
 
-          {/* Profile image */}
+          {/* Portrait — editorial card */}
           <motion.div
-            variants={scaleUp(0.2, 0.8)}
+            variants={fadeIn('left', 0.3, 0.8)}
             initial="initial"
             whileInView="whileInView"
             viewport={defaultViewport}
-            className="relative lg:w-1/2 flex justify-center"
+            className="lg:col-span-5 relative flex justify-center lg:justify-end"
           >
-            <motion.div
-              className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96"
-              variants={staggerContainer(0.2, 0.5)}
-              initial="initial"
-              whileInView="whileInView"
-              viewport={defaultViewport}
-            >
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-blue-400 rounded-full blur-2xl opacity-20 animate-pulse"></div>
-              
-              {/* Profile image container */}
-              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-30"></div>
+            <div className="relative w-72 sm:w-80 md:w-96">
+              {/* Gold offset frame */}
+              <div className="absolute -top-4 -left-4 w-full h-full border border-gold-500/50"></div>
+              <div className="absolute -bottom-4 -right-4 w-full h-full border border-gold-500/30"></div>
+
+              {/* Portrait */}
+              <div className="relative aspect-[4/5] overflow-hidden bg-navy-800">
                 <Image
                   src="/assets/images/ahsan.jpg"
                   alt="Nazmul Ahsan"
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-center grayscale-[15%]"
                   priority
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/50 via-transparent to-transparent"></div>
               </div>
-              
-              {/* Tech stack floating badges */}
-              <motion.div 
-                variants={scaleUp(0, 0.5)}
-                className="absolute -bottom-4 -left-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-              >
-                <SiAngular className="text-xl text-blue-800" />
-              </motion.div>
-              
-              <motion.div 
-                variants={scaleUp(0, 0.5)}
-                className="absolute -top-4 -right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md"
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-              >
-                <FaReact className="text-xl text-blue-800" />
-              </motion.div>
-              
-              <motion.div 
-                variants={scaleUp(0, 0.5)}
-                className="absolute top-1/3 -right-8 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md"
+
+              {/* Tech badges */}
+              <motion.div
                 animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 6, repeat: Infinity, delay: 0.5 }}
+                transition={{ duration: 5, repeat: Infinity }}
+                className="absolute -top-6 -right-6 bg-cream-50 border border-gold-500/40 p-3 shadow-lg"
               >
-                <SiNextdotjs className="text-xl text-blue-800" />
+                <FaReact className="text-2xl text-navy-800" />
               </motion.div>
-              <motion.div 
-                variants={scaleUp(0, 0.5)}
-                className="absolute bottom-8 -right-6 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md"
-                animate={{ y: [0, -12, 0] }}
-                transition={{ duration: 5.5, repeat: Infinity, delay: 0.3 }}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 6, repeat: Infinity, delay: 0.8 }}
+                className="absolute top-1/3 -left-8 bg-cream-50 border border-gold-500/40 p-3 shadow-lg"
               >
-                <SiPython className="text-xl text-green-800" />
+                <SiAngular className="text-2xl text-navy-800" />
               </motion.div>
-              <motion.div 
-                variants={scaleUp(0, 0.5)}
-                className="absolute top-1/4 -left-6 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md"
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, delay: 0.7 }}
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, delay: 0.4 }}
+                className="absolute bottom-16 -right-8 bg-cream-50 border border-gold-500/40 p-3 shadow-lg"
               >
-                <SiNestjs className="text-xl text-purple-800" />
+                <SiNextdotjs className="text-2xl text-navy-800" />
               </motion.div>
-            </motion.div>
+              <motion.div
+                animate={{ y: [0, -7, 0] }}
+                transition={{ duration: 5.5, repeat: Infinity, delay: 1.2 }}
+                className="absolute -bottom-2 left-8 bg-cream-50 border border-gold-500/40 p-3 shadow-lg"
+              >
+                <SiPython className="text-2xl text-navy-800" />
+              </motion.div>
+              <motion.div
+                animate={{ y: [0, -9, 0] }}
+                transition={{ duration: 5, repeat: Infinity, delay: 0.2 }}
+                className="absolute top-12 -right-10 bg-cream-50 border border-gold-500/40 p-3 shadow-lg hidden sm:block"
+              >
+                <SiNestjs className="text-2xl text-navy-800" />
+              </motion.div>
+            </div>
           </motion.div>
         </div>
-      </div>
 
-     
+      </div>
     </section>
   );
 };

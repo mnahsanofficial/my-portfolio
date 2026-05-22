@@ -19,12 +19,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Education & Certs', href: '#education' },
+    { name: 'Education', href: '#education' },
     { name: 'Writing', href: '#writing' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -39,63 +38,65 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed w-full z-50 ${
-        scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-white'
-      } transition-all duration-300`}
+      className={`fixed w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? 'bg-navy-900/95 backdrop-blur-md border-b border-gold-500/15'
+          : 'bg-transparent border-b border-transparent'
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-between items-center h-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <motion.div whileHover={{ scale: 1.05 }}>
-            <Link 
-              href="#home" 
-              className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
-              onClick={() => setIsOpen(false)}
-            >
+          <Link
+            href="#home"
+            className="group flex items-baseline gap-2"
+            onClick={() => setIsOpen(false)}
+          >
+            <span className="text-[11px] font-semibold tracking-editorial uppercase text-gold-500">
+              NA
+            </span>
+            <span className="font-display text-xl text-cream-50 group-hover:text-gold-300 transition-colors">
               Nazmul Ahsan
-            </Link>
-          </motion.div>
+            </span>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            {navLinks.map((link) => (
-              <motion.div
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link, idx) => (
+              <Link
                 key={link.name}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.95 }}
+                href={link.href}
+                className="group relative text-sm tracking-wide text-cream-50/80 hover:text-gold-300 transition-colors"
               >
-                <Link
-                  href={link.href}
-                  className="text-gray-700 hover:text-blue-600 transition-colors font-medium relative group"
-                >
-                  {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
-                </Link>
-              </motion.div>
+                <span className="font-mono text-[10px] text-gold-500/70 mr-1.5">
+                  {String(idx + 1).padStart(2, '0')}.
+                </span>
+                {link.name}
+                <span className="absolute -bottom-1.5 left-0 w-0 h-px bg-gold-500 transition-all duration-300 group-hover:w-full"></span>
+              </Link>
             ))}
 
-            {/* Social Icons */}
-            <div className="flex items-center space-x-4 ml-2">
+            <div className="flex items-center gap-4 pl-4 ml-2 border-l border-cream-50/20">
               {socialLinks.map((link, index) => (
                 <motion.a
                   key={index}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ y: -3 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="text-gray-600 hover:text-blue-600 transition-colors"
+                  whileHover={{ y: -2 }}
+                  className="text-cream-50/70 hover:text-gold-400 transition-colors"
                   aria-label={index === 0 ? "GitHub" : "LinkedIn"}
                 >
                   {link.icon}
                 </motion.a>
               ))}
             </div>
+
             <a
               href="/assets/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-blue-600 px-4 py-2 text-sm font-semibold text-blue-600 transition hover:bg-blue-600 hover:text-white"
+              className="text-[11px] tracking-editorial uppercase font-semibold text-navy-900 bg-gold-500 hover:bg-gold-400 px-5 py-2.5 transition-colors"
             >
               Resume / CV
             </a>
@@ -105,7 +106,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-blue-600"
+              className="text-cream-50 hover:text-gold-400 transition-colors"
               aria-label="Toggle menu"
               aria-expanded={isOpen}
               aria-controls="mobile-menu-content"
@@ -124,54 +125,54 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white overflow-hidden"
+            className="md:hidden bg-navy-900 border-t border-gold-500/15 overflow-hidden"
             id="mobile-menu-content"
           >
-            <div className="px-6 pt-2 pb-6 space-y-4">
-              {navLinks.map((link) => (
+            <div className="px-6 pt-4 pb-8 space-y-1">
+              {navLinks.map((link, idx) => (
                 <motion.div
                   key={link.name}
                   initial={{ x: 20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.3, delay: idx * 0.05 }}
                 >
                   <Link
                     href={link.href}
-                    className="block py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                    className="flex items-baseline gap-3 py-3 text-cream-50/80 hover:text-gold-300 transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
-                    {link.name}
+                    <span className="font-mono text-[10px] text-gold-500/70">
+                      {String(idx + 1).padStart(2, '0')}.
+                    </span>
+                    <span className="text-base">{link.name}</span>
                   </Link>
                 </motion.div>
               ))}
 
-              <div className="flex space-x-4 pt-4">
+              <div className="flex items-center gap-3 pt-6 mt-4 border-t border-cream-50/10">
                 {socialLinks.map((link, index) => (
-                  <motion.a
+                  <a
                     key={index}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ x: 20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="text-gray-600 hover:text-blue-600 transition-colors p-2"
+                    className="text-cream-50/70 hover:text-gold-400 transition-colors p-2"
                     onClick={() => setIsOpen(false)}
                     aria-label={index === 0 ? "GitHub (mobile)" : "LinkedIn (mobile)"}
                   >
                     {link.icon}
-                  </motion.a>
+                  </a>
                 ))}
+                <a
+                  href="/assets/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-auto text-[11px] tracking-editorial uppercase font-semibold text-navy-900 bg-gold-500 hover:bg-gold-400 px-5 py-2.5 transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Resume / CV
+                </a>
               </div>
-              <a
-                href="/assets/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex rounded-full border border-blue-600 px-4 py-2 text-sm font-semibold text-blue-600 transition hover:bg-blue-600 hover:text-white"
-                onClick={() => setIsOpen(false)}
-              >
-                Resume / CV
-              </a>
             </div>
           </motion.div>
         )}

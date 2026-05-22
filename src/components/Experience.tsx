@@ -1,224 +1,268 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaBuilding, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import Image from 'next/image';
+import { FaMapMarkerAlt, FaCalendarAlt } from 'react-icons/fa';
+import { FiLinkedin, FiArrowUpRight } from 'react-icons/fi';
 import { fadeIn, staggerContainer, staggerItem, defaultViewport } from '../lib/animations';
 
-interface ExperienceItemDef { // Renamed to avoid conflict if ExperienceItem is globally defined
+interface ExperienceItem {
   role: string;
   company: string;
+  companyLogo: string;
+  companyLinkedIn: string;
+  logoBg?: 'light' | 'dark';
   duration: string;
   location: string;
-  employmentType?: string;
-  description?: string;
+  employmentType: string;
+  summary: string;
   responsibilities: string[];
   skills: string[];
-  companyLogo?: string;
 }
 
 const Experience = () => {
-  const experiences: ExperienceItemDef[] = [
+  const experiences: ExperienceItem[] = [
     {
       role: 'Software Engineer & Technical Recruiter',
       company: 'Talvette',
-      duration: 'August 2025 - Present',
+      companyLogo: '/assets/images/companies/talvette.svg',
+      companyLinkedIn: 'https://www.linkedin.com/company/talvette/',
+      logoBg: 'light',
+      duration: 'Aug 2025 — Present',
       location: 'Remote',
       employmentType: 'Full-time',
-      description: 'Product engineering and technical hiring operations',
+      summary: 'Driving product engineering and technical hiring operations across a fast-moving SaaS platform.',
       responsibilities: [
-        'Delivered core platform features: Article module, Job Board, Contact System, and Preview modules.',
-        'Implemented automated E2E testing pipelines running daily system health checks.',
-        'Sourced 500+ candidates, completed 200+ phone screenings, and successfully placed 30+ hires.',
-        'Designed structured technical screening frameworks to improve candidate evaluation efficiency.'
+        'Shipped core platform modules — Articles, Job Board, Contact System, and Preview — with end-to-end error handling across the Talvette application.',
+        'Built automated end-to-end testing pipelines running daily health checks, strengthening overall platform reliability.',
+        'Sourced 500+ candidates, ran 200+ phone screenings, and led 100+ ORC calls to keep hiring pipelines consistently full.',
+        'Placed 30+ hires across senior roles including CBO, Vue.js Developer, and Blockchain Engineer.',
+        'Acted as the connective tissue between engineering and clients — aligning hiring strategy with product and business priorities.',
+        'Designed structured technical screening frameworks that sharpened candidate evaluation and shortened time-to-decision.',
       ],
-      skills: ['Vue.js', 'NestJS', 'PostgreSQL', 'CI/CD', 'Manatal']
+      skills: ['Vue.js', 'NestJS', 'PostgreSQL', 'CI/CD', 'Manatal', 'ATS'],
     },
     {
-      role: 'Software Developer (Full Stack) | Angular, Python-Django, REST API, PostgreSQL',
-      company: 'Barytech Technologies',
-      duration: 'June 2023 - April 2026',
+      role: 'Software Developer — Full Stack',
+      company: 'BaryTech Technologies',
+      companyLogo: '/assets/images/companies/barytech.png',
+      companyLinkedIn: 'https://www.linkedin.com/company/barytech/',
+      logoBg: 'light',
+      duration: 'Jun 2023 — Apr 2026',
       location: 'Remote',
       employmentType: 'Full-time',
-      description: 'Developing innovative web solutions for enterprise clients',
+      summary: 'Led full-stack delivery of the EINO enterprise knowledge platform across Angular and Python-Django.',
       responsibilities: [
-        'Spearheaded the development of scalable web applications using Angular for the frontend and Python-Django for the backend.',
-        'Streamlined video processing features, such as screen recording and video trimming, increased productivity by 30%.',
-        'Refactored 15,000+ lines of code, resolved 200+ critical bugs, and improved code maintainability by 40%',
-        'Collaborated cross-functionally to integrate chat functionality, enhancing user engagement by 40%',
-        'Built and maintained modules including team management, calendar, maintenance, translation, and media systems.',
-        'Developed and integrated RESTful APIs with secure data handling using PostgreSQL and pgAdmin.'
+        'Spearheaded development of the scalable EINO application — Angular on the frontend, Python-Django on the backend.',
+        'Designed and optimized RESTful APIs handling 15,000+ daily requests, improving performance by 25%.',
+        'Engineered video-processing capabilities including screen recording and video trimming, lifting team productivity by 30%.',
+        'Led migration from Angular 13 to Angular 18, resolved 150+ critical bugs, and improved maintainability by 40%.',
+        'Closed 50+ additional production issues and raised overall system stability by 15%.',
+        'Integrated real-time chat, increasing user engagement by 40%.',
+        'Built and maintained modules across team management, calendar, maintenance, translation, and media systems.',
+        'Delivered secure API integrations with PostgreSQL and pgAdmin, tuning query performance throughout.',
+        'Contributed in Agile teams across feature planning, code reviews, and production deployments.',
       ],
-      skills: ['Angular', 'Python-Django', 'PostgreSQL', 'REST APIs', 'CI/CD', 'AWS']
+      skills: ['Angular', 'Python-Django', 'PostgreSQL', 'REST APIs', 'pgAdmin', 'CI/CD'],
     },
     {
-      role: 'eqUIP Intern – Media & IT | Digital Transformation & Sports Innovation',
-      company: 'Commonwealth Games Federation (CGA)',
-      duration: 'April 2024 – March 2025',
+      role: 'Software Engineer — eqUIP Program (Media & IT)',
+      company: 'Commonwealth Games Federation · BOA',
+      companyLogo: '/assets/images/companies/commonwealth.svg',
+      companyLinkedIn: 'https://www.linkedin.com/company/commonwealthgamesfederation/',
+      logoBg: 'light',
+      duration: 'Apr 2024 — Mar 2025',
       location: 'Dhaka, Bangladesh',
-      employmentType: 'Internship',
-      description: 'Digital transformation initiative for sports organizations',
+      employmentType: 'Onsite',
+      summary: 'Digital transformation engineer for the Bangladesh Olympic Association under the Commonwealth eqUIP initiative.',
       responsibilities: [
-        'Built and launched a centralized athlete database platform to improve national sports data governance.Developed the new CGA-Bangladesh website, increasing its digital visibility by 70%.',
-        'Initiated and coordinated esports development by engaging stakeholders including the Sports Minister and Global Esports Federation.',
-        'Managed outreach and IT operations for multi-sport coordination projects within the National Olympic Committee.'
-
+        'Led development of the new CGA-Bangladesh website, increasing the federation’s digital visibility by 60%.',
+        'Architected a centralized athlete database designed to manage 10,000+ national athlete profiles.',
+        'Coordinated esports initiatives with national federations and international stakeholders including the Global Esports Federation.',
+        'Streamlined data workflows, cutting processing time by 20%.',
+        'Worked with cross-functional teams to digitize sports data infrastructure across multiple disciplines.',
       ],
-      skills: ['Next.js', 'React', 'MongoDB', 'Project Management', 'Stakeholder Engagement']
+      skills: ['Next.js', 'React', 'MongoDB', 'Stakeholder Management', 'Project Coordination'],
     },
     {
-      role: 'Jr. Software Engineer | NestJS, React, TypeScript',
+      role: 'Junior Software Engineer — QA Focus',
       company: 'bongoDev',
-      duration: 'June 2021 – May 2023',
+      companyLogo: '/assets/images/companies/bongodev.png',
+      companyLinkedIn: 'https://www.linkedin.com/company/bongodev/',
+      logoBg: 'light',
+      duration: 'Jan 2022 — May 2023',
       location: 'Remote',
       employmentType: 'Full-time',
-      description: 'Building scalable web applications for international clients',
+      summary: 'Built and tested production web applications while sharpening QA automation and engineering documentation practices.',
       responsibilities: [
-        'Built full-stack web applications with React, Next.js, NestJS, and TypeScript.',
-        'Refactored legacy codebases, resolving 60+ bugs and improving system maintainability by 20%.',
-        'Authored internal documentation and project wikis, reducing onboarding time for new devs by 50%.',
-        'Assisted in the development of backend services and admin panels using Node.js and MySQL.',
-        'Participated in daily stand-ups and Agile sprint planning, contributing to improved sprint delivery rates.',
-        'Supported integration of analytics tracking for usage metrics across 3 major client projects'
+        'Built the bongoDev application using React, Next.js, NestJS, and TypeScript.',
+        'Automated QA pipelines, reducing manual testing effort by 40%.',
+        'Refactored legacy systems, improving maintainability by 20%.',
+        'Authored technical documentation that reduced onboarding time for new engineers by 50%.',
+        'Participated in Agile cycles spanning sprint planning, code reviews, and release coordination.',
       ],
-      skills: ['NestJS', 'Next.js', 'TypeScript', 'React', 'PostgreSQL', 'Jest', 'Agile']
-    }
+      skills: ['React', 'Next.js', 'NestJS', 'TypeScript', 'Jest', 'Agile'],
+    },
   ];
 
   return (
-    <section id="experience" className="py-20 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="experience" className="py-28 bg-paper relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gold-500/5 blur-[100px] z-0"></div>
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 z-10">
         <motion.div
-          variants={fadeIn('up', 0, 0.5)}
+          variants={fadeIn('up', 0, 0.6)}
           initial="initial"
           whileInView="whileInView"
           viewport={defaultViewport}
-          className="text-center mb-16"
+          className="mb-20 max-w-3xl"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-            Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" style={{color: '#2563eb'}}>Experience</span>
+          <span className="editorial-eyebrow mb-6">03 — Experience</span>
+          <h2 className="font-display text-5xl md:text-6xl text-navy-900 leading-[1.05] mt-6 mb-6">
+            A working <span className="italic text-gold-600">history</span>.
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            My career journey and key contributions at each organization
+          <span className="gold-rule"></span>
+          <p className="mt-6 text-base text-ink-600 leading-relaxed">
+            Roles, milestones, and contributions across the last five years — engineering products and the teams that build them.
           </p>
         </motion.div>
 
         <motion.div
-          variants={staggerContainer(0.25, 0.2)}
+          variants={staggerContainer(0.2, 0.15)}
           initial="initial"
           whileInView="whileInView"
           viewport={defaultViewport}
-          className="space-y-12"
+          className="space-y-8"
         >
           {experiences.map((exp, index) => (
-            <motion.div
+            <motion.article
               key={index}
               variants={fadeIn('up', 0, 0.6)}
-              // Removed initial, whileInView, viewport from here as they are inherited from parent staggerContainer
-              className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow"
+              className="group relative bg-cream-50 border border-navy-900/10 hover:border-gold-500/60 hover:shadow-[0_30px_60px_-30px_rgba(10,22,40,0.18)] transition-all duration-500"
             >
-              <motion.div
-                variants={staggerContainer(0.1, 0.3)}
-                initial="initial" // Child stagger containers need their own initial/whileInView
-                whileInView="whileInView"
-                viewport={{ once: true, amount: 0.1 }}
-                className="p-8"
-              >
-                <motion.div variants={fadeIn('down', 0, 0.5)} className="flex flex-col md:flex-row md:items-center gap-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 rounded-lg bg-gradient-to-r from-blue-100 to-indigo-100 flex items-center justify-center text-blue-600">
-                      <FaBuilding className="text-2xl" />
+              {/* Gold left rule (animated on hover) */}
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-gold-500 scale-y-0 group-hover:scale-y-100 origin-top transition-transform duration-500"></div>
+
+              {/* Index marker */}
+              <div className="absolute top-6 right-6 lg:top-8 lg:right-8 font-mono text-[10px] tracking-editorial text-gold-600/80">
+                {String(index + 1).padStart(2, '0')} / 04
+              </div>
+
+              <div className="p-6 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
+                {/* Left rail: logo + meta */}
+                <div className="lg:col-span-3 flex lg:flex-col gap-6 lg:gap-8 items-start">
+                  {/* Logo tile */}
+                  <a
+                    href={exp.companyLinkedIn}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${exp.company} on LinkedIn`}
+                    className="relative w-20 h-20 lg:w-24 lg:h-24 flex-shrink-0 bg-white border border-navy-900/10 hover:border-gold-500 transition-colors flex items-center justify-center p-3 overflow-hidden"
+                  >
+                    <Image
+                      src={exp.companyLogo}
+                      alt={`${exp.company} logo`}
+                      width={96}
+                      height={96}
+                      className="object-contain max-w-full max-h-full"
+                    />
+                  </a>
+
+                  {/* Meta */}
+                  <div className="space-y-3 text-sm">
+                    <div className="flex items-center gap-2 text-ink-700">
+                      <FaCalendarAlt className="text-gold-500 text-xs flex-shrink-0" />
+                      <span className="font-medium">{exp.duration}</span>
                     </div>
+                    <div className="flex items-center gap-2 text-ink-600">
+                      <FaMapMarkerAlt className="text-gold-500 text-xs flex-shrink-0" />
+                      <span>{exp.location}</span>
+                    </div>
+                    <span className="inline-block text-[10px] tracking-editorial uppercase text-gold-600 font-semibold border border-gold-500/40 px-2.5 py-1">
+                      {exp.employmentType}
+                    </span>
                   </div>
-                  
-                  <div className="flex-1">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-800">{exp.role}</h3>
-                        <p className="text-lg text-gray-700 font-medium">{exp.company}</p>
-                      </div>
-                      <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-blue-50 text-blue-700 text-sm font-medium border border-blue-200 shadow-sm">
-                        {exp.employmentType}
-                      </div>
-                    </div>
-                    
-                    <div className="flex flex-wrap items-center gap-4 mt-3 text-gray-500">
-                      <div className="flex items-center">
-                        <FaCalendarAlt className="mr-2" />
-                        <span>{exp.duration}</span>
-                      </div>
-                      <div className="flex items-center">
-                        <FaMapMarkerAlt className="mr-2" />
-                        <span>{exp.location}</span>
-                      </div>
-                    </div>
-                    
-                    {exp.description && (
-                      <motion.p variants={fadeIn('up', 0, 0.5)} className="mt-4 text-gray-600">{exp.description}</motion.p>
-                    )}
+                </div>
+
+                {/* Right: content */}
+                <div className="lg:col-span-9 lg:pl-2">
+                  {/* Company + LinkedIn */}
+                  <div className="flex items-center gap-3 mb-2">
+                    <a
+                      href={exp.companyLinkedIn}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/co inline-flex items-center gap-2 text-gold-600 font-display italic text-lg hover:text-gold-500 transition-colors"
+                    >
+                      {exp.company}
+                      <FiArrowUpRight className="text-sm opacity-0 -translate-x-1 group-hover/co:opacity-100 group-hover/co:translate-x-0 transition-all" />
+                    </a>
+                    <span className="block flex-1 h-px bg-navy-900/10"></span>
+                    <a
+                      href={exp.companyLinkedIn}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Visit ${exp.company} on LinkedIn`}
+                      className="w-8 h-8 border border-navy-900/15 hover:border-gold-500 hover:bg-white text-navy-700 hover:text-gold-600 flex items-center justify-center transition-all"
+                    >
+                      <FiLinkedin className="text-sm" />
+                    </a>
                   </div>
-                </motion.div> {/* End of header block */}
-                
-                <div className="mt-8"> {/* This div is a direct child of p-8 staggerContainer */}
-                  <motion.h4 variants={fadeIn('up', 0, 0.5)} className="text-lg font-semibold text-gray-800 mb-4">Key Responsibilities & Achievements:</motion.h4>
-                  <motion.ul variants={staggerContainer(0.1)} initial="initial" whileInView="whileInView" viewport={defaultViewport} className="space-y-3"> {/* Added initial/whileInView/viewport to this child staggerContainer */}
+
+                  {/* Role title */}
+                  <h3 className="font-display text-2xl md:text-3xl text-navy-900 leading-tight">
+                    {exp.role}
+                  </h3>
+
+                  {/* Summary */}
+                  <p className="mt-4 text-ink-700 leading-relaxed text-[15px]">
+                    {exp.summary}
+                  </p>
+
+                  {/* Responsibilities */}
+                  <motion.ul
+                    variants={staggerContainer(0.05)}
+                    initial="initial"
+                    whileInView="whileInView"
+                    viewport={defaultViewport}
+                    className="mt-6 space-y-2.5"
+                  >
                     {exp.responsibilities.map((item, i) => (
-                      <motion.li variants={staggerItem} key={i} className="flex">
-                        <span className="flex-shrink-0 w-5 h-5 text-blue-500 mr-3 mt-0.5">•</span>
-                        <span className="text-gray-700">{item}</span>
+                      <motion.li
+                        variants={staggerItem}
+                        key={i}
+                        className="flex gap-3 text-ink-700 text-[15px] leading-relaxed"
+                      >
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-gold-500 mt-2.5"></span>
+                        <span>{item}</span>
                       </motion.li>
                     ))}
                   </motion.ul>
-                </div> {/* End of responsibilities block */}
 
-                <div className="mt-8"> {/* This div is also a direct child of p-8 staggerContainer */}
-                  <motion.h4 variants={fadeIn('up', 0, 0.5)} className="text-lg font-semibold text-gray-800 mb-3">Technologies Used:</motion.h4>
-                  <motion.div variants={staggerContainer(0.05)} initial="initial" whileInView="whileInView" viewport={defaultViewport} className="flex flex-wrap gap-3">  {/* Added initial/whileInView/viewport to this child staggerContainer */}
-                    {exp.skills.map((skill, i) => {
-                      const colorClasses = [
-                                'bg-blue-100 text-blue-800 border border-blue-200',
-                                'bg-indigo-100 text-indigo-800 border border-indigo-200',
-                                'bg-purple-100 text-purple-800 border border-purple-200',
-                                'bg-amber-100 text-amber-800 border border-amber-200',
-                                'bg-emerald-100 text-emerald-800 border border-emerald-200',
-                                'bg-rose-100 text-rose-800 border border-rose-200',
-                                'bg-sky-100 text-sky-800 border border-sky-200',
-                                'bg-fuchsia-100 text-fuchsia-800 border border-fuchsia-200',
-                      ];
-                      const colorClass = colorClasses[i % colorClasses.length];
-                      const isKeyTech = ['Angular', 'Python-Django', 'Next.js', 'TypeScript', 'React','NestJS'].includes(skill);
-                      const highlightClass = isKeyTech ? 'ring-2 ring-offset-2 ring-opacity-50' : '';
-                      const keyTechRing = isKeyTech ?
-                        (skill === 'Angular' ? 'ring-red-300' :
-                        skill === 'Python-Django' ? 'ring-emerald-300' :
-                        skill === 'Next.js' ? 'ring-blue-300' :
-                        skill === 'NestJS' ? 'ring-green-300' :
-                      'ring-indigo-300') : '';
-      
-                      return (
-                          <motion.span
-                            key={i}
-                            variants={staggerItem}
-                            whileHover={{ scale: 1.05 }}
-                            className={`inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium ${colorClass} ${highlightClass} ${keyTechRing} transition-all`}
-                          >
-                            {skill}
-                            {isKeyTech && (
-                            <svg className="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                            )}
-                          </motion.span>
-                       );
-                    })}
-                  </motion.div> {/* End of skills flex-wrap div */}
-                </div> {/* End of technologies block */}
-              </motion.div> 
-            </motion.div> 
+                  {/* Stack */}
+                  <div className="mt-8 pt-6 border-t border-navy-900/10">
+                    <p className="text-[10px] tracking-editorial uppercase text-gold-600 mb-3 font-semibold">Stack</p>
+                    <motion.div
+                      variants={staggerContainer(0.04)}
+                      initial="initial"
+                      whileInView="whileInView"
+                      viewport={defaultViewport}
+                      className="flex flex-wrap gap-2"
+                    >
+                      {exp.skills.map((skill, i) => (
+                        <motion.span key={i} variants={staggerItem} className="chip">
+                          <span className="chip-dot"></span>
+                          {skill}
+                        </motion.span>
+                      ))}
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+            </motion.article>
           ))}
-          </motion.div>
-          </div>
-         {/* End of space-y-12 staggerContainer */}
+        </motion.div>
+      </div>
     </section>
   );
 };

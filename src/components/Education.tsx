@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaBookOpen } from 'react-icons/fa';
+import { FaGraduationCap, FaBookOpen, FaAward } from 'react-icons/fa';
 import { fadeIn, staggerContainer, defaultViewport } from '../lib/animations';
 
 const Education = () => {
@@ -10,92 +10,101 @@ const Education = () => {
       degree: "Bachelor of Science (BSc)",
       field: "Computer Science & Engineering",
       institution: "Jahangirnagar University",
-      year: "2018 - 2021",
-      icon: <FaGraduationCap className="text-indigo-500" />,
+      year: "2018 — 2021",
+      icon: <FaGraduationCap />,
       description: "Focused on algorithms, data structures, web development, and software engineering principles."
     },
     {
       degree: "Higher Secondary Certificate (HSC)",
       institution: "Shaheed Police Smrity College",
       year: "2017",
-      icon: <FaBookOpen className="text-green-500" />,
+      icon: <FaBookOpen />,
       description: "Science Division with focus on Physics, Chemistry, and Mathematics."
     },
     {
       degree: "Secondary School Certificate (SSC)",
       institution: "Shaheed Police Smrity College",
       year: "2015",
-      icon: <FaBookOpen className="text-amber-500" />,
+      icon: <FaBookOpen />,
       description: "Science Division with outstanding academic performance."
     }
   ];
 
   return (
-    <section id="education" className="py-20 bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="education" className="py-28 bg-paper">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
-          variants={fadeIn('up', 0, 0.5)}
+          variants={fadeIn('up', 0, 0.6)}
           initial="initial"
           whileInView="whileInView"
           viewport={defaultViewport}
-          className="text-center mb-16"
+          className="mb-20 max-w-3xl"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-            Education <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" style={{color: '#2563eb'}}>and Certifications</span>
+          <span className="editorial-eyebrow mb-6">05 — Education & Credentials</span>
+          <h2 className="font-display text-5xl md:text-6xl text-navy-900 leading-[1.05] mt-6 mb-6">
+            Where I <span className="italic text-gold-600">learned</span>.
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            My educational background and qualifications
+          <span className="gold-rule"></span>
+          <p className="mt-6 text-base text-ink-600 leading-relaxed">
+            Academic foundation and professional certifications.
           </p>
         </motion.div>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-6 md:left-1/2 h-full w-0.5 bg-gradient-to-b from-blue-200 to-indigo-200 -translate-x-1/2"></div>
-          
+        <div className="relative max-w-4xl mx-auto">
+          {/* Timeline rail */}
+          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-navy-900/15 md:-translate-x-1/2"></div>
+
           <motion.div
-            variants={staggerContainer(0.25, 0.2)}
+            variants={staggerContainer(0.2, 0.15)}
             initial="initial"
             whileInView="whileInView"
             viewport={defaultViewport}
-            className="space-y-12"
+            className="space-y-16"
           >
             {educationData.map((edu, index) => (
               <motion.div
                 key={index}
                 variants={fadeIn(index % 2 === 0 ? 'left' : 'right', 0, 0.6)}
-                className={`relative flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center`}
+                className={`relative flex flex-col md:flex-row items-start ${
+                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                } md:items-center`}
               >
-                {/* Timeline dot */}
-                <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-white border-4 border-blue-100 shadow-md z-10 mx-auto md:mx-0">
-                  <div className="text-xl">
-                    {edu.icon}
-                  </div>
+                {/* Timeline node */}
+                <div className="absolute left-6 md:left-1/2 md:-translate-x-1/2 -translate-x-1/2 flex items-center justify-center w-12 h-12 bg-paper border border-gold-500 z-10">
+                  <span className="text-gold-600">{edu.icon}</span>
                 </div>
-                
-                {/* Education card */}
-                <div className={`flex-1 ${index % 2 === 0 ? 'md:pl-8' : 'md:pr-8'} mt-6 md:mt-0`}>
+
+                {/* Card */}
+                <div className={`w-full md:w-[calc(50%-3rem)] ml-20 md:ml-0 ${index % 2 === 0 ? 'md:mr-12' : 'md:ml-12'}`}>
                   <motion.div
-                    variants={staggerContainer(0.1, 0.2)}
+                    variants={staggerContainer(0.08, 0.2)}
                     initial="initial"
                     whileInView="whileInView"
-                    viewport={{ once: true, amount: 0.1 }}
-                    className="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow"
+                    viewport={defaultViewport}
+                    className="bg-cream-50 border border-navy-900/10 p-6 lg:p-8 hover:border-gold-500/60 hover:bg-white transition-all duration-300"
                   >
-                    <motion.div variants={fadeIn('down', 0, 0.4)} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-                      <h3 className="text-xl font-bold text-gray-800">
-                        {edu.degree} {edu.field && <span className="text-blue-600">• {edu.field}</span>}
-                      </h3>
-                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-sm font-medium">
+                    <motion.div variants={fadeIn('down', 0, 0.4)} className="flex items-baseline justify-between gap-3 mb-4">
+                      <span className="font-mono text-xs text-gold-600 tracking-wider">
                         {edu.year}
                       </span>
+                      <span className="block flex-1 h-px bg-navy-900/10"></span>
                     </motion.div>
-                    
-                    <motion.h4 variants={fadeIn('up', 0.1, 0.4)} className="text-lg font-semibold text-gray-700 mb-2">
+
+                    <motion.h3 variants={fadeIn('up', 0, 0.4)} className="font-display text-2xl text-navy-900 leading-tight">
+                      {edu.degree}
+                    </motion.h3>
+
+                    {edu.field && (
+                      <motion.p variants={fadeIn('up', 0.05, 0.4)} className="text-gold-600 italic font-display mt-1">
+                        {edu.field}
+                      </motion.p>
+                    )}
+
+                    <motion.h4 variants={fadeIn('up', 0.1, 0.4)} className="text-sm font-semibold uppercase tracking-wider text-ink-700 mt-3">
                       {edu.institution}
                     </motion.h4>
-                    
-                    <motion.p variants={fadeIn('up', 0.3, 0.4)} className="text-gray-600">
+
+                    <motion.p variants={fadeIn('up', 0.2, 0.4)} className="text-ink-600 mt-4 leading-relaxed text-[15px]">
                       {edu.description}
                     </motion.p>
                   </motion.div>
@@ -104,20 +113,44 @@ const Education = () => {
             ))}
           </motion.div>
         </div>
+
+        {/* Certifications */}
         <motion.div
-          variants={fadeIn('up', 0.2, 0.5)}
+          variants={fadeIn('up', 0.1, 0.6)}
           initial="initial"
           whileInView="whileInView"
           viewport={defaultViewport}
-          className="mt-16 rounded-2xl border border-amber-200 bg-amber-50 p-8 shadow-sm"
+          className="mt-20 bg-navy-900 text-cream-50 p-10 lg:p-12 relative overflow-hidden"
         >
-          <h3 className="text-2xl font-bold text-gray-900 mb-3">Certifications</h3>
-          <p className="text-lg font-semibold text-amber-700 mb-2">
-            Fundamental Information Technology Engineer Examination (FE) by ITEE
-          </p>
-          <p className="text-gray-700">
-            Result: <span className="font-semibold">Full Passer</span> | Rank: <span className="font-semibold">13th Nationally</span> | April 2022
-          </p>
+          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gold-500/10 blur-[80px]"></div>
+          <div className="relative grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            <div className="md:col-span-2 flex md:justify-center">
+              <span className="w-16 h-16 border border-gold-500 flex items-center justify-center text-gold-500">
+                <FaAward className="text-2xl" />
+              </span>
+            </div>
+            <div className="md:col-span-10">
+              <span className="text-[10px] tracking-editorial uppercase text-gold-500">Certification</span>
+              <h3 className="font-display text-3xl md:text-4xl mt-3 mb-4 leading-tight">
+                Fundamental IT Engineer Examination <span className="italic text-gold-400">(FE) — ITEE</span>
+              </h3>
+              <span className="block w-12 h-px bg-gold-500 my-4"></span>
+              <div className="flex flex-wrap gap-x-8 gap-y-3 text-cream-50/85">
+                <div>
+                  <p className="text-[10px] tracking-editorial uppercase text-cream-50/50 mb-1">Result</p>
+                  <p className="font-semibold">Full Passer</p>
+                </div>
+                <div>
+                  <p className="text-[10px] tracking-editorial uppercase text-cream-50/50 mb-1">National Rank</p>
+                  <p className="font-semibold">13th</p>
+                </div>
+                <div>
+                  <p className="text-[10px] tracking-editorial uppercase text-cream-50/50 mb-1">Date</p>
+                  <p className="font-semibold">April 2022</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

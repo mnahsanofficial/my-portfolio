@@ -1,7 +1,19 @@
-import { Inter } from 'next/font/google';
+import { Inter, Playfair_Display } from 'next/font/google';
 import { ReactNode } from 'react';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans-inter',
+  display: 'swap',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-display-playfair',
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+  style: ['normal', 'italic'],
+});
 
 export const data = {
   title: 'Nazmul Ahsan | Full Stack Engineer - Angular, React, Python-Django',
@@ -14,12 +26,8 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.className} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <div className={`${inter.variable} ${playfair.variable} antialiased`}>
+      {children}
+    </div>
   );
 }

@@ -1,21 +1,9 @@
 import type { Config } from 'tailwindcss';
 
+// Tailwind v4 uses CSS-first config — theme tokens live in src/styles/globals.css via @theme.
+// This file is kept minimal for any tooling that still expects it.
 const config: Config = {
-  darkMode: false, // Disable automatic dark mode
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        primary: "#3B82F6",
-        secondary: "#1E40AF",
-        dark: "#1F2937",
-        light: "#F9FAFB",
-      },
-    },
-  },
-  plugins: [],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
 };
 
 export default config;

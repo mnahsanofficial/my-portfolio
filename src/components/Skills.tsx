@@ -28,6 +28,7 @@ import { fadeIn, staggerContainer, defaultViewport } from '../lib/animations';
 
 interface SkillCategory {
   title: string;
+  index: string;
   skills: { name: string; icon: IconType }[];
 }
 
@@ -35,6 +36,7 @@ const Skills = () => {
   const skillCategories: SkillCategory[] = [
     {
       title: 'Frontend',
+      index: 'I',
       skills: [
         { name: 'Angular', icon: SiAngular },
         { name: 'React', icon: SiReact },
@@ -49,6 +51,7 @@ const Skills = () => {
     },
     {
       title: 'Backend',
+      index: 'II',
       skills: [
         { name: 'Python', icon: SiPython },
         { name: 'Django', icon: SiDjango },
@@ -59,6 +62,7 @@ const Skills = () => {
     },
     {
       title: 'Database & DevOps',
+      index: 'III',
       skills: [
         { name: 'PostgreSQL', icon: SiPostgresql },
         { name: 'MySQL', icon: SiMysql },
@@ -71,6 +75,7 @@ const Skills = () => {
     },
     {
       title: 'Testing & QA',
+      index: 'IV',
       skills: [
         { name: 'Postman', icon: SiPostman },
         { name: 'Manual Testing', icon: FiCheckCircle },
@@ -82,56 +87,68 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="skills" className="py-28 bg-navy-900 relative overflow-hidden">
+      <div className="absolute inset-0 editorial-grid opacity-40 z-0"></div>
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gold-500/5 blur-[100px] z-0"></div>
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 z-10">
         <motion.div
-          variants={fadeIn('up', 0, 0.5)}
+          variants={fadeIn('up', 0, 0.6)}
           initial="initial"
           whileInView="whileInView"
           viewport={defaultViewport}
-          className="text-center mb-16"
+          className="mb-20 max-w-3xl"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" style={{color: '#2563eb'}}>Skills</span>
+          <span className="editorial-eyebrow mb-6">02 — Skills</span>
+          <h2 className="font-display text-5xl md:text-6xl text-cream-50 leading-[1.05] mt-6 mb-6">
+            The <span className="italic text-gold-400">craft</span> & the tools.
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Technologies and competencies I&apos;ve mastered throughout my career
+          <span className="gold-rule"></span>
+          <p className="mt-6 text-base text-cream-50/70 leading-relaxed">
+            Technologies and competencies sharpened across enterprise SaaS, sports tech, and open-source.
           </p>
         </motion.div>
 
         <motion.div
-          variants={staggerContainer(0.15, 0.2)}
+          variants={staggerContainer(0.12, 0.2)}
           initial="initial"
           whileInView="whileInView"
           viewport={defaultViewport}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-px bg-cream-50/10"
         >
           {skillCategories.map((category) => (
             <motion.div
               key={category.title}
-              variants={fadeIn('up', 0, 0.4)}
-              className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100"
+              variants={fadeIn('up', 0, 0.5)}
+              className="bg-navy-900 p-8 lg:p-10 hover:bg-navy-800 transition-colors group"
             >
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 flex items-center">
-                <h3 className="text-xl font-bold text-gray-800">{category.title}</h3>
+              <div className="flex items-baseline gap-4 mb-2">
+                <span className="font-mono text-xs text-gold-500/80 tracking-wider">{category.index}</span>
+                <h3 className="font-display text-2xl text-cream-50">{category.title}</h3>
               </div>
-              
-              <div className="p-6">
-                <motion.ul variants={staggerContainer(0.08, 0.1)} initial="initial" whileInView="whileInView" viewport={defaultViewport} className="flex flex-wrap gap-3">
-                  {category.skills.map((skill) => (
-                    <motion.li variants={fadeIn('up', 0, 0.3)} key={skill.name} className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700">
-                      <skill.icon className="text-base text-blue-600" />
-                      {skill.name}
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </div>
+              <span className="block w-8 h-px bg-gold-500/60 group-hover:w-12 transition-all duration-300 mt-3 mb-6"></span>
+
+              <motion.ul
+                variants={staggerContainer(0.06, 0.1)}
+                initial="initial"
+                whileInView="whileInView"
+                viewport={defaultViewport}
+                className="flex flex-wrap gap-2"
+              >
+                {category.skills.map((skill) => (
+                  <motion.li
+                    variants={fadeIn('up', 0, 0.3)}
+                    key={skill.name}
+                    className="chip-dark"
+                  >
+                    <skill.icon className="text-sm text-gold-400" />
+                    {skill.name}
+                  </motion.li>
+                ))}
+              </motion.ul>
             </motion.div>
           ))}
         </motion.div>
-
-        
       </div>
     </section>
   );

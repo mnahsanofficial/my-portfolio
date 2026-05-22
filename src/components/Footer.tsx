@@ -22,17 +22,17 @@ const Footer = () => {
 
   const footerLinks: FooterSection[] = [
     {
-      title: 'Quick Links',
+      title: 'Navigate',
       links: [
-        { name: 'Home', href: '#home' },
         { name: 'About', href: '#about' },
         { name: 'Skills', href: '#skills' },
+        { name: 'Experience', href: '#experience' },
         { name: 'Projects', href: '#projects' },
         { name: 'Contact', href: '#contact' },
       ],
     },
     {
-      title: 'Contact',
+      title: 'Reach',
       links: [
         { name: 'mnahsanofficial@gmail.com', href: 'mailto:mnahsanofficial@gmail.com', icon: <FiMail /> },
         { name: 'Dhaka, Bangladesh', href: '#', icon: <FiMapPin /> },
@@ -46,21 +46,26 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-gray-800 text-gray-300 pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          {/* About Section */}
+    <footer className="bg-navy-950 text-cream-50/70 pt-20 pb-10 border-t border-gold-500/20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-16">
+          {/* About */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="md:col-span-6"
           >
-            <h3 className="text-2xl font-bold text-white mb-4">Nazmul Ahsan</h3>
-            <p className="mb-4">
-              Full Stack Developer specializing in modern web technologies and creating exceptional digital experiences.
+            <div className="flex items-baseline gap-3 mb-6">
+              <span className="text-[10px] tracking-editorial uppercase text-gold-500">NA</span>
+              <span className="font-display text-3xl text-cream-50">Nazmul Ahsan</span>
+            </div>
+            <span className="block w-12 h-px bg-gold-500 mb-6"></span>
+            <p className="max-w-md leading-relaxed text-cream-50/65">
+              Full Stack Engineer crafting production-grade web applications with quiet precision.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex gap-3 mt-8">
               {socialLinks.map((link, index) => (
                 <motion.a
                   key={index}
@@ -68,8 +73,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ y: -3 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="bg-gray-700 hover:bg-gray-600 p-3 rounded-full text-white transition-colors"
+                  className="w-11 h-11 border border-cream-50/15 hover:border-gold-500 text-cream-50/80 hover:text-gold-400 flex items-center justify-center transition-all"
                   aria-label={link.label}
                 >
                   {link.icon}
@@ -84,19 +88,24 @@ const Footer = () => {
               key={section.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
+              className="md:col-span-3"
             >
-              <h4 className="text-xl font-semibold text-white mb-4">{section.title}</h4>
+              <h4 className="text-[10px] tracking-editorial uppercase text-gold-500 mb-5">
+                {section.title}
+              </h4>
               <ul className="space-y-3">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
                     <Link
                       href={link.href}
-                      className="flex items-center hover:text-white transition-colors"
+                      className="group inline-flex items-center gap-2 text-cream-50/70 hover:text-gold-300 transition-colors text-sm"
                     >
-                      {link.icon && <span className="mr-2">{link.icon}</span>}
-                      {link.name}
+                      {link.icon && <span className="text-gold-500/80">{link.icon}</span>}
+                      <span className="border-b border-transparent group-hover:border-gold-500/60 transition-colors">
+                        {link.name}
+                      </span>
                     </Link>
                   </li>
                 ))}
@@ -106,34 +115,29 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="border-t border-gray-700 my-8"
-        />
+        <div className="border-t border-cream-50/10 mb-8"></div>
 
-        {/* Copyright */}
+        {/* Bottom row */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row justify-between items-center text-center"
+          className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-cream-50/50"
         >
-          <div className="flex flex-col items-center space-y-2 mb-4 md:mb-0">
-            <p>
-              &copy; {currentYear} Nazmul Ahsan. All rights reserved.
+          <div className="flex flex-col md:flex-row items-center gap-3 md:gap-6">
+            <p className="tracking-wider">
+              © {currentYear} Nazmul Ahsan · All rights reserved
             </p>
-            <SimpleVisitorCounter 
+            <SimpleVisitorCounter
               projectName="nazmul-portfolio"
               variant="badge"
-              className="mt-2"
             />
           </div>
-          <p className="text-sm">
-            Crafted with <span className="text-red-400">♥</span> using Next.js & Tailwind CSS
+          <p className="tracking-wider flex items-center gap-2">
+            <span>Crafted with</span>
+            <span className="text-gold-500">◆</span>
+            <span>Next.js · Tailwind CSS</span>
           </p>
         </motion.div>
       </div>
