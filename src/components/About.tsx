@@ -7,9 +7,9 @@ import { fadeIn, staggerContainer, defaultViewport } from '../lib/animations';
 const About = () => {
   const stats = [
     { value: '5+', label: 'Years Experience' },
-    { value: '200+', label: 'Bugs Resolved' },
-    { value: '15K+', label: 'Daily API Requests' },
-    { value: '30+', label: 'Candidates Placed' },
+    { value: '150+', label: 'Critical Bugs Closed' },
+    { value: '15K+', label: 'Lines Refactored' },
+    { value: '30+', label: 'Engineers Placed' },
   ];
 
   const traits = [
@@ -31,7 +31,7 @@ const About = () => {
         >
           {/* Left: section header */}
           <motion.div variants={fadeIn('right', 0, 0.6)} className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start">
-            <span className="editorial-eyebrow mb-6">01 — About</span>
+            <span className="editorial-eyebrow mb-6">About</span>
             <h2 className="font-display text-5xl md:text-6xl text-navy-900 leading-[1.05] mt-6 mb-8">
               A <span className="italic text-gold-600">full stack</span> engineer with a QA-driven mindset.
             </h2>
@@ -48,10 +48,13 @@ const About = () => {
                 Full Stack Software Engineer with 5+ years building across Angular, React, Vue.js, Next.js, Python-Django, and NestJS.
               </p>
               <p>
-                I&apos;ve automated E2E test pipelines, resolved 200+ production bugs, and consistently improved system performance and reliability.
+                I write each feature, write its test cases with TDD, and run the end-to-end automation in Cypress, Playwright, and Selenium — so quality is never handed off to someone else.
               </p>
               <p>
                 Shipped products for enterprise SaaS platforms, the Bangladesh Olympic Association, and open-source tools used by developers worldwide.
+              </p>
+              <p>
+                I&apos;m also a technical recruiter who has placed 30+ engineers — so I know what a strong engineer looks like from both sides of the hiring table.
               </p>
             </div>
 

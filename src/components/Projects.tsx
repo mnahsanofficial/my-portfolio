@@ -135,7 +135,7 @@ const Projects = () => {
           viewport={defaultViewport}
           className="mb-20 max-w-3xl"
         >
-          <span className="editorial-eyebrow mb-6">04 — Selected Work</span>
+          <span className="editorial-eyebrow mb-6">Selected Work</span>
           <h2 className="font-display text-5xl md:text-6xl text-cream-50 leading-[1.05] mt-6 mb-6">
             A curated <span className="italic text-gold-400">portfolio</span>.
           </h2>

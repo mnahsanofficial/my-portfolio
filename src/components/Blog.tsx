@@ -51,7 +51,7 @@ const Blog = () => {
           viewport={{ once: true }}
           className="mb-20 max-w-3xl"
         >
-          <span className="editorial-eyebrow mb-6">06 — Writing</span>
+          <span className="editorial-eyebrow mb-6">Writing</span>
           <h2 className="font-display text-5xl md:text-6xl text-navy-900 leading-[1.05] mt-6 mb-6">
             Notes from the <span className="italic text-gold-600">desk</span>.
           </h2>

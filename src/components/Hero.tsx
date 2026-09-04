@@ -96,27 +96,27 @@ const Hero = () => {
               Portfolio · 2026
             </motion.div>
 
-            <motion.h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.02] mb-6 text-cream-50">
+            <motion.h1 className="font-display text-[2.15rem] sm:text-5xl md:text-6xl lg:text-[4.75rem] leading-[1.08] mb-6 text-cream-50">
               <motion.span variants={fadeIn('up', 0.1, 0.6)} className="block">
-                Engineering
+                Full Stack Engineer
               </motion.span>
               <motion.span variants={fadeIn('up', 0.2, 0.6)} className="block">
-                products with
+                <span className="text-gold-500/50 mr-2 sm:mr-3">|</span>QA Automation
               </motion.span>
               <motion.span variants={fadeIn('up', 0.3, 0.6)} className="block italic text-gold-400">
-                quiet&nbsp;precision.
+                <span className="not-italic text-gold-500/50 mr-2 sm:mr-3">|</span>Technical Recruiter
               </motion.span>
             </motion.h1>
 
-            <motion.div variants={fadeIn('up', 0.4, 0.6)} className="mt-10 flex items-center gap-4">
+            <motion.div variants={fadeIn('up', 0.4, 0.6)} className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-3">
               <span className="gold-rule"></span>
               <p className="text-sm tracking-wider uppercase text-cream-50/70 font-medium">
-                Nazmul Ahsan — Full Stack Engineer
+                Nazmul Ahsan — Dhaka, Bangladesh
               </p>
             </motion.div>
 
             <motion.p variants={fadeIn('up', 0.5, 0.6)} className="mt-8 text-lg md:text-xl text-cream-50/75 max-w-xl leading-relaxed">
-              Five years building production-grade web applications across Angular, React, Next.js, Python-Django, and NestJS — from API architecture to pixel-perfect interfaces.
+              I build features, write my own test cases, and I&apos;ve hired engineers too. Five years across Angular, React, Vue.js, Next.js, Python-Django, and NestJS — shipping the feature, proving it works, and knowing a strong engineer when I see one.
             </motion.p>
 
             <motion.div variants={staggerContainer(0.15, 0.6)} className="mt-12 flex flex-col sm:flex-row gap-4">

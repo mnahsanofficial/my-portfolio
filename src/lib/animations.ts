@@ -3,6 +3,11 @@ import { Variants } from 'framer-motion';
 // Default viewport settings for whileInView
 export const defaultViewport = { once: true, amount: 0.2 }; // Trigger when 20% of element is in view
 
+// For containers taller than ~5x the viewport (e.g. the experience list), `amount: 0.2`
+// can never be satisfied — 20% of the element exceeds the screen — so the children stay
+// at opacity 0 forever. Use this for long lists that grow as entries are added.
+export const listViewport = { once: true, amount: 'some' } as const;
+
 // Fade In
 export const fadeIn = (direction: 'up' | 'down' | 'left' | 'right' | 'none' = 'none', delay: number = 0, duration: number = 0.5): Variants => {
   return {

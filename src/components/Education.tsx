@@ -10,7 +10,7 @@ const Education = () => {
       degree: "Bachelor of Science (BSc)",
       field: "Computer Science & Engineering",
       institution: "Jahangirnagar University",
-      year: "2018 — 2021",
+      year: "2018 — 2023",
       icon: <FaGraduationCap />,
       description: "Focused on algorithms, data structures, web development, and software engineering principles."
     },
@@ -40,7 +40,7 @@ const Education = () => {
           viewport={defaultViewport}
           className="mb-20 max-w-3xl"
         >
-          <span className="editorial-eyebrow mb-6">05 — Education & Credentials</span>
+          <span className="editorial-eyebrow mb-6">Education & Credentials</span>
           <h2 className="font-display text-5xl md:text-6xl text-navy-900 leading-[1.05] mt-6 mb-6">
             Where I <span className="italic text-gold-600">learned</span>.
           </h2>
@@ -75,7 +75,9 @@ const Education = () => {
                 </div>
 
                 {/* Card */}
-                <div className={`w-full md:w-[calc(50%-3rem)] ml-20 md:ml-0 ${index % 2 === 0 ? 'md:mr-12' : 'md:ml-12'}`}>
+                {/* On mobile the card sits right of the timeline rail (ml-20), so its width
+                    must subtract that offset — plain w-full overflowed the page by 80px. */}
+                <div className={`w-[calc(100%-5rem)] md:w-[calc(50%-3rem)] ml-20 md:ml-0 ${index % 2 === 0 ? 'md:mr-12' : 'md:ml-12'}`}>
                   <motion.div
                     variants={staggerContainer(0.08, 0.2)}
                     initial="initial"

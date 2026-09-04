@@ -19,6 +19,7 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
+    { name: 'Availability', href: '#availability' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Experience', href: '#experience' },
@@ -55,22 +56,21 @@ const Navbar = () => {
             <span className="text-[11px] font-semibold tracking-editorial uppercase text-gold-500">
               NA
             </span>
-            <span className="font-display text-xl text-cream-50 group-hover:text-gold-300 transition-colors">
+            <span className="font-display text-xl text-cream-50 group-hover:text-gold-300 transition-colors whitespace-nowrap">
               Nazmul Ahsan
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link, idx) => (
+          {/* Eight sections no longer fit alongside the numeric prefixes at max-w-7xl,
+              so the nav drops them — the section eyebrows still carry the numbering. */}
+          <div className="hidden xl:flex items-center gap-5">
+            {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="group relative text-sm tracking-wide text-cream-50/80 hover:text-gold-300 transition-colors"
+                className="group relative text-[13px] xl:text-sm tracking-wide text-cream-50/80 hover:text-gold-300 transition-colors whitespace-nowrap"
               >
-                <span className="font-mono text-[10px] text-gold-500/70 mr-1.5">
-                  {String(idx + 1).padStart(2, '0')}.
-                </span>
                 {link.name}
                 <span className="absolute -bottom-1.5 left-0 w-0 h-px bg-gold-500 transition-all duration-300 group-hover:w-full"></span>
               </Link>
@@ -96,14 +96,14 @@ const Navbar = () => {
               href="/assets/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[11px] tracking-editorial uppercase font-semibold text-navy-900 bg-gold-500 hover:bg-gold-400 px-5 py-2.5 transition-colors"
+              className="text-[11px] tracking-editorial uppercase font-semibold text-navy-900 bg-gold-500 hover:bg-gold-400 px-4 xl:px-5 py-2.5 transition-colors whitespace-nowrap"
             >
               Resume / CV
             </a>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="xl:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-cream-50 hover:text-gold-400 transition-colors"
@@ -125,7 +125,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-navy-900 border-t border-gold-500/15 overflow-hidden"
+            className="xl:hidden bg-navy-900 border-t border-gold-500/15 overflow-hidden"
             id="mobile-menu-content"
           >
             <div className="px-6 pt-4 pb-8 space-y-1">

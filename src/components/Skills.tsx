@@ -99,7 +99,7 @@ const Skills = () => {
           viewport={defaultViewport}
           className="mb-20 max-w-3xl"
         >
-          <span className="editorial-eyebrow mb-6">02 — Skills</span>
+          <span className="editorial-eyebrow mb-6">Skills</span>
           <h2 className="font-display text-5xl md:text-6xl text-cream-50 leading-[1.05] mt-6 mb-6">
             The <span className="italic text-gold-400">craft</span> & the tools.
           </h2>
