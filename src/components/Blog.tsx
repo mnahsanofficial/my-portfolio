@@ -15,7 +15,16 @@ interface BlogPost {
 const Blog = () => {
   const [showAll, setShowAll] = useState(false);
 
+  // Newest first: only the first two are shown before "show all", so the most
+  // recent post has to lead or the section reads as three years stale.
   const blogPosts: BlogPost[] = [
+    {
+      title: 'Building an AI-Powered Chat Application with Next.js and NestJS',
+      url: 'https://medium.com/@mnahsanofficial/building-an-ai-powered-chat-application-with-next-js-and-nestjs-c658c85df78d',
+      excerpt: 'How I built an AI-powered chat application using Next.js for the front end and NestJS for the back end.',
+      date: 'June 2025',
+      readTime: '3 min read'
+    },
     {
       title: 'Become a GitHub Boss',
       url: 'https://medium.com/@mnahsanofficial/become-a-github-boss-7b11930daa48',
@@ -29,13 +38,6 @@ const Blog = () => {
       excerpt: 'Deep dive into advanced JavaScript concepts that will elevate your coding skills to the next level.',
       date: 'May 2023',
       readTime: '8 min read'
-    },
-    {
-      title: 'Building an AI-Powered Chat Application with Next.js and NestJS',
-      url: 'https://medium.com/@mnahsanofficial/building-an-ai-powered-chat-application-with-next-js-and-nestjs-c658c85df78d',
-      excerpt: 'How I built an AI-powered chat application using Next.js for the front end and NestJS for the back end.',
-      date: 'June 2025',
-      readTime: '3 min read'
     },
   ];
 

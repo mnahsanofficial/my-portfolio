@@ -1,10 +1,30 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaBookOpen, FaAward } from 'react-icons/fa';
+import { FaGraduationCap, FaAward, FaTrophy } from 'react-icons/fa';
+import { FiSearch } from 'react-icons/fi';
 import { fadeIn, staggerContainer, defaultViewport } from '../lib/animations';
+import EvidenceModal, { Evidence } from './EvidenceModal';
+
+// Scans backing each credential. Paths must exist in /public or the modal
+// falls back to an "image not available" message rather than a broken icon.
+const ITEE_EVIDENCE: Evidence = {
+  title: 'Fundamental IT Engineer Examination (FE) — ITEE',
+  caption: 'Issued by Bangladesh Computer Council (BCC) · 23 April 2022',
+  src: '/assets/images/credentials/certificate-itee-fe.jpg',
+  alt: 'ITEE Fundamental IT Engineer Examination certificate awarded to Nazmul Ahsan',
+};
+
+const AWARD_EVIDENCE: Evidence = {
+  title: 'Highest Placement Bonus Achiever',
+  caption: 'Talvette · Q2 2026',
+  src: '/assets/images/credentials/award-talvette-placement-bonus.png',
+  alt: 'Talvette Highest Placement Bonus Achiever award for Nazmul Ahsan, Q2 2026',
+};
 
 const Education = () => {
+  const [evidence, setEvidence] = useState<Evidence | null>(null);
   const educationData = [
     {
       degree: "Bachelor of Science (BSc)",
@@ -13,20 +33,6 @@ const Education = () => {
       year: "2018 — 2023",
       icon: <FaGraduationCap />,
       description: "Focused on algorithms, data structures, web development, and software engineering principles."
-    },
-    {
-      degree: "Higher Secondary Certificate (HSC)",
-      institution: "Shaheed Police Smrity College",
-      year: "2017",
-      icon: <FaBookOpen />,
-      description: "Science Division with focus on Physics, Chemistry, and Mathematics."
-    },
-    {
-      degree: "Secondary School Certificate (SSC)",
-      institution: "Shaheed Police Smrity College",
-      year: "2015",
-      icon: <FaBookOpen />,
-      description: "Science Division with outstanding academic performance."
     }
   ];
 
@@ -148,13 +154,76 @@ const Education = () => {
                 </div>
                 <div>
                   <p className="text-[10px] tracking-editorial uppercase text-cream-50/50 mb-1">Date</p>
-                  <p className="font-semibold">April 2022</p>
+                  <p className="font-semibold">23 April 2022</p>
+                </div>
+                <div>
+                  <p className="text-[10px] tracking-editorial uppercase text-cream-50/50 mb-1">Issued by</p>
+                  <p className="font-semibold">Bangladesh Computer Council (BCC)</p>
                 </div>
               </div>
+
+              <button
+                type="button"
+                onClick={() => setEvidence(ITEE_EVIDENCE)}
+                className="mt-7 inline-flex items-center gap-2 border border-gold-500/60 text-gold-400 hover:bg-gold-500 hover:text-navy-900 hover:border-gold-500 px-4 py-2.5 transition-colors"
+              >
+                <FiSearch className="text-sm" />
+                <span className="text-[11px] tracking-editorial uppercase font-semibold">Verify</span>
+              </button>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Achievement */}
+        <motion.div
+          variants={fadeIn('up', 0.1, 0.6)}
+          initial="initial"
+          whileInView="whileInView"
+          viewport={defaultViewport}
+          className="mt-8 bg-navy-900 text-cream-50 p-10 lg:p-12 relative overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gold-500/10 blur-[80px]"></div>
+          <div className="relative grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            <div className="md:col-span-2 flex md:justify-center">
+              <span className="w-16 h-16 border border-gold-500 flex items-center justify-center text-gold-500">
+                <FaTrophy className="text-2xl" />
+              </span>
+            </div>
+            <div className="md:col-span-10">
+              <span className="text-[10px] tracking-editorial uppercase text-gold-500">Achievement</span>
+              <h3 className="font-display text-3xl md:text-4xl mt-3 mb-4 leading-tight">
+                Highest Placement Bonus <span className="italic text-gold-400">Achiever</span>
+              </h3>
+              <span className="block w-12 h-px bg-gold-500 my-4"></span>
+              <div className="flex flex-wrap gap-x-8 gap-y-3 text-cream-50/85">
+                <div>
+                  <p className="text-[10px] tracking-editorial uppercase text-cream-50/50 mb-1">Awarded by</p>
+                  <p className="font-semibold">Talvette</p>
+                </div>
+                <div>
+                  <p className="text-[10px] tracking-editorial uppercase text-cream-50/50 mb-1">Period</p>
+                  <p className="font-semibold">Q2 2026</p>
+                </div>
+                <div>
+                  <p className="text-[10px] tracking-editorial uppercase text-cream-50/50 mb-1">Distinction</p>
+                  <p className="font-semibold">Highest in company history</p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setEvidence(AWARD_EVIDENCE)}
+                className="mt-7 inline-flex items-center gap-2 border border-gold-500/60 text-gold-400 hover:bg-gold-500 hover:text-navy-900 hover:border-gold-500 px-4 py-2.5 transition-colors"
+              >
+                <FiSearch className="text-sm" />
+                <span className="text-[11px] tracking-editorial uppercase font-semibold">Verify</span>
+              </button>
             </div>
           </div>
         </motion.div>
       </div>
+
+      <EvidenceModal evidence={evidence} onClose={() => setEvidence(null)} />
     </section>
   );
 };

@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FiGithub, FiLinkedin, FiMail, FiMapPin } from 'react-icons/fi';
 import { ReactElement } from 'react';
-import SimpleVisitorCounter from './SimpleVisitorCounter';
 
 interface FooterLink {
   name: string;
@@ -129,10 +128,6 @@ const Footer = () => {
             <p className="tracking-wider">
               © {currentYear} Nazmul Ahsan · All rights reserved
             </p>
-            <SimpleVisitorCounter
-              projectName="nazmul-portfolio"
-              variant="badge"
-            />
           </div>
           <p className="tracking-wider flex items-center gap-2">
             <span>Crafted with</span>

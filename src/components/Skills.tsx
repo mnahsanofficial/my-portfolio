@@ -21,7 +21,11 @@ import {
   SiGit,
   SiDocker,
   SiJira,
-  SiPostman
+  SiPostman,
+  SiPhp,
+  SiGraphql,
+  SiCypress,
+  SiSelenium
 } from 'react-icons/si';
 import { FiDatabase, FiCloud, FiTool, FiCheckCircle } from 'react-icons/fi';
 import { fadeIn, staggerContainer, defaultViewport } from '../lib/animations';
@@ -57,6 +61,8 @@ const Skills = () => {
         { name: 'Django', icon: SiDjango },
         { name: 'Node.js', icon: SiNodedotjs },
         { name: 'NestJS', icon: SiNestjs },
+        { name: 'PHP', icon: SiPhp },
+        { name: 'GraphQL', icon: SiGraphql },
         { name: 'REST APIs', icon: FiDatabase },
       ],
     },
@@ -77,10 +83,17 @@ const Skills = () => {
       title: 'Testing & QA',
       index: 'IV',
       skills: [
+        // react-icons v5 has no Playwright glyph, so it falls back to the same
+        // neutral check icon used by the other non-branded QA entries.
+        { name: 'TDD', icon: FiCheckCircle },
+        { name: 'Cypress', icon: SiCypress },
+        { name: 'Playwright', icon: FiCheckCircle },
+        { name: 'Selenium', icon: SiSelenium },
         { name: 'Postman', icon: SiPostman },
-        { name: 'Manual Testing', icon: FiCheckCircle },
         { name: 'E2E Testing', icon: FiCheckCircle },
-        { name: 'Automation', icon: FiCheckCircle },
+        { name: 'Test Automation', icon: FiCheckCircle },
+        { name: 'Manual Testing', icon: FiCheckCircle },
+        { name: 'Bug Triage', icon: FiTool },
         { name: 'Debugging', icon: FiTool },
       ],
     },

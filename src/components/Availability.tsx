@@ -4,16 +4,7 @@ import { motion } from 'framer-motion';
 import { FiMapPin, FiGlobe } from 'react-icons/fi';
 import { fadeIn, staggerContainer, staggerItem, defaultViewport } from '../lib/animations';
 
-const PRIORITY_MARKETS = [
-  'USA',
-  'Netherlands',
-  'Germany',
-  'Ireland',
-  'United Kingdom',
-  'Canada',
-  'Australia',
-  'UAE',
-];
+const PRIORITY_MARKETS = ['Netherlands', 'Germany', 'Ireland', 'UAE'];
 
 const Availability = () => {
   return (
@@ -67,11 +58,23 @@ const Availability = () => {
                   <p className="text-cream-50 font-display text-lg">Dhaka, Bangladesh</p>
                 </div>
               </div>
+              {/* Split by arrangement — a blanket "sponsorship required" label was
+                  ruling out remote roles that need no sponsorship at all. */}
               <div className="flex items-start gap-3 border border-cream-50/15 p-4">
                 <FiGlobe className="text-gold-400 text-lg mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="text-[10px] tracking-editorial uppercase text-cream-50/50 mb-1">Requires</p>
-                  <p className="text-cream-50 font-display text-lg">Visa sponsorship</p>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-[10px] tracking-editorial uppercase text-cream-50/50 mb-1">On-site</p>
+                    <p className="text-cream-50/90 text-[15px] leading-snug">
+                      Visa sponsorship or relocation support required
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] tracking-editorial uppercase text-cream-50/50 mb-1">Remote</p>
+                    <p className="text-cream-50/90 text-[15px] leading-snug">
+                      No sponsorship needed — available for direct hire or contract
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

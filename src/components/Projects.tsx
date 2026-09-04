@@ -32,15 +32,8 @@ const Projects = () => {
         '/assets/images/EINO/eino-1.png',
         '/assets/images/EINO/eino-2.png',
         '/assets/images/EINO/eino-3.png',
-        '/assets/images/EINO/eino-4.png',
-        '/assets/images/EINO/eino-5.png',
-        '/assets/images/EINO/eino-6.png',
-        '/assets/images/EINO/eino-7.png',
-        '/assets/images/EINO/eino-8.png',
-        '/assets/images/EINO/eino-9.png',
       ],
       links: {
-        github: 'https://github.com/mnahsanofficial',
         live: 'https://app.eino.world'
       }
     },
@@ -54,7 +47,6 @@ const Projects = () => {
         '/assets/images/Recruitr/recruitr-2.png',
       ],
       links: {
-        github: 'https://github.com/mnahsanofficial',
         live: 'https://next-hire-frontend-eight.vercel.app/'
       }
     },
@@ -67,8 +59,8 @@ const Projects = () => {
         '/assets/images/EINO/eino-2.png'
       ],
       links: {
-        live: 'https://www.npmjs.com/',
-        github: 'https://github.com/mnahsanofficial'
+        live: 'https://www.npmjs.com/package/website-visitor-counter',
+        github: 'https://github.com/mnahsanofficial/website-visitor-counter'
       }
     },
     {
