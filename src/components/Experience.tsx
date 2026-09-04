@@ -229,7 +229,10 @@ const Experience = () => {
 
                 <div className="p-6 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
                   {/* Left rail: logo + company-level meta */}
-                  <div className="lg:col-span-3 flex lg:flex-col gap-6 lg:gap-8 items-start">
+                  {/* Stacked below lg the meta sits beside the logo and would run under
+                      the corner index marker, so reserve that width until the rail
+                      becomes its own column. */}
+                  <div className="lg:col-span-3 flex lg:flex-col gap-6 lg:gap-8 items-start pr-[4.5rem] lg:pr-0">
                     <a
                       href={exp.companyLinkedIn}
                       target="_blank"
@@ -269,7 +272,9 @@ const Experience = () => {
 
                   {/* Right: company + role progression */}
                   <div className="lg:col-span-9 lg:pl-2">
-                    <div className="flex items-center gap-3 mb-6">
+                    {/* pr clears the absolutely-positioned index marker in the card's
+                        top-right corner — without it the LinkedIn button sits under it. */}
+                    <div className="flex items-center gap-3 mb-6 pr-[4.5rem] lg:pr-16">
                       <a
                         href={exp.companyLinkedIn}
                         target="_blank"
